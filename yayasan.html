@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yayasan New Life Indonesia - Berbagi Asa, Menebar Senyum</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        // Konfigurasi Warna untuk Yayasan
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        // Biru Yayasan (Primary)
+                        primary: '#0e7490', 
+                        // Hijau / Warna Kehangatan (Accent)
+                        accent: '#10b981', 
+                        // Biru Muda (Secondary)
+                        secondary: '#67e8f9', 
+                        // Warna Gelap untuk Footer/Kontras
+                        dark: '#1e293b'
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .nav-link.active {
+            color: #10b981; 
+            border-bottom: 3px solid #10b981; 
+            padding-bottom: 5px;
+        }
+         /* Scroll reveal animation trigger */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body class="font-sans bg-gray-50 pt-16">
+
+    <nav class="fixed top-0 w-full bg-primary shadow-lg z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <a href="#hero" class="flex items-center space-x-3 text-white font-bold text-xl">
+                    <i class="fas fa-hand-holding-heart text-accent text-3xl"></i>
+                    <span>Yayasan New Life Indonesia</span>
+                </a>
+
+                <button class="lg:hidden text-white focus:outline-none p-2" id="mobile-menu-button" aria-label="Toggle Navigation">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="#hero" class="nav-link text-white hover:text-accent transition duration-300 active">Beranda</a>
+                    <a href="#profile" class="nav-link text-white hover:text-accent transition duration-300">Profil Yayasan</a>
+                    <a href="#program" class="nav-link text-white hover:text-accent transition duration-300">Program Donasi</a>
+                    <a href="#children" class="nav-link text-white hover:text-accent transition duration-300">Anak Asuh</a>
+                    <a href="#contact" class="nav-link text-white hover:text-accent transition duration-300">Kontak</a>
+                    <a href="#donate" class="bg-accent text-white font-bold py-2 px-4 rounded-full hover:bg-green-600 transition duration-300 shadow-md">
+                        <i class="fas fa-donate mr-1"></i> Donasi Sekarang
+                    </a>
+                </div>
+            </div>
+
+            <div class="lg:hidden hidden bg-dark/95 absolute top-full left-0 w-full shadow-xl" id="mobile-menu">
+                <div class="flex flex-col space-y-2 p-4">
+                    <a href="#hero" class="text-accent font-bold transition duration-300 py-2 border-b border-gray-600">Beranda</a>
+                    <a href="#profile" class="text-white hover:text-accent transition duration-300 py-2 border-b border-gray-600">Profil Yayasan</a>
+                    <a href="#program" class="text-white hover:text-accent transition duration-300 py-2 border-b border-gray-600">Program Donasi</a>
+                    <a href="#children" class="text-white hover:text-accent transition duration-300 py-2 border-b border-gray-600">Anak Asuh</a>
+                    <a href="#contact" class="text-white hover:text-accent transition duration-300 py-2">Kontak</a>
+                    <a href="#donate" class="bg-accent text-white text-center font-bold py-3 rounded-lg mt-4">Donasi Sekarang</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section id="hero" 
+        class="min-h-screen flex items-center justify-center relative bg-fixed"
+        style="background-image: linear-gradient(rgba(14, 116, 144, 0.8), rgba(16, 185, 129, 0.8)), url('https://images.unsplash.com/photo-1543269865-cbe426643c1f?q=80&w=2070&auto=format&fit=crop'); background-size: cover; background-position: center;">
+        <div class="container mx-auto px-4 text-center text-white relative z-10 py-20 reveal">
+            <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight">
+                Berbagi Asa, Menebar Senyum
+            </h1>
+            <p class="text-xl md:text-2xl mb-10 max-w-4xl mx-auto opacity-95">
+                Salurkan donasi Anda untuk mendukung pendidikan, kesehatan, dan masa depan anak-anak panti asuhan.
+            </p>
+            
+            <a href="#donate" class="inline-block bg-white text-primary font-bold py-4 px-8 rounded-full shadow-xl transition duration-300 transform hover:scale-105 text-lg">
+                <i class="fas fa-hand-holding-usd mr-2"></i> Jadilah Pahlawan Hari Ini
+            </a>
+        </div>
+    </section>
+
+    <section id="profile" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl font-bold text-primary mb-4">Mengenal Yayasan New Life Indonesia</h2>
+                <p class="text-xl text-gray-600 max-w-4xl mx-auto">Komitmen kami untuk membangun generasi penerus bangsa yang unggul dan berakhlak mulia.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="bg-gray-100 p-8 rounded-xl border-l-4 border-accent shadow-md hover:shadow-xl transition duration-300 reveal">
+                    <div class="flex items-center mb-6">
+                        <i class="fas fa-eye text-4xl text-accent mr-4"></i>
+                        <h3 class="text-2xl font-bold text-primary">Visi</h3>
+                    </div>
+                    <p class="text-lg text-gray-700 leading-relaxed">
+                        Menjadi yayasan terdepan dalam mencetak anak-anak yang mandiri, berpendidikan tinggi, dan memiliki integritas moral yang kokoh.
+                    </p>
+                </div>
+
+                <div class="bg-gray-100 p-8 rounded-xl border-l-4 border-accent shadow-md hover:shadow-xl transition duration-300 reveal" style="animation-delay: 0.2s;">
+                    <div class="flex items-center mb-6">
+                        <i class="fas fa-bullseye text-4xl text-accent mr-4"></i>
+                        <h3 class="text-2xl font-bold text-primary">Misi</h3>
+                    </div>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-accent mr-3 mt-1"></i>
+                            <span>Menyediakan akses pendidikan formal dan non-formal berkualitas.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-accent mr-3 mt-1"></i>
+                            <span>Memastikan kebutuhan dasar dan kesehatan anak terpenuhi.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-accent mr-3 mt-1"></i>
+                            <span>Menciptakan lingkungan panti asuhan yang aman, nyaman, dan suportif.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="program" class="py-20 bg-secondary/30">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl font-bold text-primary mb-4">Program Donasi Kami</h2>
+                <p class="text-xl text-gray-600 max-w-4xl mx-auto">Fokus penyaluran dana untuk empat pilar utama pembangunan masa depan anak.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-white rounded-xl shadow-lg p-6 text-center border-t-4 border-primary hover:shadow-2xl transition duration-300 transform hover:-translate-y-1 reveal">
+                    <i class="fas fa-book-open text-primary text-5xl mb-4"></i>
+                    <h3 class="text-xl font-bold text-dark mb-2">Pendidikan</h3>
+                    <p class="text-gray-600 text-sm">Dana untuk biaya sekolah, buku, seragam, dan bimbingan belajar.</p>
+                    <a href="#" class="mt-4 inline-block text-primary hover:text-accent text-sm font-semibold">Lihat Detail Program</a>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg p-6 text-center border-t-4 border-primary hover:shadow-2xl transition duration-300 transform hover:-translate-y-1 reveal" style="animation-delay: 0.2s;">
+                    <i class="fas fa-heartbeat text-primary text-5xl mb-4"></i>
+                    <h3 class="text-xl font-bold text-dark mb-2">Kesehatan</h3>
+                    <p class="text-gray-600 text-sm">Jaminan kesehatan rutin, imunisasi, dan penanganan medis darurat.</p>
+                    <a href="#" class="mt-4 inline-block text-primary hover:text-accent text-sm font-semibold">Lihat Detail Program</a>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-lg p-6 text-center border-t-4 border-primary hover:shadow-2xl transition duration-300 transform hover:-translate-y-1 reveal" style="animation-delay: 0.4s;">
+                    <i class="fas fa-hands-helping text-primary text-5xl mb-4"></i>
+                    <h3 class="text-xl font-bold text-dark mb-2">Sosial & Kesejahteraan</h3>
+                    <p class="text-gray-600 text-sm">Pemenuhan kebutuhan sandang, pangan, dan peningkatan fasilitas panti.</p>
+                    <a href="#" class="mt-4 inline-block text-primary hover:text-accent text-sm font-semibold">Lihat Detail Program</a>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg p-6 text-center border-t-4 border-primary hover:shadow-2xl transition duration-300 transform hover:-translate-y-1 reveal" style="animation-delay: 0.6s;">
+                    <i class="fas fa-home text-primary text-5xl mb-4"></i>
+                    <h3 class="text-xl font-bold text-dark mb-2">Panti Asuhan</h3>
+                    <p class="text-gray-600 text-sm">Biaya operasional bulanan, gaji pengurus, dan perawatan bangunan.</p>
+                    <a href="#" class="mt-4 inline-block text-primary hover:text-accent text-sm font-semibold">Lihat Detail Program</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-primary/95 text-white">
+        <div class="container mx-auto px-4 reveal">
+            <h2 class="text-4xl font-bold text-center mb-12 text-accent">Dampak dan Transparansi</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="p-6 bg-dark/50 rounded-lg shadow-xl border-b-4 border-accent">
+                    <i class="fas fa-users text-4xl text-white mb-3"></i>
+                    <div class="text-5xl font-extrabold text-white mb-2" id="stat-children">85</div>
+                    <div class="text-lg text-secondary">Anak Asuh Saat Ini</div>
+                </div>
+
+                <div class="p-6 bg-dark/50 rounded-lg shadow-xl border-b-4 border-accent" style="animation-delay: 0.2s;">
+                    <i class="fas fa-wallet text-4xl text-white mb-3"></i>
+                    <div class="text-5xl font-extrabold text-white mb-2" id="stat-donation">Rp 125.000.000</div>
+                    <div class="text-lg text-secondary">Donasi Terkumpul (Tahun Ini)</div>
+                </div>
+
+                <div class="p-6 bg-dark/50 rounded-lg shadow-xl border-b-4 border-accent" style="animation-delay: 0.4s;">
+                    <i class="fas fa-handshake text-4xl text-white mb-3"></i>
+                    <div class="text-5xl font-extrabold text-white mb-2" id="stat-projects">15</div>
+                    <div class="text-lg text-secondary">Proyek Pendidikan Terselesaikan</div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <section id="children" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12 reveal">
+                <h2 class="text-4xl font-bold text-primary mb-4">Kenalan dengan Anak-anak Kita</h2>
+                <p class="text-xl text-gray-600 max-w-4xl mx-auto">Setiap donasi Anda memberikan dampak langsung bagi masa depan mereka.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
+                
+                <div class="bg-gray-100 rounded-xl shadow-lg overflow-hidden reveal">
+                    <img src="https://images.unsplash.com/photo-1555513220-d3269b618a80?q=80&w=1780&auto=format&fit=crop" alt="Foto Anak Asuh" class="w-full h-48 object-cover">
+                    <div class="p-5 text-center">
+                        <h4 class="text-2xl font-bold text-dark mb-1">Ahmad Zaki</h4>
+                        <p class="text-sm text-gray-500 mb-3">10 Tahun | Kelas 4 SD</p>
+                        <p class="text-gray-700 text-sm">Membutuhkan dukungan untuk alat tulis dan ekstrakurikuler sains.</p>
+                        <a href="#" class="mt-4 inline-block bg-accent/10 text-accent font-semibold py-2 px-4 rounded-full text-sm hover:bg-accent hover:text-white transition">Update & Kebutuhan</a>
+                    </div>
+                </div>
+
+                <div class="bg-gray-100 rounded-xl shadow-lg overflow-hidden reveal" style="animation-delay: 0.2s;">
+                    <img src="https://images.unsplash.com/photo-1551025559-8f2334f5539d?q=80&w=1780&auto=format&fit=crop" alt="Foto Anak Asuh" class="w-full h-48 object-cover">
+                    <div class="p-5 text-center">
+                        <h4 class="text-2xl font-bold text-dark mb-1">Siti Fatimah</h4>
+                        <p class="text-sm text-gray-500 mb-3">16 Tahun | Kelas 1 SMA</p>
+                        <p class="text-gray-700 text-sm">Membutuhkan dana transport untuk sekolah kejuruan dan laptop bekas.</p>
+                        <a href="#" class="mt-4 inline-block bg-accent/10 text-accent font-semibold py-2 px-4 rounded-full text-sm hover:bg-accent hover:text-white transition">Update & Kebutuhan</a>
+                    </div>
+                </div>
+
+                <div class="bg-gray-100 rounded-xl shadow-lg overflow-hidden reveal" style="animation-delay: 0.4s;">
+                    <img src="https://images.unsplash.com/photo-1549419163-b847a95dbf33?q=80&w=1780&auto=format&fit=crop" alt="Foto Anak Asuh" class="w-full h-48 object-cover">
+                    <div class="p-5 text-center">
+                        <h4 class="text-2xl font-bold text-dark mb-1">Bima Sakti</h4>
+                        <p class="text-sm text-gray-500 mb-3">7 Tahun | Kelas 1 SD</p>
+                        <p class="text-gray-700 text-sm">Membutuhkan sepatu baru dan biaya kontrol kesehatan gigi rutin.</p>
+                        <a href="#" class="mt-4 inline-block bg-accent/10 text-accent font-semibold py-2 px-4 rounded-full text-sm hover:bg-accent hover:text-white transition">Update & Kebutuhan</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12 reveal" style="animation-delay: 0.6s;">
+                <a href="anak_asuh.html" class="inline-block bg-primary hover:bg-primary/90 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300">
+                    <i class="fas fa-list-ul mr-2"></i> Lihat Semua 85 Anak Asuh
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="donate" class="py-20 bg-primary text-white">
+        <div class="container mx-auto px-4 text-center reveal">
+            <h2 class="text-4xl font-bold mb-4 text-accent">Bagaimana Cara Anda Berkontribusi?</h2>
+            <p class="text-xl mb-12 max-w-2xl mx-auto opacity-90">Proses donasi yang mudah, aman, dan transparan.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="p-6 bg-dark/50 rounded-lg border-b-4 border-accent shadow-xl transform hover:scale-[1.03] transition duration-300">
+                    <div class="text-5xl font-extrabold mb-4 text-accent">1</div>
+                    <h3 class="text-xl font-bold mb-3">Pilih Program</h3>
+                    <p class="text-gray-300">Tentukan program yang ingin Anda dukung (Pendidikan, Kesehatan, dll.).</p>
+                </div>
+                <div class="p-6 bg-dark/50 rounded-lg border-b-4 border-accent shadow-xl transform hover:scale-[1.03] transition duration-300" style="animation-delay: 0.2s;">
+                    <div class="text-5xl font-extrabold mb-4 text-accent">2</div>
+                    <h3 class="text-xl font-bold mb-3">Transfer Donasi</h3>
+                    <p class="text-gray-300">Transfer sejumlah dana melalui rekening resmi yayasan.</p>
+                </div>
+                <div class="p-6 bg-dark/50 rounded-lg border-b-4 border-accent shadow-xl transform hover:scale-[1.03] transition duration-300" style="animation-delay: 0.4s;">
+                    <div class="text-5xl font-extrabold mb-4 text-accent">3</div>
+                    <h3 class="text-xl font-bold mb-3">Konfirmasi Online</h3>
+                    <p class="text-gray-300">Isi formulir konfirmasi online untuk memudahkan pencatatan dan penerbitan laporan.</p>
+                </div>
+            </div>
+            
+            <a href="konfirmasi.html" class="inline-block mt-12 bg-accent hover:bg-green-600 text-white font-bold py-4 px-10 rounded-full shadow-2xl transition duration-300 transform hover:scale-105 text-xl">
+                Lanjut ke Halaman Konfirmasi Donasi
+            </a>
+        </div>
+    </section>
+
+    <footer id="contact" class="bg-dark text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+
+                <div>
+                    <h4 class="text-2xl font-bold mb-6 text-accent">Yayasan New Life Indonesia</h4>
+                    <p class="text-gray-400 mb-4 text-sm">
+                        Berkomitmen menciptakan masa depan yang lebih cerah bagi anak-anak Indonesia melalui pendidikan dan kesejahteraan yang merata.
+                    </p>
+                    <div class="flex space-x-4 text-xl">
+                        <a href="#" class="text-gray-400 hover:text-accent transition"><i class="fab fa-facebook-square"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-accent transition"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-accent transition"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-accent transition"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-xl font-bold mb-6 border-b border-gray-600 pb-2">Tautan Cepat</h4>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a href="#profile" class="hover:text-accent transition">Visi & Misi</a></li>
+                        <li><a href="program.html" class="hover:text-accent transition">Program Kami</a></li>
+                        <li><a href="anak_asuh.html" class="hover:text-accent transition">Daftar Anak Asuh</a></li>
+                        <li><a href="transparansi.html" class="hover:text-accent transition">Transparansi Donatur</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-xl font-bold mb-6 border-b border-gray-600 pb-2">Hubungi Kami</h4>
+                    <div class="space-y-3 text-gray-400">
+                        <p class="flex items-start">
+                            <i class="fas fa-map-marker-alt mr-3 mt-1 text-accent"></i>
+                            <span>Jl. Kebahagiaan No. 123, Jakarta Selatan, Indonesia</span>
+                        </p>
+                        <p class="flex items-center">
+                            <i class="fas fa-phone mr-3 text-accent"></i>
+                            <span>+62 812-3456-7890</span>
+                        </p>
+                        <p class="flex items-center">
+                            <i class="fas fa-envelope mr-3 text-accent"></i>
+                            <span>info@harapanbangsa.org</span>
+                        </p>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-xl font-bold mb-6 border-b border-gray-600 pb-2">Daftar Donatur</h4>
+                    <p class="text-gray-400 mb-4 text-sm">Kami menghargai privasi Anda. Dalam daftar donatur, Anda dapat memilih untuk tampil secara anonim.</p>
+                    <a href="transparansi.html" class="inline-block bg-primary/80 text-white font-semibold py-2 px-4 rounded-lg text-sm hover:bg-primary transition">
+                        Lihat Daftar Donatur
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-500">
+                <p>&copy; 2025 Yayasan New Life Indonesia. Hak Cipta Dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Scroll Reveal Script 
+        const reveals = document.querySelectorAll(".reveal");
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("active");
+                }
+            });
+        }, { threshold: 0.15 });
+
+        reveals.forEach(r => observer.observe(r));
+
+        // Basic Scroll Spy for Navigation (for in-page links)
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        function updateActiveNav() {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150; 
+                const sectionHeight = section.clientHeight;
+                
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                const targetId = link.getAttribute('href').substring(1);
+                
+                if (targetId === current) {
+                    link.classList.add('active');
+                } else if (current === 'hero' && link.getAttribute('href') === '#hero') {
+                    // Pastikan Beranda aktif di posisi paling atas
+                    link.classList.add('active');
+                }
+            });
+        }
+        window.addEventListener('scroll', updateActiveNav);
+        window.addEventListener('load', updateActiveNav);
+    </script>
+</body>
+</html>
