@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fasilitas Produksi - PT. Nongsa Jaya Buana</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0a3d62',
+                        secondary: '#1e5f8a',
+                        accent: '#3498db',
+                        darkblue: '#082c47',
+                        navy: '#2c3e50'
+                    },
+                    fontFamily: {
+                        'sans': ['Segoe UI', 'Tahoma', 'Geneva', 'Verdana', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-primary shadow-lg z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <a href="index.html" class="flex items-center space-x-3 text-white font-bold text-xl">
+                    <div class="w-10 h-10 bg-white rounded flex items-center justify-center">
+                        <img src="assets/njb_logo.png" alt="NJB" class="h-8 w-8">
+                    </div>
+                    <span>PT. Nongsa Jaya Buana</span>
+                </a>
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="index.html" class="text-white hover:text-accent transition duration-300">Beranda</a>
+                    <a href="about.html" class="text-white hover:text-accent transition duration-300">Tentang Kami</a>
+                    <a href="capabilities.html" class="text-white hover:text-accent transition duration-300">Layanan & Kapabilitas</a>
+                    <a href="infrastructure.html" class="text-accent font-semibold">Infrastruktur</a>
+                    <a href="projects.html" class="text-white hover:text-accent transition duration-300">Proyek</a>
+                    <a href="certification.html" class="text-white hover:text-accent transition duration-300">Sertifikasi</a>
+                    <a href="contact.html" class="text-white hover:text-accent transition duration-300">Kontak</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="pt-32 pb-20 bg-primary text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-5xl font-bold mb-6">Fasilitas Produksi</h1>
+            <p class="text-xl max-w-3xl mx-auto">Infrastruktur terintegrasi dengan equipment berkapasitas industri di Batam</p>
+        </div>
+    </section>
+
+    <!-- Facility Overview -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-primary mb-4">Shipyard Overview</h2>
+                <p class="text-xl text-gray-600 max-w-4xl mx-auto">Fasilitas produksi seluas 5 hektar dengan kapabilitas lengkap dari material receiving hingga vessel launching</p>
+            </div>
+
+            <div class="rounded-2xl overflow-hidden shadow-2xl mb-16">
+                <img src="https://images.unsplash.com/photo-1570845178262-d868c01e72bb?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" 
+                     alt="NJB Shipyard Overview" class="w-full h-96 object-cover">
+            </div>
+
+            <!-- Facility Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Heavy Lifting -->
+                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-accent">
+                    <div class="p-6">
+                        <div class="text-accent text-3xl mb-4">
+                            <i class="fas fa-crane"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-primary mb-4">Heavy Lifting & Logistics</h3>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li><strong>Crawler Crane:</strong> 6 Units (50T - 80T) - NCK, LIMA</li>
+                            <li><strong>Mobile Crane:</strong> 8 Units combined capacity</li>
+                            <li><strong>Gantry System:</strong> Fleksibel di seluruh area produksi</li>
+                            <li><strong>Support Equipment:</strong> Bulldozer, Excavator Komatsu PC300/400</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Fabrication Workshop -->
+                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-accent">
+                    <div class="p-6">
+                        <div class="text-accent text-3xl mb-4">
+                            <i class="fas fa-industry"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-primary mb-4">Fabrication Workshops</h3>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li><strong>CNC Cutting Bay:</strong> Mesin plasma CNC (±1mm accuracy)</li>
+                            <li><strong>Plate Forming:</strong> Bending hidrolik (32mm thickness)</li>
+                            <li><strong>Welding Bay:</strong> Lincoln Electric dengan WPS tersertifikasi</li>
+                            <li><strong>Sandblasting:</strong> Sistem kompresor udara bertekanan tinggi</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Machine Shop -->
+                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-accent">
+                    <div class="p-6">
+                        <div class="text-accent text-3xl mb-4">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-primary mb-4">Machine Shop</h3>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li><strong>Radial Drill:</strong> Untuk komponen presisi</li>
+                            <li><strong>Milling Machine:</strong> Pengerjaan permukaan presisi</li>
+                            <li><strong>Lathe Machine:</strong> Pembuatan stern tube, propeller shaft</li>
+                            <li><strong>Custom Parts:</strong> Fabrikasi komponen khusus</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Utility Systems -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-primary mb-4">Integrated Support Systems</h2>
+                <p class="text-xl text-gray-600 max-w-4xl mx-auto">Sistem pendukung terintegrasi untuk operasional 24 jam</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <i class="fas fa-bolt text-2xl text-accent mr-4 mt-1"></i>
+                            <div>
+                                <h4 class="text-xl font-bold text-primary mb-2">Power Generation</h4>
+                                <p class="text-gray-600">Power house dengan generator kapasitas tinggi untuk menopang operasional 24 jam tanpa gangguan.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <i class="fas fa-tint text-2xl text-accent mr-4 mt-1"></i>
+                            <div>
+                                <h4 class="text-xl font-bold text-primary mb-2">Water & Utility Supply</h4>
+                                <p class="text-gray-600">Sistem supply air dan utilitas lengkap untuk seluruh proses produksi dan kebutuhan shipyard.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <i class="fas fa-compress-arrows-alt text-2xl text-accent mr-4 mt-1"></i>
+                            <div>
+                                <h4 class="text-xl font-bold text-primary mb-2">Compressed Air System</h4>
+                                <p class="text-gray-600">Sistem kompresor udara bertekanan tinggi untuk power tool dan sandblasting operations.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="rounded-2xl overflow-hidden shadow-2xl">
+                    <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                         alt="Utility Systems" class="w-full h-80 object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Launching Facility -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-primary mb-4">Launching Facility</h2>
+                <p class="text-xl text-gray-600 max-w-4xl mx-auto">Fasilitas peluncuran kapal yang aman dan efisien</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="rounded-2xl overflow-hidden shadow-2xl">
+                    <img src="https://images.unsplash.com/photo-1710142297837-141df8d098b3?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                         alt="Launching Facility" class="w-full h-80 object-cover">
+                </div>
+                <div>
+                    <div class="space-y-6">
+                        <div class="bg-gray-50 p-6 rounded-lg">
+                            <h4 class="text-xl font-bold text-primary mb-3">Jetty Specifications</h4>
+                            <ul class="space-y-2 text-gray-700">
+                                <li><strong>Kedalaman:</strong> 7 meter (low tide)</li>
+                                <li><strong>Panjang:</strong> 150 meter</li>
+                                <li><strong>Kapasitas:</strong> Multiple vessel berthing</li>
+                                <li><strong>Fasilitas:</strong> Bunker supply, fresh water, power connection</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-gray-50 p-6 rounded-lg">
+                            <h4 class="text-xl font-bold text-primary mb-3">Launching Methods</h4>
+                            <ul class="space-y-2 text-gray-700">
+                                <li><strong>Airbag Launching:</strong> Metode modern dan aman</li>
+                                <li><strong>Slipway System:</strong> Traditional method dengan kontrol penuh</li>
+                                <li><strong>Crane Launching:</strong> Untuk vessel berukuran kecil hingga medium</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-darkblue text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h3 class="text-3xl font-bold mb-4">Ingin Melihat Fasilitas Kami Langsung?</h3>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Jadwalkan kunjungan ke shipyard kami di Batam</p>
+            <a href="contact.html" class="inline-block border-2 border-white hover:bg-white hover:text-darkblue text-white font-bold py-4 px-8 rounded-lg transition duration-300 text-lg">
+                Schedule Visit
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-navy text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                <!-- Company Info -->
+                <div>
+                    <h4 class="text-xl font-bold mb-6">PT. Nongsa Jaya Buana</h4>
+                    <div class="space-y-3 text-gray-300">
+                        <p class="flex items-start">
+                            <i class="fas fa-map-marker-alt mr-3 mt-1"></i>
+                            <span>
+                                Kawasan Industri Sekupang Kav. 8<br>
+                                Jl. Tanjung Riau, Batam 29433<br>
+                                Kepulauan Riau - Indonesia
+                            </span>
+                        </p>
+                        <p class="flex items-center">
+                            <i class="fas fa-phone mr-3"></i>
+                            <span>Telp. +62-778-326999 (Hunting)</span>
+                        </p>
+                        <p class="flex items-center">
+                            <i class="fas fa-fax mr-3"></i>
+                            <span>Fax. +62-778-321755, 321697</span>
+                        </p>
+                        <p class="flex items-center">
+                            <i class="fas fa-globe mr-3"></i>
+                            <span>www.nongsagroup.com</span>
+                        </p>
+                        <p class="flex items-center">
+                            <i class="fas fa-envelope mr-3"></i>
+                            <span>info@nongsagroup.com</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-xl font-bold mb-6">Tautan Cepat</h4>
+                    <ul class="space-y-3 text-gray-300">
+                        <li><a href="#hero" class="hover:text-accent transition">Beranda</a></li>
+                        <li><a href="#about" class="hover:text-accent transition">Tentang Kami</a></li>
+                        <li><a href="#competencies" class="hover:text-accent transition">Kapabilitas</a></li>
+                        <li><a href="#quality" class="hover:text-accent transition">Mutu & K3</a></li>
+                    </ul>
+                </div>
+
+                <!-- Certifications & Social Media -->
+                <div>
+                    <h4 class="text-xl font-bold mb-6">Sertifikasi</h4>
+
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="bg-secondary px-3 py-1 rounded-full text-sm border border-accent">
+                            ISO 9001:2015 (QMS)
+                        </span>
+                        <span class="bg-secondary px-3 py-1 rounded-full text-sm border border-accent">
+                            ISO 45001:2018 (OHSMS)
+                        </span>
+                        <span class="bg-secondary px-3 py-1 rounded-full text-sm border border-accent">
+                            TÜV Rheinland Certified
+                        </span>
+                    </div>
+
+                    <div>
+                        <h5 class="font-bold mb-4">Sosial Media</h5>
+                        <div class="flex space-x-4">
+
+                            <!-- LinkedIn -->
+                            <a href="https://linkedin.com/company/nongsajayabuana"
+                            class="text-gray-300 hover:text-accent transition text-xl"
+                            target="_blank">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+
+                            <!-- Facebook -->
+                            <a href="https://facebook.com/pt.nongsajayabuana"
+                            class="text-gray-300 hover:text-accent transition text-xl"
+                            target="_blank">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+
+                            <!-- Instagram -->
+                            <a href="https://instagram.com/pt.nongsajayabuana"
+                            class="text-gray-300 hover:text-accent transition text-xl"
+                            target="_blank">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+
+                            <!-- X / Twitter -->
+                            <a href="https://twitter.com/NongsaPt"
+                            class="text-gray-300 hover:text-accent transition text-xl"
+                            target="_blank">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-600 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 PT. Nongsa Jaya Buana. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

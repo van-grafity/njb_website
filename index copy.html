@@ -1,0 +1,807 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PT. Nongsa Jaya Buana - Shipyard Excellence Since 2001</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #0d6efd;
+      --secondary: #6c757d;
+      --dark: #212529;
+      --light: #f8f9fa;
+      --accent: #0dcaf0;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+    }
+    
+    .hero {
+      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('assets/hero-bg.jpg');
+      background-size: cover;
+      background-position: center;
+      padding: 100px 0;
+    }
+    
+    .section-title {
+      position: relative;
+      margin-bottom: 2rem;
+      padding-bottom: 0.5rem;
+    }
+    
+    .section-title:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background-color: var(--primary);
+    }
+    
+    .card-hover {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .card-hover:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .stat-card {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      border-radius: 10px;
+      padding: 2rem;
+      text-align: center;
+    }
+    
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+    }
+    
+    .timeline:before {
+      content: '';
+      position: absolute;
+      left: 7px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background-color: var(--primary);
+    }
+    
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2rem;
+    }
+    
+    .timeline-item:before {
+      content: '';
+      position: absolute;
+      left: -2rem;
+      top: 5px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: var(--primary);
+    }
+    
+    .equipment-category {
+      border-left: 3px solid var(--primary);
+      padding-left: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .cert-badge {
+      display: inline-block;
+      background-color: var(--light);
+      border: 1px solid #dee2e6;
+      border-radius: 5px;
+      padding: 0.5rem 1rem;
+      margin: 0.25rem;
+      font-size: 0.9rem;
+    }
+    
+    .nav-pills .nav-link.active {
+      background-color: var(--primary);
+    }
+    
+    .project-card {
+      transition: all 0.3s ease;
+      border-left: 4px solid var(--primary);
+    }
+    
+    .project-card:hover {
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="bg-white shadow-sm sticky-top">
+    <div class="container py-2">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+          <a class="navbar-brand d-flex align-items-center" href="#">
+            <img src="assets/logo-njb.png" alt="NJB Logo" height="50" class="me-2">
+            <div>
+              <h5 class="mb-0">PT. Nongsa Jaya Buana</h5>
+              <small class="text-muted">Built To Last Since 2001</small>
+            </div>
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item"><a class="nav-link" href="#about">Tentang Kami</a></li>
+              <li class="nav-item"><a class="nav-link" href="#services">Layanan</a></li>
+              <li class="nav-item"><a class="nav-link" href="#projects">Portofolio</a></li>
+              <li class="nav-item"><a class="nav-link" href="#equipment">Peralatan</a></li>
+              <li class="nav-item"><a class="nav-link" href="#certifications">Sertifikasi</a></li>
+              <li class="nav-item"><a class="nav-link" href="#contact">Kontak</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero text-white">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-7">
+          <h1 class="display-4 fw-bold mb-4">Spesialis Galangan Kapal Terpercaya di Indonesia</h1>
+          <p class="lead mb-4">Lebih dari 20 tahun pengalaman dalam pembangunan, perbaikan, dan fabrikasi kapal dengan standar internasional.</p>
+          <div class="d-flex flex-wrap gap-3">
+            <a href="#projects" class="btn btn-primary btn-lg">Lihat Portofolio</a>
+            <a href="#contact" class="btn btn-outline-light btn-lg">Hubungi Kami</a>
+          </div>
+        </div>
+        <div class="col-lg-5 text-center mt-4 mt-lg-0">
+          <img src="assets/shipyard-overview.jpg" alt="Shipyard Overview" class="img-fluid rounded shadow">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="py-5 bg-light">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-3 col-6">
+          <div class="stat-card">
+            <div class="stat-number">20+</div>
+            <div>Tahun Pengalaman</div>
+          </div>
+        </div>
+        <div class="col-md-3 col-6">
+          <div class="stat-card">
+            <div class="stat-number">172+</div>
+            <div>Kapal Diselesaikan</div>
+          </div>
+        </div>
+        <div class="col-md-3 col-6">
+          <div class="stat-card">
+            <div class="stat-number">50+</div>
+            <div>Peralatan Modern</div>
+          </div>
+        </div>
+        <div class="col-md-3 col-6">
+          <div class="stat-card">
+            <div class="stat-number">3</div>
+            <div>Sertifikasi Internasional</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-5">
+    <div class="container">
+      <h2 class="section-title">Tentang PT. Nongsa Jaya Buana</h2>
+      <div class="row">
+        <div class="col-lg-6">
+          <p class="lead"><strong>PT. Nongsa Jaya Buana (NJB)</strong> didirikan pada tahun 2001 di Batam, Indonesia, dengan pengalaman industri sejak 1997. Kami telah berkembang menjadi salah satu galangan kapal terkemuka di kawasan, dengan spesialisasi dalam pembangunan kapal baru, perbaikan kapal, dan fabrikasi struktur baja.</p>
+          
+          <p>Dengan lebih dari 172 proyek kapal yang berhasil diselesaikan, NJB memiliki rekam jejak yang terbukti dalam memberikan solusi kelautan yang andal dan berkualitas tinggi untuk klien domestik dan internasional.</p>
+          
+          <div class="mt-4">
+            <h5>Sejarah Perusahaan</h5>
+            <div class="timeline">
+              <div class="timeline-item">
+                <h6>1997</h6>
+                <p>Memulai operasi di industri perkapalan dengan fokus pada perbaikan kapal.</p>
+              </div>
+              <div class="timeline-item">
+                <h6>2001</h6>
+                <p>Pendirian resmi PT. Nongsa Jaya Buana dengan fasilitas galangan di Tanjung Riau, Batam.</p>
+              </div>
+              <div class="timeline-item">
+                <h6>2010</h6>
+                <p>Ekspansi fasilitas dan penambahan peralatan berat untuk meningkatkan kapasitas produksi.</p>
+              </div>
+              <div class="timeline-item">
+                <h6>2015</h6>
+                <p>Perolehan sertifikasi ISO 9001:2015 untuk Sistem Manajemen Mutu.</p>
+              </div>
+              <div class="timeline-item">
+                <h6>2018</h6>
+                <p>Perolehan sertifikasi ISO 45001:2018 untuk Sistem Manajemen K3.</p>
+              </div>
+              <div class="timeline-item">
+                <h6>2023</h6>
+                <p>Penyelesaian lebih dari 172 proyek kapal dengan berbagai jenis dan ukuran.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="row">
+            <div class="col-md-6 mb-4">
+              <div class="card h-100 card-hover border-0 shadow-sm">
+                <div class="card-body text-center">
+                  <i class="fas fa-bullseye fa-2x text-primary mb-3"></i>
+                  <h5>Visi</h5>
+                  <p class="card-text">Menjadi perusahaan galangan kapal terdepan yang menghasilkan kapal berkualitas tinggi dan memberikan solusi kelautan komprehensif untuk memenuhi kebutuhan industri maritim yang berkembang pesat.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 mb-4">
+              <div class="card h-100 card-hover border-0 shadow-sm">
+                <div class="card-body text-center">
+                  <i class="fas fa-tasks fa-2x text-primary mb-3"></i>
+                  <h5>Misi</h5>
+                  <ul class="text-start ps-3">
+                    <li>Menyediakan pekerjaan berkualitas tinggi sesuai standar industri</li>
+                    <li>Mengutamakan ketepatan waktu pengiriman</li>
+                    <li>Meningkatkan kompetensi SDM melalui pelatihan berkelanjutan</li>
+                    <li>Memastikan proses produksi yang aman dan ramah lingkungan</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="card card-hover border-0 shadow-sm">
+                <div class="card-body">
+                  <h5 class="card-title">Nilai-Nilai Perusahaan</h5>
+                  <div class="row text-center">
+                    <div class="col-md-3 col-6 mb-3">
+                      <i class="fas fa-shield-alt fa-2x text-primary mb-2"></i>
+                      <h6>Integritas</h6>
+                    </div>
+                    <div class="col-md-3 col-6 mb-3">
+                      <i class="fas fa-hard-hat fa-2x text-primary mb-2"></i>
+                      <h6>Keselamatan</h6>
+                    </div>
+                    <div class="col-md-3 col-6 mb-3">
+                      <i class="fas fa-cogs fa-2x text-primary mb-2"></i>
+                      <h6>Efisiensi</h6>
+                    </div>
+                    <div class="col-md-3 col-6 mb-3">
+                      <i class="fas fa-award fa-2x text-primary mb-2"></i>
+                      <h6>Kualitas</h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="py-5 bg-light">
+    <div class="container">
+      <h2 class="section-title">Layanan Kami</h2>
+      <p class="lead mb-5">Kami menyediakan solusi lengkap untuk kebutuhan industri maritim dengan standar kualitas tertinggi.</p>
+      
+      <div class="row g-4">
+        <div class="col-lg-4 col-md-6">
+          <div class="card h-100 card-hover border-0 shadow-sm">
+            <div class="card-body text-center p-4">
+              <div class="bg-primary rounded-circle p-3 d-inline-flex mb-3">
+                <i class="fas fa-ship fa-2x text-white"></i>
+              </div>
+              <h4 class="card-title">Pembangunan Kapal Baru</h4>
+              <p class="card-text">Desain dan konstruksi kapal baru sesuai spesifikasi klien dengan teknologi terkini.</p>
+              <ul class="text-start">
+                <li>Deck Cargo Barge (180ft - 330ft)</li>
+                <li>Self Propelled Oil Barge (SPOB)</li>
+                <li>Tug Boat (16m - 30m)</li>
+                <li>Oil Barge & LCT</li>
+                <li>Kapal Khusus sesuai kebutuhan</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6">
+          <div class="card h-100 card-hover border-0 shadow-sm">
+            <div class="card-body text-center p-4">
+              <div class="bg-primary rounded-circle p-3 d-inline-flex mb-3">
+                <i class="fas fa-tools fa-2x text-white"></i>
+              </div>
+              <h4 class="card-title">Perbaikan & Perawatan Kapal</h4>
+              <p class="card-text">Layanan komprehensif untuk perbaikan, pemeliharaan, dan konversi kapal.</p>
+              <ul class="text-start">
+                <li>Drydocking & Hull Repair</li>
+                <li>Machinery Overhaul</li>
+                <li>Piping & Electrical Systems</li>
+                <li>Conversion & Modification</li>
+                <li>Routine Maintenance</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6">
+          <div class="card h-100 card-hover border-0 shadow-sm">
+            <div class="card-body text-center p-4">
+              <div class="bg-primary rounded-circle p-3 d-inline-flex mb-3">
+                <i class="fas fa-industry fa-2x text-white"></i>
+              </div>
+              <h4 class="card-title">Fabrikasi & Engineering</h4>
+              <p class="card-text">Fabrikasi struktur baja dan komponen kelautan dengan presisi tinggi.</p>
+              <ul class="text-start">
+                <li>CNC Cutting & Bending</li>
+                <li>Steel Fabrication</li>
+                <li>Welding & Machining</li>
+                <li>Marine Structure Engineering</li>
+                <li>Custom Fabrication</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="py-5">
+    <div class="container">
+      <h2 class="section-title">Portofolio Proyek</h2>
+      <p class="lead mb-5">Beberapa proyek unggulan yang telah kami selesaikan dengan sukses.</p>
+      
+      <ul class="nav nav-pills mb-4" id="projectTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="all-tab" data-bs-toggle="pill" data-bs-target="#all" type="button">Semua Proyek</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="barge-tab" data-bs-toggle="pill" data-bs-target="#barge" type="button">Tongkang</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="tugboat-tab" data-bs-toggle="pill" data-bs-target="#tugboat" type="button">Kapal Tunda</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="spob-tab" data-bs-toggle="pill" data-bs-target="#spob" type="button">SPOB</button>
+        </li>
+      </ul>
+      
+      <div class="tab-content" id="projectTabsContent">
+        <div class="tab-pane fade show active" id="all" role="tabpanel">
+          <div class="row g-4">
+            <div class="col-lg-4 col-md-6">
+              <div class="project-card p-4 h-100">
+                <h5>Buana Dynamic</h5>
+                <p class="text-muted">Cargo Vessel</p>
+                <ul>
+                  <li>Dimensi: 89.61m × 22.25m × 6.40m</li>
+                  <li>Gross Tonnage: 3,580 Ton</li>
+                  <li>Kecepatan: 12 Knot</li>
+                  <li>Kelas: A100 (I) P</li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+              <div class="project-card p-4 h-100">
+                <h5>Permata Sukses</h5>
+                <p class="text-muted">Oil Barge</p>
+                <ul>
+                  <li>Dimensi: 82.91m × 21.34m × 6.10m</li>
+                  <li>Gross Tonnage: 2,832 Ton</li>
+                  <li>Kelas: A100 P Oil Barge</li>
+                  <li>Cargo Flush Point: Below 60°</li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+              <div class="project-card p-4 h-100">
+                <h5>Buana Harbour</h5>
+                <p class="text-muted">Harbour Tug</p>
+                <ul>
+                  <li>Dimensi: 30.8m × 10.4m × 5.0m</li>
+                  <li>Gross Tonnage: 354 Ton</li>
+                  <li>Kecepatan: 12 Knot</li>
+                  <li>Kelas: C+ HULL, MACH TUG</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="tab-pane fade" id="barge" role="tabpanel">
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Nama Kapal</th>
+                  <th>Jenis</th>
+                  <th>Dimensi</th>
+                  <th>Tonnage</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Deck Cargo Barge</td>
+                  <td>Deck Cargo</td>
+                  <td>180ft × 58ft × 12ft</td>
+                  <td>-</td>
+                  <td><span class="badge bg-success">Selesai</span></td>
+                </tr>
+                <tr>
+                  <td>Deck Cargo Barge</td>
+                  <td>Deck Cargo</td>
+                  <td>230ft × 70ft × 14ft</td>
+                  <td>-</td>
+                  <td><span class="badge bg-success">Selesai</span></td>
+                </tr>
+                <tr>
+                  <td>Deck Cargo Barge</td>
+                  <td>Deck Cargo</td>
+                  <td>330ft × 90ft × 20ft</td>
+                  <td>-</td>
+                  <td><span class="badge bg-success">Selesai</span></td>
+                </tr>
+                <tr>
+                  <td>Oil Barge</td>
+                  <td>Oil Barge</td>
+                  <td>272ft × 70ft × 20ft</td>
+                  <td>-</td>
+                  <td><span class="badge bg-success">Selesai</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        
+        <div class="tab-pane fade" id="tugboat" role="tabpanel">
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Nama Kapal</th>
+                  <th>Jenis</th>
+                  <th>Dimensi</th>
+                  <th>Bollard Pull</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Buana Victory 5</td>
+                  <td>Tug Boat</td>
+                  <td>26m × 8m × 3.65m</td>
+                  <td>12 Ton</td>
+                  <td><span class="badge bg-success">Selesai</span></td>
+                </tr>
+                <tr>
+                  <td>Buana Success 23</td>
+                  <td>Tug Boat</td>
+                  <td>23.50m × 7.32m × 3.20m</td>
+                  <td>10 Ton</td>
+                  <td><span class="badge bg-success">Selesai</span></td>
+                </tr>
+                <tr>
+                  <td>Buana Express</td>
+                  <td>Tug Boat</td>
+                  <td>30m × 8.6m × 4.12m</td>
+                  <td>12 Ton</td>
+                  <td><span class="badge bg-success">Selesai</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        
+        <div class="tab-pane fade" id="spob" role="tabpanel">
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Nama Kapal</th>
+                  <th>Jenis</th>
+                  <th>Dimensi</th>
+                  <th>Kapasitas Tangki</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Permata Glory</td>
+                  <td>SPOB</td>
+                  <td>264ft × 60ft × 18ft</td>
+                  <td>3,700 KL</td>
+                  <td><span class="badge bg-success">Selesai</span></td>
+                </tr>
+                <tr>
+                  <td>SPOB</td>
+                  <td>SPOB</td>
+                  <td>85ft × 24ft × 9ft</td>
+                  <td>-</td>
+                  <td><span class="badge bg-success">Selesai</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Equipment Section -->
+  <section id="equipment" class="py-5 bg-light">
+    <div class="container">
+      <h2 class="section-title">Peralatan & Fasilitas</h2>
+      <p class="lead mb-5">Didukung dengan peralatan modern dan fasilitas lengkap untuk menunjang semua tahap produksi.</p>
+      
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="equipment-category">
+            <h5><i class="fas fa-crane me-2"></i>Heavy Lifting Equipment</h5>
+            <ul>
+              <li><strong>Crawler Crane</strong> - 6 Unit (50T - 80T) - CH, CCH, NCK, LIMA</li>
+              <li><strong>Mobile Crane</strong> - 4 Unit (12T - 30T) - PETTIBONE</li>
+              <li><strong>Gantry Crane</strong> - Kapasitas 5T, 10T, 30T</li>
+              <li><strong>Overhead Crane</strong> - Workshop lifting & assembly</li>
+            </ul>
+          </div>
+          
+          <div class="equipment-category">
+            <h5><i class="fas fa-tools me-2"></i>Workshop Machinery</h5>
+            <ul>
+              <li><strong>CNC Cutting Machine</strong> - Presisi tinggi untuk pelat baja</li>
+              <li><strong>Bending Machine</strong> - Kapasitas 32mm plate thickness</li>
+              <li><strong>Welding Equipment</strong> - Inverter, MIG (Lincoln Electric, Win Goldarch)</li>
+              <li><strong>Machine Tools</strong> - Drilling, Milling, Lathe, Grinding</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="col-lg-6">
+          <div class="equipment-category">
+            <h5><i class="fas fa-tractor me-2"></i>Heavy Equipment</h5>
+            <ul>
+              <li><strong>Wheel Loader</strong> - Caterpillar 950, XG 955 II</li>
+              <li><strong>Track Loader</strong> - Caterpillar 983</li>
+              <li><strong>Bulldozer</strong> - Caterpillar DS</li>
+              <li><strong>Excavator</strong> - Komatsu PC300, PC400</li>
+              <li><strong>Truck Trailer</strong> - Nissan CW</li>
+            </ul>
+          </div>
+          
+          <div class="equipment-category">
+            <h5><i class="fas fa-compress-arrows-alt me-2"></i>Supporting Equipment</h5>
+            <ul>
+              <li><strong>Air Compressor</strong> - Diesel & Electric</li>
+              <li><strong>Power House</strong> - Generator kapasitas tinggi</li>
+              <li><strong>Launching Airbag</strong> - Untuk peluncuran kapal</li>
+              <li><strong>Pompa & Sistem Hidrolik</strong></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mt-5">
+        <h5>Fasilitas Produksi</h5>
+        <div class="row">
+          <div class="col-md-4 mb-3">
+            <div class="card card-hover border-0 h-100">
+              <div class="card-body">
+                <h6 class="card-title">Workshop Fabrikasi</h6>
+                <p class="card-text">Area khusus untuk fabrikasi komponen kapal dengan peralatan lengkap.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <div class="card card-hover border-0 h-100">
+              <div class="card-body">
+                <h6 class="card-title">Slipway & Dock</h6>
+                <p class="card-text">Fasilitas peluncuran dan docking kapal dengan sistem yang aman.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <div class="card card-hover border-0 h-100">
+              <div class="card-body">
+                <h6 class="card-title">Steel Yard</h6>
+                <p class="card-text">Area penyimpanan dan preparasi material baja sebelum diproses.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications Section -->
+  <section id="certifications" class="py-5">
+    <div class="container">
+      <h2 class="section-title">Sertifikasi & Standar</h2>
+      <p class="lead mb-5">Komitmen kami terhadap kualitas, keselamatan, dan lingkungan diwujudkan melalui sertifikasi internasional.</p>
+      
+      <div class="row">
+        <div class="col-lg-4 mb-4">
+          <div class="card h-100 card-hover border-0 shadow-sm">
+            <div class="card-body text-center p-4">
+              <i class="fas fa-certificate fa-3x text-primary mb-3"></i>
+              <h4>ISO 9001:2015</h4>
+              <p class="card-text">Sistem Manajemen Mutu</p>
+              <p>Komitmen terhadap kualitas produk dan layanan melalui proses peningkatan berkelanjutan.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-4 mb-4">
+          <div class="card h-100 card-hover border-0 shadow-sm">
+            <div class="card-body text-center p-4">
+              <i class="fas fa-shield-alt fa-3x text-primary mb-3"></i>
+              <h4>ISO 45001:2018</h4>
+              <p class="card-text">Sistem Manajemen K3</p>
+              <p>Komitmen terhadap keselamatan dan kesehatan kerja dengan target Zero Accident.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-4 mb-4">
+          <div class="card h-100 card-hover border-0 shadow-sm">
+            <div class="card-body text-center p-4">
+              <i class="fas fa-leaf fa-3x text-primary mb-3"></i>
+              <h4>ISO 14001:2015</h4>
+              <p class="card-text">Sistem Manajemen Lingkungan</p>
+              <p>Komitmen terhadap pelestarian lingkungan dan operasi yang ramah lingkungan.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mt-5">
+        <h5>Standar Teknis yang Dipatuhi</h5>
+        <div class="d-flex flex-wrap">
+          <span class="cert-badge">Biro Klasifikasi Indonesia (BKI)</span>
+          <span class="cert-badge">Germanischer Lloyd (GL)</span>
+          <span class="cert-badge">Standar Maritim Internasional</span>
+          <span class="cert-badge">Regulasi Pemerintah Indonesia</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-5 bg-dark text-white">
+    <div class="container">
+      <h2 class="section-title text-white">Hubungi Kami</h2>
+      <p class="lead mb-5">Untuk penawaran, kerjasama proyek, atau informasi lebih lanjut, silakan hubungi kami.</p>
+      
+      <div class="row">
+        <div class="col-lg-4 mb-4">
+          <div class="d-flex mb-3">
+            <i class="fas fa-map-marker-alt fa-lg text-primary me-3 mt-1"></i>
+            <div>
+              <h5>Alamat</h5>
+              <p>Jl. Tanjung Riau, Kawasan Industri Sekupang Kav. 8<br>Kota Batam, Kepulauan Riau - Indonesia</p>
+            </div>
+          </div>
+          
+          <div class="d-flex mb-3">
+            <i class="fas fa-phone fa-lg text-primary me-3 mt-1"></i>
+            <div>
+              <h5>Telepon</h5>
+              <p>+62 778 1234567</p>
+            </div>
+          </div>
+          
+          <div class="d-flex mb-3">
+            <i class="fas fa-envelope fa-lg text-primary me-3 mt-1"></i>
+            <div>
+              <h5>Email</h5>
+              <p>info@nongsa-jayabuana.co.id</p>
+            </div>
+          </div>
+          
+          <div class="d-flex">
+            <i class="fas fa-clock fa-lg text-primary me-3 mt-1"></i>
+            <div>
+              <h5>Jam Operasional</h5>
+              <p>Senin - Jumat: 08:00 - 17:00 WIB<br>Sabtu: 08:00 - 12:00 WIB</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-8">
+          <form class="row g-3 needs-validation" novalidate>
+            <div class="col-md-6">
+              <label for="name" class="form-label">Nama Lengkap</label>
+              <input type="text" class="form-control" id="name" required>
+            </div>
+            <div class="col-md-6">
+              <label for="company" class="form-label">Perusahaan</label>
+              <input type="text" class="form-control" id="company">
+            </div>
+            <div class="col-md-6">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" required>
+            </div>
+            <div class="col-md-6">
+              <label for="phone" class="form-label">Telepon</label>
+              <input type="tel" class="form-control" id="phone">
+            </div>
+            <div class="col-12">
+              <label for="subject" class="form-label">Subjek</label>
+              <input type="text" class="form-control" id="subject" required>
+            </div>
+            <div class="col-12">
+              <label for="message" class="form-label">Pesan</label>
+              <textarea class="form-control" id="message" rows="5" required></textarea>
+            </div>
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary">Kirim Pesan</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-4 bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h5>PT. Nongsa Jaya Buana</h5>
+          <p class="mb-0">Galangan kapal terpercaya dengan pengalaman lebih dari 20 tahun dalam pembangunan dan perbaikan kapal.</p>
+        </div>
+        <div class="col-md-6 text-md-end">
+          <p class="mb-0">&copy; 2025 PT. Nongsa Jaya Buana. All rights reserved.</p>
+          <p class="small text-muted">Built To Last Since 2001</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Form validation
+    (function () {
+      'use strict'
+      var forms = document.querySelectorAll('.needs-validation')
+      Array.prototype.slice.call(forms)
+        .forEach(function (form) {
+          form.addEventListener('submit', function (event) {
+            if (!form.checkValidity()) {
+              event.preventDefault()
+              event.stopPropagation()
+            }
+            form.classList.add('was-validated')
+          }, false)
+        })
+    })()
+  </script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+
+:root{
+  --primary: #0d6efd;
+}
+.header-img{ width:80px; height:60px; object-fit:cover; }
+.hero{ background: linear-gradient(90deg, rgba(13,110,253,0.08), rgba(0,0,0,0.02)); }
+.project-card h5{ margin-bottom:0.5rem; }

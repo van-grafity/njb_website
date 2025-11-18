@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontak & Inquiry - PT. Nongsa Jaya Buana</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0a3d62',
+                        secondary: '#1e5f8a',
+                        accent: '#3498db',
+                        darkblue: '#082c47',
+                        navy: '#2c3e50'
+                    },
+                    fontFamily: {
+                        'sans': ['Segoe UI', 'Tahoma', 'Geneva', 'Verdana', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-primary shadow-lg z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <a href="index.html" class="flex items-center space-x-3 text-white font-bold text-xl">
+                    <div class="w-10 h-10 bg-white rounded flex items-center justify-center">
+                        <img src="assets/njb_logo.png" alt="NJB" class="h-8 w-8">
+                    </div>
+                    <span>PT. Nongsa Jaya Buana</span>
+                </a>
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="index.html" class="text-white hover:text-accent transition duration-300">Beranda</a>
+                    <a href="about.html" class="text-white hover:text-accent transition duration-300">Tentang Kami</a>
+                    <a href="capabilities.html" class="text-white hover:text-accent transition duration-300">Layanan & Kapabilitas</a>
+                    <a href="infrastructure.html" class="text-white hover:text-accent transition duration-300">Infrastruktur</a>
+                    <a href="projects.html" class="text-white hover:text-accent transition duration-300">Proyek</a>
+                    <a href="certification.html" class="text-white hover:text-accent transition duration-300">Sertifikasi</a>
+                    <a href="contact.html" class="text-accent font-semibold">Kontak</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="pt-32 pb-20 bg-primary text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-5xl font-bold mb-6">Kontak & Inquiry</h1>
+            <p class="text-xl max-w-3xl mx-auto">Hubungi kami untuk konsultasi proyek maritim dan request quotation</p>
+        </div>
+    </section>
+
+    <!-- Contact & Map Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Contact Information -->
+                <div>
+                    <h2 class="text-3xl font-bold text-primary mb-8">Informasi Kontak</h2>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-2xl text-accent mr-4 mt-1"></i>
+                            <div>
+                                <h4 class="text-xl font-semibold text-primary mb-2">Lokasi</h4>
+                                <p class="text-gray-600">
+                                    Jl. Tanjung Riau, Kawasan Industri Sekupang Kav. 8<br>
+                                    Batam – Indonesia
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <i class="fas fa-phone text-2xl text-accent mr-4 mt-1"></i>
+                            <div>
+                                <h4 class="text-xl font-semibold text-primary mb-2">Telepon</h4>
+                                <p class="text-gray-600">+62 778 123 4567</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <i class="fas fa-envelope text-2xl text-accent mr-4 mt-1"></i>
+                            <div>
+                                <h4 class="text-xl font-semibold text-primary mb-2">Email</h4>
+                                <p class="text-gray-600">info@nongsa-jayabuana.co.id</p>
+                                <p class="text-gray-600">sales@nongsa-jayabuana.co.id</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <i class="fas fa-clock text-2xl text-accent mr-4 mt-1"></i>
+                            <div>
+                                <h4 class="text-xl font-semibold text-primary mb-2">Jam Operasional</h4>
+                                <p class="text-gray-600">Senin - Jumat: 08:00 - 17:00 WIB</p>
+                                <p class="text-gray-600">Sabtu: 08:00 - 12:00 WIB</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Operational Contacts -->
+                    <div class="mt-8 p-6 bg-gray-50 rounded-lg">
+                        <h4 class="text-xl font-semibold text-primary mb-4">Kontak Operasional</h4>
+                        <div class="space-y-3 text-sm">
+                            <div class="flex justify-between">
+                                <span class="font-semibold">Technical Inquiry:</span>
+                                <span>technical@nongsa-jayabuana.co.id</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="font-semibold">Project Management:</span>
+                                <span>project@nongsa-jayabuana.co.id</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="font-semibold">Quality & HSE:</span>
+                                <span>qhsse@nongsa-jayabuana.co.id</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Inquiry Form -->
+                <div class="bg-gray-50 p-8 rounded-2xl">
+                    <h2 class="text-3xl font-bold text-primary mb-6">Request Quotation</h2>
+                    <form class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Nama Lengkap</label>
+                                <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Perusahaan</label>
+                                <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                                <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Telepon</label>
+                                <input type="tel" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Jenis Layanan</label>
+                            <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent">
+                                <option value="">Pilih Layanan</option>
+                                <option value="new-building">New Building</option>
+                                <option value="ship-repair">Ship Repair</option>
+                                <option value="fabrication">Marine Structure Fabrication</option>
+                                <option value="consultation">Konsultasi Engineering</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Detail Proyek</label>
+                            <textarea rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent" placeholder="Jelaskan kebutuhan proyek Anda..."></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full bg-accent hover:bg-blue-600 text-white font-bold py-4 px-6 rounded-lg transition duration-300">
+                            Kirim Inquiry
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-primary mb-4">Lokasi Kami</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Strategis di Kawasan Industri Sekupang, Batam - pusat industri maritim Indonesia</p>
+            </div>
+
+            <div class="rounded-2xl overflow-hidden shadow-2xl">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.0767425255326!2d103.9328685!3d1.1047046!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31d98b0030248fc3%3A0x1b77f8829ac1d2c3!2sPT.%20Nongsa%20Jaya%20Buana!5e0!3m2!1sen!2sid!4v1763440121808!5m2!1sen!2sid" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+
+            <!-- Location Advantages -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+                <div class="text-center p-6 bg-white rounded-xl shadow-lg">
+                    <i class="fas fa-ship text-3xl text-accent mb-4"></i>
+                    <h4 class="text-xl font-bold text-primary mb-2">Akses Pelabuhan</h4>
+                    <p class="text-gray-600">Lokasi strategis di jalur pelayaran internasional</p>
+                </div>
+                <div class="text-center p-6 bg-white rounded-xl shadow-lg">
+                    <i class="fas fa-industry text-3xl text-accent mb-4"></i>
+                    <h4 class="text-xl font-bold text-primary mb-2">Kawasan Industri</h4>
+                    <p class="text-gray-600">Terintegrasi dengan kawasan industri terpadu</p>
+                </div>
+                <div class="text-center p-6 bg-white rounded-xl shadow-lg">
+                    <i class="fas fa-truck text-3xl text-accent mb-4"></i>
+                    <h4 class="text-xl font-bold text-primary mb-2">Logistik Mudah</h4>
+                    <p class="text-gray-600">Akses transportasi dan logistik yang efisien</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Action Section -->
+    <section class="py-16 bg-darkblue text-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <h3 class="text-3xl font-bold mb-6">Butuh Respons Cepat?</h3>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="tel:+627781234567" class="inline-flex items-center justify-center bg-accent hover:bg-blue-600 text-white font-bold py-4 px-8 rounded-lg transition duration-300">
+                        <i class="fas fa-phone mr-3"></i>
+                        Telepon Sekarang
+                    </a>
+                    <a href="mailto:info@nongsa-jayabuana.co.id" class="inline-flex items-center justify-center border-2 border-white hover:bg-white hover:text-darkblue text-white font-bold py-4 px-8 rounded-lg transition duration-300">
+                        <i class="fas fa-envelope mr-3"></i>
+                        Email Kami
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-navy text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                <!-- Company Info -->
+                <div>
+                    <h4 class="text-xl font-bold mb-6">PT. Nongsa Jaya Buana</h4>
+                    <div class="space-y-3 text-gray-300">
+                        <p class="flex items-start">
+                            <i class="fas fa-map-marker-alt mr-3 mt-1"></i>
+                            <span>
+                                Kawasan Industri Sekupang Kav. 8<br>
+                                Jl. Tanjung Riau, Batam 29433<br>
+                                Kepulauan Riau - Indonesia
+                            </span>
+                        </p>
+                        <p class="flex items-center">
+                            <i class="fas fa-phone mr-3"></i>
+                            <span>Telp. +62-778-326999 (Hunting)</span>
+                        </p>
+                        <p class="flex items-center">
+                            <i class="fas fa-fax mr-3"></i>
+                            <span>Fax. +62-778-321755, 321697</span>
+                        </p>
+                        <p class="flex items-center">
+                            <i class="fas fa-globe mr-3"></i>
+                            <span>www.nongsagroup.com</span>
+                        </p>
+                        <p class="flex items-center">
+                            <i class="fas fa-envelope mr-3"></i>
+                            <span>info@nongsagroup.com</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-xl font-bold mb-6">Tautan Cepat</h4>
+                    <ul class="space-y-3 text-gray-300">
+                        <li><a href="#hero" class="hover:text-accent transition">Beranda</a></li>
+                        <li><a href="#about" class="hover:text-accent transition">Tentang Kami</a></li>
+                        <li><a href="#competencies" class="hover:text-accent transition">Kapabilitas</a></li>
+                        <li><a href="#quality" class="hover:text-accent transition">Mutu & K3</a></li>
+                    </ul>
+                </div>
+
+                <!-- Certifications & Social Media -->
+                <div>
+                    <h4 class="text-xl font-bold mb-6">Sertifikasi</h4>
+
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="bg-secondary px-3 py-1 rounded-full text-sm border border-accent">
+                            ISO 9001:2015 (QMS)
+                        </span>
+                        <span class="bg-secondary px-3 py-1 rounded-full text-sm border border-accent">
+                            ISO 45001:2018 (OHSMS)
+                        </span>
+                        <span class="bg-secondary px-3 py-1 rounded-full text-sm border border-accent">
+                            TÜV Rheinland Certified
+                        </span>
+                    </div>
+
+                    <div>
+                        <h5 class="font-bold mb-4">Sosial Media</h5>
+                        <div class="flex space-x-4">
+
+                            <!-- LinkedIn -->
+                            <a href="https://linkedin.com/company/nongsajayabuana"
+                            class="text-gray-300 hover:text-accent transition text-xl"
+                            target="_blank">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+
+                            <!-- Facebook -->
+                            <a href="https://facebook.com/pt.nongsajayabuana"
+                            class="text-gray-300 hover:text-accent transition text-xl"
+                            target="_blank">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+
+                            <!-- Instagram -->
+                            <a href="https://instagram.com/pt.nongsajayabuana"
+                            class="text-gray-300 hover:text-accent transition text-xl"
+                            target="_blank">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+
+                            <!-- X / Twitter -->
+                            <a href="https://twitter.com/NongsaPt"
+                            class="text-gray-300 hover:text-accent transition text-xl"
+                            target="_blank">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-600 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 PT. Nongsa Jaya Buana. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
