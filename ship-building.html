@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PT. Nongsa Jaya Buana - Built to Last – Engineering Maritime Excellence</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        // Konfigurasi Tailwind CSS dengan tema sesuai permintaan client
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#183880',        // Biru untuk button
+                        secondary: '#87D310',      // Hijau untuk link, icon
+                        textcolor: '#333333',      // Abu untuk font
+                        accent: '#183880',         // Biru untuk aksen
+                        lightgray: '#f5f5f5',      // Abu muda untuk background
+                        darkblue: '#111827',       // Untuk teks tebal
+                        navy: '#374151'           // Untuk teks sedang
+                    },
+                    fontFamily: {
+                        'nunito': ['Nunito Sans', 'sans-serif'],
+                        'roboto': ['Roboto', 'sans-serif']
+                    },
+                    // Menambahkan animasi untuk Hero Section
+                    keyframes: {
+                        fadeUp: {
+                            '0%': { opacity: 0, transform: 'translateY(20px)' },
+                            '100%': { opacity: 1, transform: 'translateY(0)' }
+                        },
+                        fadeIn: {
+                            '0%': { opacity: 0 },
+                            '100%': { opacity: 1 }
+                        }
+                    },
+                    animation: {
+                        fadeUp: 'fadeUp 1s ease-out',
+                        fadeIn: 'fadeIn 1.2s ease-out'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Gaya untuk indikator aktif navigasi in-page (untuk index.html) */
+        .nav-link.active {
+            position: relative;
+            color: #183880; 
+        }
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -8px; 
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: #183880;
+        }
+        .smooth-scroll {
+            scroll-behavior: smooth;
+        }
+        /* Style untuk tautan eksternal pada halaman utama */
+        .nav-external.active {
+            color: #183880; 
+            border-bottom: 3px solid #183880; 
+            padding-bottom: 5px;
+        }
+         /* Scroll reveal animation trigger */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Styling untuk hero background container */
+        .hero-banner-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .hero-banner-container img {
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        /* Transisi untuk navbar */
+        .navbar-transition {
+            transition: all 0.3s ease-in-out;
+        }
+        
+        /* Styling untuk banner slider */
+        .banner-slider {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .banner-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+        
+        .banner-slide.active {
+            opacity: 1;
+        }
+        
+        .banner-controls {
+            position: absolute;
+            bottom: 30px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+        
+        .banner-dots {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .banner-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .banner-dot.active {
+            background-color: white;
+            transform: scale(1.2);
+        }
+        
+        .banner-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.3);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+        
+        .banner-arrow:hover {
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+        
+        .banner-arrow.prev {
+            left: 20px;
+        }
+        
+        .banner-arrow.next {
+            right: 20px;
+        }
+        
+        /* Efek overlay untuk konten di atas banner */
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.5) 100%);
+            z-index: 1;
+        }
+        
+        /* Gaya untuk navbar transparan */
+        .navbar-transparent {
+            background-color: transparent;
+            box-shadow: none;
+        }
+
+        .navbar-transparent .nav-link,
+        .navbar-transparent .nav-external,
+        .navbar-transparent .text-darkblue {
+            color: white;
+        }
+
+        .navbar-transparent .nav-link.active::after {
+            background-color: white;
+        }
+
+        .navbar-transparent .nav-external.active {
+            color: white;
+            border-bottom-color: white;
+        }
+
+        .navbar-transparent #mobile-menu-button {
+            color: white;
+        }
+
+        /* Gaya untuk navbar solid */
+        .navbar-solid {
+            background-color: rgba(24, 56, 128, 0.95); /* Primary color dengan transparansi */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px); /* Efek blur untuk modern look */
+        }
+
+        /* Gaya untuk navbar semi-transparan */
+        .navbar-semi-transparent {
+            background-color: rgba(24, 56, 128, 0.7); /* Primary color dengan transparansi */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            backdrop-filter: blur(5px); /* Efek blur untuk modern look */
+        }
+
+        /* Gaya untuk navbar saat scroll sedikit */
+        .navbar-scrolled {
+            background-color: rgba(24, 56, 128, 0.85); /* Primary color dengan transparansi */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(8px); /* Efek blur untuk modern look */
+        }
+
+        /* Efek hover pada link navbar */
+        .nav-link, .nav-external {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover, .nav-external:hover {
+            color: rgba(255, 255, 255, 0.8) !important;
+        }
+
+        /* Animasi untuk logo */
+        .logo-container {
+            transition: transform 0.3s ease;
+        }
+
+        .logo-container:hover {
+            transform: scale(1.05);
+        }
+
+        /* Efek untuk mobile menu */
+        #mobile-menu {
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Custom styles for client requirements */
+        .btn-primary {
+            background-color: #183880;
+            color: white;
+            font-family: 'Nunito Sans', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .text-secondary {
+            color: #87D310;
+        }
+
+        .bg-secondary {
+            background-color: #87D310;
+        }
+
+        .text-body {
+            color: #333333;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        h1 {
+            font-family: 'Nunito Sans', sans-serif;
+            font-weight: 700;
+            font-size: 42px;
+        }
+
+        h2 {
+            font-family: 'Nunito Sans', sans-serif;
+            font-weight: 700;
+            font-size: 30px;
+        }
+
+        h3 {
+            font-family: 'Nunito Sans', sans-serif;
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        h4 {
+            font-family: 'Nunito Sans', sans-serif;
+            font-weight: 700;
+            font-size: 26px;
+        }
+
+        .text-18 {
+            font-size: 18px;
+        }
+
+        .text-14 {
+            font-size: 14px;
+        }
+
+        .text-12 {
+            font-size: 12px;
+        }
+    </style>
+    <style>
+        .hero-video-container {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            overflow: hidden;
+            border-radius: 0.5rem;
+        }
+
+        .hero-video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Hover effects */
+        .hero-video-container:hover video {
+            transform: scale(1.02);
+            transition: transform 0.3s ease;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 1024px) {
+            .hero-video-container {
+                padding-bottom: 75%; /* 4:3 Aspect Ratio for tablets */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-video-container {
+                padding-bottom: 100%; /* 1:1 Aspect Ratio for mobile */
+            }
+        }
+    </style>
+</head>
+<body class="smooth-scroll font-roboto text-body">
+    
+    <nav id="main-navbar" class="fixed w-full top-0 left-0 z-50 navbar-transition navbar-transparent">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <a href="#home" class="flex items-center space-x-3 text-white font-bold text-xl logo-container">
+                    <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md">
+                        <img src="assets/njb_logo.png" alt="NJB Logo" class="h-8 w-8">
+                    </div>
+                    <span class="text-white font-nunito">PT. Nongsa Jaya Buana</span>
+                </a>
+
+                <button class="lg:hidden text-white focus:outline-none p-2" id="mobile-menu-button" aria-label="Toggle Navigation">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="#home" class="nav-link text-white hover:text-white/80 transition duration-300 active font-nunito">Home</a>
+                    <a href="#about" class="nav-link text-white hover:text-white/80 transition duration-300 font-nunito">About Us</a>
+                    <a href="#shipyard" class="nav-link text-white hover:text-white/80 transition duration-300 font-nunito">The Shipyard</a>
+                    <a href="#services" class="nav-link text-white hover:text-white/80 transition duration-300 font-nunito">Services</a>
+                    <a href="#products" class="nav-link text-white hover:text-white/80 transition duration-300 font-nunito">Products</a>
+                    <a href="#contact" class="nav-link text-white hover:text-white/80 transition duration-300 font-nunito">Contact Us</a>
+                </div>
+            </div>
+
+            <div class="lg:hidden hidden absolute top-full left-0 w-full shadow-xl bg-white" id="mobile-menu">
+                <div class="flex flex-col space-y-2 p-4">
+                    <a href="#home" class="nav-link text-primary font-bold transition duration-300 py-2 border-b border-gray-200 font-nunito">Home</a>
+                    <a href="#about" class="text-body hover:text-primary transition duration-300 py-2 border-b border-gray-200 font-nunito">About Us</a>
+                    <a href="#shipyard" class="text-body hover:text-primary transition duration-300 py-2 border-b border-gray-200 font-nunito">The Shipyard</a>
+                    <a href="#services" class="text-body hover:text-primary transition duration-300 py-2 border-b border-gray-200 font-nunito">Services</a>
+                    <a href="#products" class="text-body hover:text-primary transition duration-300 py-2 border-b border-gray-200 font-nunito">Products</a>
+                    <a href="#contact" class="text-body hover:text-primary transition duration-300 py-2 font-nunito">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Service Detail Header -->
+    <section class="pt-32 pb-20 bg-gradient-to-br from-primary to-primary/80 text-white">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center mb-6">
+                <a href="index.html#services" class="flex items-center text-white/80 hover:text-white transition duration-300">
+                    <i class="fas fa-arrow-left mr-2"></i> Back to Services
+                </a>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h1 class="text-4xl md:text-5xl font-bold mb-6">Ship Building</h1>
+                    <p class="text-xl mb-8 leading-relaxed">
+                        Layanan pembangunan kapal baru dengan teknologi terkini dan standar kualitas internasional untuk berbagai jenis kapal.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <div class="bg-white/20 backdrop-blur-sm rounded-lg px-4 py-2">
+                            <div class="text-2xl font-bold">150+</div>
+                            <div class="text-sm">Projects Completed</div>
+                        </div>
+                        <div class="bg-white/20 backdrop-blur-sm rounded-lg px-4 py-2">
+                            <div class="text-2xl font-bold">20+</div>
+                            <div class="text-sm">Years Experience</div>
+                        </div>
+                        <div class="bg-white/20 backdrop-blur-sm rounded-lg px-4 py-2">
+                            <div class="text-2xl font-bold">95%</div>
+                            <div class="text-sm">Client Satisfaction</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="rounded-2xl overflow-hidden shadow-2xl">
+                    <img src="https://images.unsplash.com/photo-1590497008432-598f04441de8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                         alt="Ship Building Process" 
+                         class="w-full h-80 object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Details -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                <!-- Main Content -->
+                <div class="lg:col-span-2">
+                    <h2 class="text-3xl font-bold mb-8">Proses Pembangunan Kapal</h2>
+                    
+                    <!-- Process Steps -->
+                    <div class="space-y-8 mb-12">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-lg mr-6">
+                                1
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-3 text-primary">Design & Engineering</h3>
+                                <p class="text-18 text-gray-700 mb-4">
+                                    Proses dimulai dengan desain konseptual, basic design, dan detailed design sesuai kebutuhan klien dan regulasi klasifikasi.
+                                </p>
+                                <ul class="text-16 text-gray-600 space-y-2">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-secondary mr-2 mt-1 text-sm"></i>
+                                        <span>Basic Design & Lines Plan</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-secondary mr-2 mt-1 text-sm"></i>
+                                        <span>3D Modeling & Structural Analysis</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-secondary mr-2 mt-1 text-sm"></i>
+                                        <span>Class Approval & Certification</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-lg mr-6">
+                                2
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-3 text-primary">Material Procurement</h3>
+                                <p class="text-18 text-gray-700 mb-4">
+                                    Pengadaan material berkualitas tinggi dengan traceability yang jelas dan sertifikasi material yang lengkap.
+                                </p>
+                                <ul class="text-16 text-gray-600 space-y-2">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-secondary mr-2 mt-1 text-sm"></i>
+                                        <span>Steel Plate & Profile Procurement</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-secondary mr-2 mt-1 text-sm"></i>
+                                        <span>Machinery & Equipment Sourcing</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-secondary mr-2 mt-1 text-sm"></i>
+                                        <span>Quality Control Inspection</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-lg mr-6">
+                                3
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-3 text-primary">Fabrication & Assembly</h3>
+                                <p class="text-18 text-gray-700 mb-4">
+                                    Proses fabrikasi dan perakitan dengan teknologi modern dan tenaga ahli berpengalaman.
+                                </p>
+                                <ul class="text-16 text-gray-600 space-y-2">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-secondary mr-2 mt-1 text-sm"></i>
+                                        <span>Steel Cutting & Forming</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-secondary mr-2 mt-1 text-sm"></i>
+                                        <span>Block Assembly & Erection</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-secondary mr-2 mt-1 text-sm"></i>
+                                        <span>Outfitting & Installation</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Capabilities -->
+                    <div class="mb-12">
+                        <h3 class="text-2xl font-bold mb-6">Kapabilitas Pembangunan</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="bg-lightgray p-6 rounded-xl">
+                                <h4 class="text-lg font-bold mb-3 text-primary">Jenis Kapal</h4>
+                                <ul class="space-y-2 text-16">
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check text-secondary mr-2"></i>
+                                        <span>Tugboats & Workboats</span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check text-secondary mr-2"></i>
+                                        <span>Barges & LCT</span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check text-secondary mr-2"></i>
+                                        <span>Passenger Vessels</span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check text-secondary mr-2"></i>
+                                        <span>Special Purpose Vessels</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="bg-lightgray p-6 rounded-xl">
+                                <h4 class="text-lg font-bold mb-3 text-primary">Ukuran Kapal</h4>
+                                <ul class="space-y-2 text-16">
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check text-secondary mr-2"></i>
+                                        <span>Length: Up to 100 meters</span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check text-secondary mr-2"></i>
+                                        <span>DWT: Up to 5,000 tons</span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check text-secondary mr-2"></i>
+                                        <span>Complexity: All levels</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="space-y-6">
+                    <div class="bg-primary text-white p-6 rounded-xl">
+                        <h3 class="text-xl font-bold mb-4">Mulai Proyek Kapal Anda</h3>
+                        <p class="mb-4">Konsultasikan kebutuhan pembangunan kapal dengan tim ahli kami.</p>
+                        <a href="contact.html" class="inline-block bg-white text-primary hover:bg-gray-100 font-bold py-3 px-6 rounded-lg transition duration-300 w-full text-center">
+                            Request Quotation
+                        </a>
+                    </div>
+
+                    <div class="bg-lightgray p-6 rounded-xl">
+                        <h3 class="text-xl font-bold mb-4">Layanan Lainnya</h3>
+                        <div class="space-y-4">
+                            <a href="ship-repairs.html" class="flex items-center p-3 bg-white rounded-lg hover:shadow-md transition duration-300">
+                                <i class="fas fa-tools text-primary mr-3"></i>
+                                <span>Ship Repairs</span>
+                            </a>
+                            <a href="ship-conversion.html" class="flex items-center p-3 bg-white rounded-lg hover:shadow-md transition duration-300">
+                                <i class="fas fa-exchange-alt text-primary mr-3"></i>
+                                <span>Ship Conversion</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl border border-gray-200">
+                        <h3 class="text-xl font-bold mb-4">Download Brochure</h3>
+                        <p class="text-16 text-gray-600 mb-4">Download brosur lengkap layanan ship building kami.</p>
+                        <a href="brochure/ship-building.pdf" class="inline-block bg-secondary text-white hover:bg-green-600 font-bold py-3 px-6 rounded-lg transition duration-300 w-full text-center">
+                            <i class="fas fa-download mr-2"></i> Download PDF
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-darkblue text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                <div>
+                    <h4 class="text-xl font-bold mb-6 border-b border-gray-600 pb-2 font-nunito">PT. Nongsa Jaya Buana</h4>
+                    <div class="space-y-3 text-gray-300">
+                        <p class="flex items-start">
+                            <i class="fas fa-map-marker-alt mr-3 mt-1 text-secondary"></i>
+                            <span>
+                                Kawasan Industri Sekupang Kav. 8<br>
+                                Jl. Tanjung Riau, Batam 29433<br>
+                                Kepulauan Riau - Indonesia
+                            </span>
+                        </p>
+                        <p class="flex items-center">
+                            <i class="fas fa-phone mr-3 text-secondary"></i>
+                            <span>Telp. +62-778-326999 (Hunting)</span>
+                        </p>
+                        <p class="flex items-center">
+                            <i class="fas fa-envelope mr-3 text-secondary"></i>
+                            <span>info@nongsagroup.com</span>
+                        </p>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-xl font-bold mb-6 border-b border-gray-600 pb-2 font-nunito">Tautan Cepat</h4>
+                    <ul class="space-y-3 text-gray-300">
+                        <li><a href="#home" class="hover:text-secondary transition font-nunito">Home</a></li>
+                        <li><a href="#about" class="hover:text-secondary transition font-nunito">About Us</a></li>
+                        <li><a href="#shipyard" class="hover:text-secondary transition font-nunito">The Shipyard</a></li>
+                        <li><a href="#services" class="hover:text-secondary transition font-nunito">Services</a></li>
+                        <li><a href="#products" class="hover:text-secondary transition font-nunito">Products</a></li>
+                        <li><a href="#contact" class="hover:text-secondary transition font-nunito">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-xl font-bold mb-6 border-b border-gray-600 pb-2 font-nunito">Standar Kualitas</h4>
+
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="bg-gray-700 px-3 py-1 rounded-full text-14 border border-secondary font-nunito">
+                            ISO 9001:2015 (QMS)
+                        </span>
+                        <span class="bg-gray-700 px-3 py-1 rounded-full text-14 border border-secondary font-nunito">
+                            ISO 45001:2018 (OHSMS)
+                        </span>
+                    </div>
+
+                    <div>
+                        <h5 class="font-bold mb-4 font-nunito">Sosial Media</h5>
+                        <div class="flex space-x-4 text-2xl">
+                            <a href="https://linkedin.com/company/nongsajayabuana" class="text-gray-300 hover:text-secondary transition" target="_blank" aria-label="LinkedIn">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="https://facebook.com/pt.nongsajayabuana" class="text-gray-300 hover:text-secondary transition" target="_blank" aria-label="Facebook">
+                                <i class="fab fa-facebook-square"></i>
+                            </a>
+                            <a href="https://instagram.com/pt.nongsajayabuana" class="text-gray-300 hover:text-secondary transition" target="_blank" aria-label="Instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-600 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 PT. Nongsa Jaya Buana. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Banner Slider Functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.banner-slide');
+        const dots = document.querySelectorAll('.banner-dot');
+        const totalSlides = slides.length;
+        let slideInterval;
+
+        function showSlide(n) {
+            // Reset semua slide dan dots
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            // Update current slide
+            currentSlide = (n + totalSlides) % totalSlides;
+            
+            // Tampilkan slide dan dot yang aktif
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        function startAutoSlide() {
+            slideInterval = setInterval(nextSlide, 5000);
+        }
+
+        function stopAutoSlide() {
+            clearInterval(slideInterval);
+        }
+
+        // Event Listeners untuk banner controls
+        document.querySelector('.banner-arrow.next').addEventListener('click', () => {
+            nextSlide();
+            stopAutoSlide();
+            startAutoSlide();
+        });
+
+        document.querySelector('.banner-arrow.prev').addEventListener('click', () => {
+            prevSlide();
+            stopAutoSlide();
+            startAutoSlide();
+        });
+
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                const slideIndex = parseInt(dot.getAttribute('data-slide'));
+                showSlide(slideIndex);
+                stopAutoSlide();
+                startAutoSlide();
+            });
+        });
+
+        // Start auto slide on page load
+        startAutoSlide();
+
+        // Mobile Menu Toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Scroll Reveal Script (untuk section di index.html)
+        const reveals = document.querySelectorAll(".reveal");
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("active");
+                }
+            });
+        }, { threshold: 0.15 });
+
+        reveals.forEach(r => observer.observe(r));
+
+        // Active Navigation Logic (Scroll Spy for IN-PAGE links)
+        const inPageSections = document.querySelectorAll('section');
+        const inPageNavLinks = document.querySelectorAll('.nav-link');
+
+        function updateActiveNav() {
+            let current = '';
+            // Mencari section yang sedang terlihat
+            inPageSections.forEach(section => {
+                const sectionTop = section.offsetTop - 150; // Offset untuk fixed navbar
+                const sectionHeight = section.clientHeight;
+                
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            // Update class 'active' pada link
+            inPageNavLinks.forEach(link => {
+                link.classList.remove('active');
+                const targetId = link.getAttribute('href').substring(1);
+                
+                if (targetId === current) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Khusus Hero section (id="home")
+            if (window.scrollY < document.getElementById('about').offsetTop - 150) {
+                 inPageNavLinks.forEach(link => {
+                    if (link.getAttribute('href') === '#home') {
+                        link.classList.add('active');
+                    } else {
+                        link.classList.remove('active');
+                    }
+                });
+            }
+        }
+
+        window.addEventListener('scroll', updateActiveNav);
+        // Panggil saat dimuat untuk set posisi awal
+        window.addEventListener('load', updateActiveNav);
+
+        // Smooth scrolling for anchor links (dengan penyesuaian offset)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const target = document.querySelector(targetId);
+                
+                // Close mobile menu if open
+                const mobileMenu = document.getElementById('mobile-menu');
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+
+                if (target) {
+                    const topPosition = target.offsetTop - 80; // Sesuaikan dengan tinggi navbar
+                    window.scrollTo({
+                        top: topPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Improved Dynamic Navbar Color Change on Scroll
+        const navbar = document.getElementById('main-navbar');
+        const heroSection = document.getElementById('home');
+
+        function updateNavbarColor() {
+            const heroHeight = heroSection.offsetHeight;
+            const scrollPosition = window.scrollY;
+            
+            // Hapus semua kelas navbar sebelumnya
+            navbar.classList.remove('navbar-transparent', 'navbar-semi-transparent', 'navbar-scrolled', 'navbar-solid');
+            
+            // Jika scroll melewati hero section, ubah warna navbar secara bertahap
+            if (scrollPosition < heroHeight * 0.2) {
+                // Di bagian atas hero section
+                navbar.classList.add('navbar-transparent');
+            } else if (scrollPosition < heroHeight * 0.5) {
+                // Di tengah hero section
+                navbar.classList.add('navbar-semi-transparent');
+            } else if (scrollPosition < heroHeight * 0.8) {
+                // Di bawah hero section
+                navbar.classList.add('navbar-scrolled');
+            } else {
+                // Setelah melewati hero section
+                navbar.classList.add('navbar-solid');
+            }
+        }
+
+        window.addEventListener('scroll', updateNavbarColor);
+        window.addEventListener('load', updateNavbarColor);
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PT. Nongsa Jaya Buana - Built to Last – Engineering Maritime Excellence</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        // Konfigurasi Tailwind CSS dengan tema putih yang lebih dominan
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#ffffff',        // putih
+                        secondary: '#f8f9fa',      // abu sangat muda
+                        accent: '#1e40af',         // biru untuk aksen
+                        darkblue: '#111827',       // gray-900 (teks tebal)
+                        navy: '#374151',           // gray-700
+                        lightblue: '#dbeafe'       // biru muda untuk highlight
+                    },
+                    fontFamily: {
+                        'sans': ['Segoe UI', 'Tahoma', 'Geneva', 'Verdana', 'sans-serif']
+                    },
+                    // Menambahkan animasi untuk Hero Section
+                    keyframes: {
+                        fadeUp: {
+                            '0%': { opacity: 0, transform: 'translateY(20px)' },
+                            '100%': { opacity: 1, transform: 'translateY(0)' }
+                        },
+                        fadeIn: {
+                            '0%': { opacity: 0 },
+                            '100%': { opacity: 1 }
+                        }
+                    },
+                    animation: {
+                        fadeUp: 'fadeUp 1s ease-out',
+                        fadeIn: 'fadeIn 1.2s ease-out'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Gaya untuk indikator aktif navigasi in-page (untuk index.html) */
+        .nav-link.active {
+            position: relative;
+            color: #1e40af; 
+        }
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -8px; 
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: #1e40af;
+        }
+        .smooth-scroll {
+            scroll-behavior: smooth;
+        }
+        /* Style untuk tautan eksternal pada halaman utama */
+        .nav-external.active {
+            color: #1e40af; 
+            border-bottom: 3px solid #1e40af; 
+            padding-bottom: 5px;
+        }
+         /* Scroll reveal animation trigger */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Styling untuk hero background container */
+        .hero-banner-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .hero-banner-container img {
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        /* Transisi untuk navbar */
+        .navbar-transition {
+            transition: all 0.3s ease-in-out;
+        }
+        
+        /* Styling untuk banner slider */
+        .banner-slider {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .banner-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+        
+        .banner-slide.active {
+            opacity: 1;
+        }
+        
+        .banner-controls {
+            position: absolute;
+            bottom: 30px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+        
+        .banner-dots {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .banner-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .banner-dot.active {
+            background-color: white;
+            transform: scale(1.2);
+        }
+        
+        .banner-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.3);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+        
+        .banner-arrow:hover {
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+        
+        .banner-arrow.prev {
+            left: 20px;
+        }
+        
+        .banner-arrow.next {
+            right: 20px;
+        }
+        
+        /* Efek overlay untuk konten di atas banner */
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.5) 100%);
+            z-index: 1;
+        }
+        
+        /* Gaya untuk navbar transparan */
+        .navbar-transparent {
+            background-color: transparent;
+            box-shadow: none;
+        }
+
+        .navbar-transparent .nav-link,
+        .navbar-transparent .nav-external,
+        .navbar-transparent .text-darkblue {
+            color: white;
+        }
+
+        .navbar-transparent .nav-link.active::after {
+            background-color: white;
+        }
+
+        .navbar-transparent .nav-external.active {
+            color: white;
+            border-bottom-color: white;
+        }
+
+        .navbar-transparent #mobile-menu-button {
+            color: white;
+        }
+
+        /* Gaya untuk navbar solid */
+        .navbar-solid {
+            background-color: rgba(10, 61, 98, 0.95); /* Navy color dengan transparansi */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px); /* Efek blur untuk modern look */
+        }
+
+        /* Gaya untuk navbar semi-transparan */
+        .navbar-semi-transparent {
+            background-color: rgba(10, 61, 98, 0.7); /* Navy color dengan transparansi */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            backdrop-filter: blur(5px); /* Efek blur untuk modern look */
+        }
+
+        /* Gaya untuk navbar saat scroll sedikit */
+        .navbar-scrolled {
+            background-color: rgba(10, 61, 98, 0.85); /* Navy color dengan transparansi */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(8px); /* Efek blur untuk modern look */
+        }
+
+        /* Efek hover pada link navbar */
+        .nav-link, .nav-external {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover, .nav-external:hover {
+            color: rgba(255, 255, 255, 0.8) !important;
+        }
+
+        /* Animasi untuk logo */
+        .logo-container {
+            transition: transform 0.3s ease;
+        }
+
+        .logo-container:hover {
+            transform: scale(1.05);
+        }
+
+        /* Efek untuk mobile menu */
+        #mobile-menu {
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+<body class="smooth-scroll">
+    
+    <nav id="main-navbar" class="fixed w-full top-0 left-0 z-50 navbar-transition navbar-transparent">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <a href="#hero" class="flex items-center space-x-3 text-white font-bold text-xl logo-container">
+                    <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md">
+                        <img src="assets/njb_logo.png" alt="NJB Logo" class="h-8 w-8">
+                    </div>
+                    <span class="text-white">PT. Nongsa Jaya Buana</span>
+                </a>
+
+                <button class="lg:hidden text-white focus:outline-none p-2" id="mobile-menu-button" aria-label="Toggle Navigation">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="index.html" class="nav-link text-white hover:text-white/80 transition duration-300 active">Beranda</a>
+                    <a href="about.html" class="nav-external text-white hover:text-white/80 transition duration-300">Tentang Kami</a>
+                    <a href="capabilities.html" class="nav-external text-white hover:text-white/80 transition duration-300">Kapabilitas</a>
+                    <a href="infrastructure.html" class="nav-external text-white hover:text-white/80 transition duration-300">Infrastruktur</a>
+                    <a href="quality.html" class="nav-external text-white hover:text-white/80 transition duration-300">Mutu & K3</a>
+                    <a href="projects.html" class="nav-external text-white hover:text-white/80 transition duration-300">Proyek</a>
+                    <a href="contact.html" class="nav-external text-white hover:text-white/80 transition duration-300">Kontak</a>
+                </div>
+            </div>
+
+            <div class="lg:hidden hidden absolute top-full left-0 w-full shadow-xl" id="mobile-menu">
+                <div class="flex flex-col space-y-2 p-4">
+                    <a href="index.html" class="nav-external text-accent font-bold transition duration-300 py-2 border-b border-gray-200">Beranda</a>
+                    <a href="about.html" class="text-darkblue hover:text-accent transition duration-300 py-2 border-b border-gray-200">Tentang Kami</a>
+                    <a href="capabilities.html" class="text-darkblue hover:text-accent transition duration-300 py-2 border-b border-gray-200">Layanan & Kapabilitas</a>
+                    <a href="infrastructure.html" class="text-darkblue hover:text-accent transition duration-300 py-2 border-b border-gray-200">Infrastruktur</a>
+                    <a href="projects.html" class="text-darkblue hover:text-accent transition duration-300 py-2 border-b border-gray-200">Proyek</a>
+                    <a href="certification.html" class="text-darkblue hover:text-accent transition duration-300 py-2 border-b border-gray-200">Sertifikasi</a>
+                    <a href="contact.html" class="text-darkblue hover:text-accent transition duration-300 py-2">Kontak</a>
+                    
+                    <hr class="my-2 border-gray-200">
+                    <a href="#about" class="nav-link text-darkblue hover:text-accent transition duration-300 py-2">Tentang (Detail)</a>
+                    <a href="#competencies" class="nav-link text-darkblue hover:text-accent transition duration-300 py-2">Kapabilitas</a>
+                    <a href="#infrastructure" class="nav-link text-darkblue hover:text-accent transition duration-300 py-2">Infrastruktur</a>
+                    <a href="#quality" class="nav-link text-darkblue hover:text-accent transition duration-300 py-2">Mutu & K3</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Konten halaman lainnya tetap sama -->
+    <section id="hero" class="min-h-screen flex items-center justify-center relative">
+        <!-- Banner Slider -->
+        <div class="hero-banner-container">
+            <div class="banner-slider">
+                <div class="banner-slide active">
+                    <img src="https://images.unsplash.com/photo-1590497008432-598f04441de8?q=80&w=1391&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                         alt="Shipyard and Maritime Operations" 
+                         class="w-full h-full object-cover">
+                </div>
+                <div class="banner-slide">
+                    <img src="https://images.unsplash.com/photo-1576675466969-38eeae4b41f6?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                         alt="Maritime Engineering" 
+                         class="w-full h-full object-cover">
+                </div>
+                <div class="banner-slide">
+                    <img src="https://images.unsplash.com/photo-1531973576160-7125cd663d86?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                         alt="Ship Repair" 
+                         class="w-full h-full object-cover">
+                </div>
+                
+                <!-- Banner Controls -->
+                <div class="banner-arrow prev">
+                    <i class="fas fa-chevron-left"></i>
+                </div>
+                <div class="banner-arrow next">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+                
+                <div class="banner-controls">
+                    <div class="banner-dots">
+                        <div class="banner-dot active" data-slide="0"></div>
+                        <div class="banner-dot" data-slide="1"></div>
+                        <div class="banner-dot" data-slide="2"></div>
+                        <div class="banner-dot" data-slide="3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="hero-overlay"></div>
+        
+        <div class="container mx-auto px-4 text-center text-white relative z-10 py-20">
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight animate-fadeUp">
+                Built to Last – Engineering Maritime Excellence
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-4xl mx-auto leading-relaxed opacity-95 animate-fadeUp" style="animation-delay: 0.3s;">
+                Galangan Kapal Terintegrasi di Batam. Mitra Rekayasa Kelautan yang fokus pada Design, Build, and Maintain aset berdaya tahan tinggi sejak 2001.
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 my-12 py-8 border-y border-white/30 backdrop-blur-sm bg-black/10">
+                <div class="text-center animate-fadeUp" style="animation-delay: 0.5s;">
+                    <div class="text-5xl font-bold text-white mb-2">20+</div>
+                    <p class="text-lg"><i class="fas fa-calendar-alt mr-2"></i>Tahun Pengalaman</p>
+                </div>
+                <div class="text-center animate-fadeUp" style="animation-delay: 0.7s;">
+                    <div class="text-5xl font-bold text-white mb-2">>172</div>
+                    <p class="text-lg"><i class="fas fa-warehouse mr-2"></i>Proyek Terselesaikan</p>
+                </div>
+                <div class="text-center animate-fadeUp" style="animation-delay: 0.9s;">
+                    <div class="text-5xl font-bold text-white mb-2">7M</div>
+                    <p class="text-lg"><i class="fas fa-water mr-2"></i>Kedalaman Jetty (Low Tide)</p>
+                </div>
+            </div>
+            
+            <a href="contact.html" class="inline-block bg-accent hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-full shadow-lg transition duration-300 transform hover:scale-105 text-lg animate-fadeUp" style="animation-delay: 1.1s;">
+                Konsultasikan Proyek Anda
+            </a>
+        </div>
+    </section>
+
+    <!-- Sisa konten halaman tetap sama -->
+    <section id="about" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl font-bold text-darkblue mb-4">Tentang Kami: Warisan Inovasi Maritim</h2>
+                <p class="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed" style="animation-delay: 0.2s;">
+                    Didirikan pada 2001 di Batam, PT. Nongsa Jaya Buana telah berevolusi menjadi sebuah shipbuilding complex yang menerapkan prinsip Design, Build, and Maintain untuk mendorong kemajuan industri maritim berkelanjutan.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div class="bg-secondary p-8 rounded-xl border-l-4 border-accent shadow-md hover:shadow-xl transition duration-300 reveal">
+                    <div class="flex items-center mb-6">
+                        <i class="fas fa-eye text-3xl text-accent mr-4"></i>
+                        <h3 class="text-2xl font-bold text-darkblue">Visi Perusahaan</h3>
+                    </div>
+                    <p class="text-lg text-gray-700 leading-relaxed">
+                        Menjadi benchmark galangan kapal regional yang diakui atas keunggulan engineering, inovasi desain, dan keandalan aset maritim yang dibangun.
+                    </p>
+                </div>
+
+                <div class="bg-secondary p-8 rounded-xl border-l-4 border-accent shadow-md hover:shadow-xl transition duration-300 reveal" style="animation-delay: 0.2s;">
+                    <div class="flex items-center mb-6">
+                        <i class="fas fa-rocket text-3xl text-accent mr-4"></i>
+                        <h3 class="text-2xl font-bold text-darkblue">Pilar Misi Strategis</h3>
+                    </div>
+                    <ul class="space-y-4 text-gray-700">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-accent mr-3 mt-1"></i>
+                            <span>Engineering Excellence: Menghadirkan solusi desain dan konstruksi yang unggul teknis dan ekonomis.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-accent mr-3 mt-1"></i>
+                            <span>Operational Supremacy: Menjamin efisiensi produksi dan ketepatan waktu pengiriman.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-accent mr-3 mt-1"></i>
+                            <span>Integrated HSE & Quality Culture: Menargetkan Zero Defect dan Zero Lost Time Incident (LTI).</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="competencies" class="py-20 bg-secondary">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-darkblue mb-4 reveal">Core Competencies & Technical Portfolio</h2>
+                <p class="text-xl text-gray-600 max-w-4xl mx-auto reveal" style="animation-delay: 0.2s;">
+                    Spesialisasi mendalam dalam rekayasa dan fabrikasi untuk segmen workboat dan utility vessel, didukung layanan Ship Repair dan Marine Structure Fabrication.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-accent transform hover:-translate-y-2 reveal">
+                    <div class="p-8">
+                        <div class="text-accent text-4xl mb-6">
+                            <i class="fas fa-ship"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-darkblue mb-4">New Building: Specialized Vessels</h3>
+                        <p class="text-gray-600 mb-6">Konstruksi kapal dengan fokus pada Structural Analysis dan Optimasi Hull Form.</p>
+                        <a href="capabilities.html" class="text-accent hover:text-blue-700 font-semibold flex items-center">
+                            Lihat Detail <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-accent transform hover:-translate-y-2 reveal" style="animation-delay: 0.2s;">
+                    <div class="p-8">
+                        <div class="text-accent text-4xl mb-6">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-darkblue mb-4">Advanced Fabrication & Workshop</h3>
+                        <p class="text-gray-600 mb-6">Layanan plate cutting dan marine structure fabrication dengan presisi tinggi.</p>
+                        <a href="capabilities.html" class="text-accent hover:text-blue-700 font-semibold flex items-center">
+                            Lihat Detail <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-accent transform hover:-translate-y-2 reveal" style="animation-delay: 0.4s;">
+                    <div class="p-8">
+                        <div class="text-accent text-4xl mb-6">
+                            <i class="fas fa-wrench"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-darkblue mb-4">Ship Repair & Support</h3>
+                        <p class="text-gray-600 mb-6">Layanan perbaikan terintegrasi dan kustomisasi struktural.</p>
+                        <a href="capabilities.html" class="text-accent hover:text-blue-700 font-semibold flex items-center">
+                            Lihat Detail <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="infrastructure" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="reveal">
+                    <h2 class="text-4xl font-bold text-darkblue mb-6">
+                        <i class="fas fa-hard-hat text-accent mr-4"></i>
+                        Infrastruktur Produksi
+                    </h2>
+                    <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                        Fasilitas terintegrasi di Batam, didukung oleh Equipment Master List berkapasitas industri.
+                    </p>
+
+                    <div class="space-y-6">
+                        <div class="flex items-start bg-secondary p-4 rounded-lg border-l-4 border-accent shadow-sm reveal" style="animation-delay: 0.2s;">
+                            <i class="fas fa-warehouse text-2xl text-accent mr-4 mt-1"></i>
+                            <div>
+                                <h4 class="text-xl font-semibold text-darkblue mb-1">Heavy Lifting</h4>
+                                <p class="text-gray-600">Crawler Crane 50T-80T (NCK/LIMA), Gantry Crane 30T, Mobile Crane PETTIBONE.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start bg-secondary p-4 rounded-lg border-l-4 border-accent shadow-sm reveal" style="animation-delay: 0.4s;">
+                            <i class="fas fa-tools text-2xl text-accent mr-4 mt-1"></i>
+                            <div>
+                                <h4 class="text-xl font-semibold text-darkblue mb-1">Advanced Machining</h4>
+                                <p class="text-gray-600">Mesin CNC Quick Master, Bending Machine, Radial Drill, dan Welding Equipment Lincoln Electric.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start bg-secondary p-4 rounded-lg border-l-4 border-accent shadow-sm reveal" style="animation-delay: 0.6s;">
+                            <i class="fas fa-anchor text-2xl text-accent mr-4 mt-1"></i>
+                            <div>
+                                <h4 class="text-xl font-semibold text-darkblue mb-1">Marine Logistics</h4>
+                                <p class="text-gray-600">Jetty dengan kedalaman 7 meter saat low-tides. Metode peluncuran Airbag dan Slipway.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-8">
+                        <a href="infrastructure.html" class="inline-block text-darkblue hover:text-accent font-semibold flex items-center">
+                            Lihat Semua Fasilitas <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="rounded-2xl overflow-hidden shadow-2xl reveal">
+                    <img src="assets/infrastruktur_produksi.avif" alt="Fasilitas Produksi dan Jetty NJB" class="w-full h-96 object-cover object-center transform hover:scale-105 transition duration-500">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="quality" class="py-20 bg-secondary">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-darkblue mb-4 reveal">Sistem Manajemen Terintegrasi</h2>
+                <p class="text-xl text-gray-600 max-w-4xl mx-auto reveal" style="animation-delay: 0.2s;">
+                    Penerapan sistem manajemen yang ketat memastikan ketahanan operasional dan minimal gangguan proyek, menjamin kualitas tertinggi.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                <div class="bg-white rounded-xl shadow-lg p-8 border-l-4 border-accent reveal" style="animation-delay: 0.4s;">
+                    <div class="flex items-center mb-6">
+                        <i class="fas fa-certificate text-3xl text-accent mr-4"></i>
+                        <h3 class="text-2xl font-bold text-darkblue">Quality Assurance (ISO 9001:2015)</h3>
+                    </div>
+                    <p class="text-gray-600 mb-6">Komitmen kami pada Zero Defect didukung oleh:</p>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-accent mr-3 mt-1"></i>
+                            <span>Sistem Manajemen Mutu ISO 9001:2015 (Upgrade dari 2008)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-accent mr-3 mt-1"></i>
+                            <span>Third-Party Inspection dari surveyor klasifikasi (seperti Germanischer Lloyd - GL)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-accent mr-3 mt-1"></i>
+                            <span>Traceability material dari supplier hingga pemasangan di kapal</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-lg p-8 border-l-4 border-accent reveal" style="animation-delay: 0.6s;">
+                    <div class="flex items-center mb-6">
+                        <i class="fas fa-shield-alt text-3xl text-accent mr-4"></i>
+                        <h3 class="text-2xl font-bold text-darkblue">Occupational Health & Safety (ISO 45001:2018)</h3>
+                    </div>
+                    <p class="text-gray-600 mb-6">Menjamin keselamatan tenaga kerja dan operasional dengan target Zero LTI.</p>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-accent mr-3 mt-1"></i>
+                            <span>Sistem Manajemen K3 ISO 45001:2018 (Transisi dari OHSAS 18001:2007)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-accent mr-3 mt-1"></i>
+                            <span>Penerapan Job Safety Analysis (JSA) untuk setiap aktivitas berisiko tinggi</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-accent mr-3 mt-1"></i>
+                            <span>Human Capital Development dan Program Pelatihan Berjenjang</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="text-center mt-10">
+                <a href="certification.html" class="inline-block bg-accent hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full transition duration-300 text-lg shadow-md hover:shadow-xl transform hover:scale-105">
+                    Lihat Semua Sertifikasi Kami
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-16 bg-darkblue text-white reveal">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row justify-between items-center">
+                <div class="text-center lg:text-left mb-8 lg:mb-0">
+                    <h3 class="text-3xl font-bold mb-4">Siap Bermitra dengan NJB?</h3>
+                    <p class="text-xl opacity-90">Dapatkan keunggulan Technical Depth dan Manufacturing Prowess untuk proyek Anda.</p>
+                </div>
+                <div>
+                    <a href="contact.html" class="inline-block border-2 border-accent text-white hover:bg-accent/80 hover:text-white font-bold py-4 px-8 rounded-full transition duration-300 text-lg transform hover:scale-105">
+                        Request Quotation
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-navy text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                <div>
+                    <h4 class="text-xl font-bold mb-6 border-b border-gray-600 pb-2">PT. Nongsa Jaya Buana</h4>
+                    <div class="space-y-3 text-gray-300">
+                        <p class="flex items-start">
+                            <i class="fas fa-map-marker-alt mr-3 mt-1 text-accent"></i>
+                            <span>
+                                Kawasan Industri Sekupang Kav. 8<br>
+                                Jl. Tanjung Riau, Batam 29433<br>
+                                Kepulauan Riau - Indonesia
+                            </span>
+                        </p>
+                        <p class="flex items-center">
+                            <i class="fas fa-phone mr-3 text-accent"></i>
+                            <span>Telp. +62-778-326999 (Hunting)</span>
+                        </p>
+                        <p class="flex items-center">
+                            <i class="fas fa-envelope mr-3 text-accent"></i>
+                            <span>info@nongsagroup.com</span>
+                        </p>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-xl font-bold mb-6 border-b border-gray-600 pb-2">Tautan Cepat</h4>
+                    <ul class="space-y-3 text-gray-300">
+                        <li><a href="index.html" class="hover:text-accent transition">Beranda</a></li>
+                        <li><a href="about.html" class="hover:text-accent transition">Tentang Kami</a></li>
+                        <li><a href="capabilities.html" class="hover:text-accent transition">Kapabilitas</a></li>
+                        <li><a href="infrastructure.html" class="hover:text-accent transition">Infrastruktur</a></li>
+                        <li><a href="projects.html" class="hover:text-accent transition">Proyek</a></li>
+                        <li><a href="certification.html" class="hover:text-accent transition">Sertifikasi</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-xl font-bold mb-6 border-b border-gray-600 pb-2">Standar Kualitas</h4>
+
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="bg-secondary/70 px-3 py-1 rounded-full text-sm border border-accent">
+                            ISO 9001:2015 (QMS)
+                        </span>
+                        <span class="bg-secondary/70 px-3 py-1 rounded-full text-sm border border-accent">
+                            ISO 45001:2018 (OHSMS)
+                        </span>
+                    </div>
+
+                    <div>
+                        <h5 class="font-bold mb-4">Sosial Media</h5>
+                        <div class="flex space-x-4 text-2xl">
+                            <a href="https://linkedin.com/company/nongsajayabuana" class="text-gray-300 hover:text-accent transition" target="_blank" aria-label="LinkedIn">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="https://facebook.com/pt.nongsajayabuana" class="text-gray-300 hover:text-accent transition" target="_blank" aria-label="Facebook">
+                                <i class="fab fa-facebook-square"></i>
+                            </a>
+                            <a href="https://instagram.com/pt.nongsajayabuana" class="text-gray-300 hover:text-accent transition" target="_blank" aria-label="Instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-600 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 PT. Nongsa Jaya Buana. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Banner Slider Functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.banner-slide');
+        const dots = document.querySelectorAll('.banner-dot');
+        const totalSlides = slides.length;
+        let slideInterval;
+
+        function showSlide(n) {
+            // Reset semua slide dan dots
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            // Update current slide
+            currentSlide = (n + totalSlides) % totalSlides;
+            
+            // Tampilkan slide dan dot yang aktif
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        function startAutoSlide() {
+            slideInterval = setInterval(nextSlide, 5000);
+        }
+
+        function stopAutoSlide() {
+            clearInterval(slideInterval);
+        }
+
+        // Event Listeners untuk banner controls
+        document.querySelector('.banner-arrow.next').addEventListener('click', () => {
+            nextSlide();
+            stopAutoSlide();
+            startAutoSlide();
+        });
+
+        document.querySelector('.banner-arrow.prev').addEventListener('click', () => {
+            prevSlide();
+            stopAutoSlide();
+            startAutoSlide();
+        });
+
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                const slideIndex = parseInt(dot.getAttribute('data-slide'));
+                showSlide(slideIndex);
+                stopAutoSlide();
+                startAutoSlide();
+            });
+        });
+
+        // Start auto slide on page load
+        startAutoSlide();
+
+        // Mobile Menu Toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Scroll Reveal Script (untuk section di index.html)
+        const reveals = document.querySelectorAll(".reveal");
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("active");
+                }
+            });
+        }, { threshold: 0.15 });
+
+        reveals.forEach(r => observer.observe(r));
+
+        // Active Navigation Logic (Scroll Spy for IN-PAGE links)
+        const inPageSections = document.querySelectorAll('section');
+        const inPageNavLinks = document.querySelectorAll('.nav-link');
+
+        function updateActiveNav() {
+            let current = '';
+            // Mencari section yang sedang terlihat
+            inPageSections.forEach(section => {
+                const sectionTop = section.offsetTop - 150; // Offset untuk fixed navbar
+                const sectionHeight = section.clientHeight;
+                
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            // Update class 'active' pada link
+            inPageNavLinks.forEach(link => {
+                link.classList.remove('active');
+                const targetId = link.getAttribute('href').substring(1);
+                
+                if (targetId === current) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Khusus Hero section (id="hero")
+            if (window.scrollY < document.getElementById('about').offsetTop - 150) {
+                 inPageNavLinks.forEach(link => {
+                    if (link.getAttribute('href') === '#hero') {
+                        link.classList.add('active');
+                    } else {
+                        link.classList.remove('active');
+                    }
+                });
+            }
+        }
+
+        window.addEventListener('scroll', updateActiveNav);
+        // Panggil saat dimuat untuk set posisi awal
+        window.addEventListener('load', updateActiveNav);
+
+        // Smooth scrolling for anchor links (dengan penyesuaian offset)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const target = document.querySelector(targetId);
+                
+                // Close mobile menu if open
+                const mobileMenu = document.getElementById('mobile-menu');
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+
+                if (target) {
+                    const topPosition = target.offsetTop - 80; // Sesuaikan dengan tinggi navbar
+                    window.scrollTo({
+                        top: topPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Improved Dynamic Navbar Color Change on Scroll
+        const navbar = document.getElementById('main-navbar');
+        const heroSection = document.getElementById('hero');
+
+        function updateNavbarColor() {
+            const heroHeight = heroSection.offsetHeight;
+            const scrollPosition = window.scrollY;
+            
+            // Hapus semua kelas navbar sebelumnya
+            navbar.classList.remove('navbar-transparent', 'navbar-semi-transparent', 'navbar-scrolled', 'navbar-solid');
+            
+            // Jika scroll melewati hero section, ubah warna navbar secara bertahap
+            if (scrollPosition < heroHeight * 0.2) {
+                // Di bagian atas hero section
+                navbar.classList.add('navbar-transparent');
+            } else if (scrollPosition < heroHeight * 0.5) {
+                // Di tengah hero section
+                navbar.classList.add('navbar-semi-transparent');
+            } else if (scrollPosition < heroHeight * 0.8) {
+                // Di bawah hero section
+                navbar.classList.add('navbar-scrolled');
+            } else {
+                // Setelah melewati hero section
+                navbar.classList.add('navbar-solid');
+            }
+        }
+
+        window.addEventListener('scroll', updateNavbarColor);
+        window.addEventListener('load', updateNavbarColor);
+    </script>
+
+</body>
+</html>

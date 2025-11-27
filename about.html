@@ -13,11 +13,12 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#0a3d62',
-                        secondary: '#1e5f8a',
-                        accent: '#3498db',
-                        darkblue: '#082c47',
-                        navy: '#2c3e50'
+                        primary: '#ffffff',
+                        secondary: '#f8f9fa',
+                        accent: '#1e40af',
+                        darkblue: '#111827',
+                        navy: '#374151',
+                        lightblue: '#dbeafe'
                     },
                     fontFamily: {
                         'sans': ['Segoe UI', 'Tahoma', 'Geneva', 'Verdana', 'sans-serif']
@@ -58,38 +59,122 @@
             opacity: 1;
             transform: translateY(0);
         }
+
         /* Style untuk tautan eksternal pada halaman About */
         .nav-external.active {
-            color: #3498db; /* Highlight untuk halaman yang sedang dibuka */
-            border-bottom: 3px solid #3498db; /* Indikator visual halaman aktif */
+            color: #1e40af;
+            border-bottom: 3px solid #1e40af;
             padding-bottom: 5px;
         }
+
         .timeline-bullet {
             width: 1rem;
             height: 1rem;
-            background-color: #3498db;
+            background-color: #1e40af;
             border-radius: 50%;
             position: absolute;
             left: -0.5rem;
             top: 0.5rem;
             z-index: 10;
         }
+
         @media (min-width: 768px) {
             .timeline-container {
-                border-left: 2px solid #3498db;
-                margin-left: 12px; /* Set margin left for vertical line alignment */
+                border-left: 2px solid #1e40af;
+                margin-left: 12px;
                 padding-left: 20px;
             }
+        }
+
+        /* Gaya untuk navbar transparan */
+        .navbar-transparent {
+            background-color: transparent;
+            box-shadow: none;
+        }
+
+        .navbar-transparent .nav-link,
+        .navbar-transparent .nav-external,
+        .navbar-transparent .text-darkblue {
+            color: white;
+        }
+
+        .navbar-transparent .nav-link.active::after {
+            background-color: white;
+        }
+
+        .navbar-transparent .nav-external.active {
+            color: white;
+            border-bottom-color: white;
+        }
+
+        .navbar-transparent #mobile-menu-button {
+            color: white;
+        }
+
+        /* Gaya untuk navbar solid */
+        .navbar-solid {
+            background-color: rgba(10, 61, 98, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Gaya untuk navbar semi-transparan */
+        .navbar-semi-transparent {
+            background-color: rgba(10, 61, 98, 0.7);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            backdrop-filter: blur(5px);
+        }
+
+        /* Gaya untuk navbar saat scroll sedikit */
+        .navbar-scrolled {
+            background-color: rgba(10, 61, 98, 0.85);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(8px);
+        }
+
+        /* Transisi untuk navbar */
+        .navbar-transition {
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Efek hover pada link navbar */
+        .nav-link, .nav-external {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover, .nav-external:hover {
+            color: rgba(255, 255, 255, 0.8) !important;
+        }
+
+        /* Animasi untuk logo */
+        .logo-container {
+            transition: transform 0.3s ease;
+        }
+
+        .logo-container:hover {
+            transform: scale(1.05);
+        }
+
+        /* Efek untuk mobile menu */
+        #mobile-menu {
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .smooth-scroll {
+            scroll-behavior: smooth;
         }
     </style>
 </head>
 
-<body class="font-sans bg-gray-50 pt-16">
+<body class="font-sans bg-gray-50 smooth-scroll">
 
-    <nav class="fixed top-0 w-full bg-primary shadow-lg z-50 animate-fadeIn">
+    <!-- Navbar yang Diperbaiki -->
+    <nav id="main-navbar" class="fixed top-0 w-full z-50 navbar-transition navbar-solid">
         <div class="container mx-auto px-4">
             <div class="flex justify-between items-center py-4">
-                <a href="index.html" class="flex items-center space-x-3 text-white font-bold text-xl">
+                <a href="index.html" class="flex items-center space-x-3 text-white font-bold text-xl logo-container">
                     <div class="w-10 h-10 bg-white rounded flex items-center justify-center">
                         <img src="assets/njb_logo.png" alt="NJB Logo" class="h-8 w-8">
                     </div>
@@ -101,43 +186,45 @@
                 </button>
 
                 <div class="hidden lg:flex items-center space-x-8">
-                    <a href="index.html" class="nav-external text-white hover:text-accent transition">Beranda</a>
-                    <a href="about.html" class="nav-external text-white hover:text-accent transition active">Tentang Kami</a>
-                    <a href="capabilities.html" class="nav-external text-white hover:text-accent transition">Layanan & Kapabilitas</a>
-                    <a href="infrastructure.html" class="nav-external text-white hover:text-accent transition">Infrastruktur</a>
-                    <a href="projects.html" class="nav-external text-white hover:text-accent transition">Proyek</a>
-                    <a href="certification.html" class="nav-external text-white hover:text-accent transition">Sertifikasi</a>
-                    <a href="contact.html" class="nav-external text-white hover:text-accent transition">Kontak</a>
+                    <a href="index.html" class="nav-external text-white hover:text-white/80 transition">Beranda</a>
+                    <a href="about.html" class="nav-external text-white hover:text-white/80 transition active">Tentang Kami</a>
+                    <a href="capabilities.html" class="nav-external text-white hover:text-white/80 transition">Layanan & Kapabilitas</a>
+                    <a href="infrastructure.html" class="nav-external text-white hover:text-white/80 transition">Infrastruktur</a>
+                    <a href="projects.html" class="nav-external text-white hover:text-white/80 transition">Proyek</a>
+                    <a href="certification.html" class="nav-external text-white hover:text-white/80 transition">Sertifikasi</a>
+                    <a href="contact.html" class="nav-external text-white hover:text-white/80 transition">Kontak</a>
                 </div>
             </div>
             
-            <div class="lg:hidden hidden bg-darkblue/95 absolute top-full left-0 w-full shadow-xl" id="mobile-menu">
+            <div class="lg:hidden hidden bg-white/65 absolute top-full left-0 w-full shadow-xl" id="mobile-menu">
                 <div class="flex flex-col space-y-2 p-4">
-                    <a href="index.html" class="text-white hover:text-accent transition duration-300 py-2 border-b border-primary">Beranda</a>
-                    <a href="about.html" class="text-accent font-bold transition duration-300 py-2 border-b border-primary">Tentang Kami</a>
-                    <a href="capabilities.html" class="text-white hover:text-accent transition duration-300 py-2 border-b border-primary">Layanan & Kapabilitas</a>
-                    <a href="infrastructure.html" class="text-white hover:text-accent transition duration-300 py-2 border-b border-primary">Infrastruktur</a>
-                    <a href="projects.html" class="text-white hover:text-accent transition duration-300 py-2 border-b border-primary">Proyek</a>
-                    <a href="certification.html" class="text-white hover:text-accent transition duration-300 py-2 border-b border-primary">Sertifikasi</a>
-                    <a href="contact.html" class="text-white hover:text-accent transition duration-300 py-2">Kontak</a>
+                    <a href="index.html" class="text-darkblue hover:text-accent transition duration-300 py-2 border-b border-gray-200">Beranda</a>
+                    <a href="about.html" class="text-accent font-bold transition duration-300 py-2 border-b border-gray-200">Tentang Kami</a>
+                    <a href="capabilities.html" class="text-darkblue hover:text-accent transition duration-300 py-2 border-b border-gray-200">Layanan & Kapabilitas</a>
+                    <a href="infrastructure.html" class="text-darkblue hover:text-accent transition duration-300 py-2 border-b border-gray-200">Infrastruktur</a>
+                    <a href="projects.html" class="text-darkblue hover:text-accent transition duration-300 py-2 border-b border-gray-200">Proyek</a>
+                    <a href="certification.html" class="text-darkblue hover:text-accent transition duration-300 py-2 border-b border-gray-200">Sertifikasi</a>
+                    <a href="contact.html" class="text-darkblue hover:text-accent transition duration-300 py-2">Kontak</a>
                 </div>
             </div>
         </div>
     </nav>
 
-    <section class="pt-32 pb-20 bg-primary text-white reveal">
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 bg-gradient-to-r from-blue-900 to-blue-700 text-white reveal">
         <div class="container mx-auto px-4 text-center">
-            <h1 class="text-5xl font-bold mb-6"><i class="fas fa-users text-accent mr-3"></i> Tentang Kami</h1>
-            <p class="text-xl max-w-3xl mx-auto opacity-90" style="animation-delay: 0.3s;">Lebih dari dua dekade dedikasi dalam rekayasa kelautan terintegrasi</p>
+            <h1 class="text-5xl font-bold mb-6 animate-fadeUp"><i class="fas fa-users text-accent mr-3"></i> Tentang Kami</h1>
+            <p class="text-xl max-w-3xl mx-auto opacity-90 animate-fadeUp" style="animation-delay: 0.3s;">Lebih dari dua dekade dedikasi dalam rekayasa kelautan terintegrasi</p>
         </div>
     </section>
 
+    <!-- Corporate Synopsis Section -->
     <section class="py-20 bg-white">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
                 <div class="reveal">
-                    <h2 class="text-4xl font-bold text-primary mb-6">Corporate Synopsis</h2>
+                    <h2 class="text-4xl font-bold text-darkblue mb-6">Corporate Synopsis</h2>
 
                     <p class="text-lg text-gray-600 leading-relaxed mb-6">
                         PT. Nongsa Jaya Buana (NJB) bukan sekadar pembuat kapal—kami adalah mitra rekayasa
@@ -146,25 +233,25 @@
 
                     <p class="text-lg text-gray-600 leading-relaxed mb-8">
                         Dengan pengalaman lebih dari dua dekade, NJB telah berevolusi dari bengkel tradisional menjadi
-                        <em class="text-primary font-semibold">shipbuilding complex</em> modern yang menerapkan prinsip Design, Build, and Maintain.
+                        <em class="text-accent font-semibold">shipbuilding complex</em> modern yang menerapkan prinsip Design, Build, and Maintain.
                     </p>
 
-                    <div class="bg-gray-100 p-6 rounded-lg shadow-inner border-l-4 border-accent">
+                    <div class="bg-secondary p-6 rounded-lg shadow-inner border-l-4 border-accent">
                         <div class="space-y-3">
                             <div class="flex justify-between border-b border-gray-300 pb-2">
-                                <strong class="text-primary">Nama Hukum:</strong>
+                                <strong class="text-accent">Nama Hukum:</strong>
                                 <span class="text-gray-700">PT. Nongsa Jaya Buana (NJB)</span>
                             </div>
                             <div class="flex justify-between border-b border-gray-300 pb-2">
-                                <strong class="text-primary">Industri:</strong>
+                                <strong class="text-accent">Industri:</strong>
                                 <span class="text-gray-700">Galangan Kapal Terintegrasi</span>
                             </div>
                             <div class="flex justify-between border-b border-gray-300 pb-2">
-                                <strong class="text-primary">Tahun Pendirian:</strong>
+                                <strong class="text-accent">Tahun Pendirian:</strong>
                                 <span class="text-gray-700">2001 (Pengalaman sejak 1997)</span>
                             </div>
                             <div class="flex justify-between">
-                                <strong class="text-primary">Lokasi:</strong>
+                                <strong class="text-accent">Lokasi:</strong>
                                 <span class="text-gray-700">Batam – Indonesia</span>
                             </div>
                         </div>
@@ -180,10 +267,11 @@
         </div>
     </section>
 
+    <!-- History Timeline Section -->
     <section class="py-20 bg-gray-50">
         <div class="container mx-auto px-4">
 
-            <h2 class="text-4xl font-bold text-primary text-center mb-16 reveal">
+            <h2 class="text-4xl font-bold text-darkblue text-center mb-16 reveal">
                 <i class="fas fa-history text-accent mr-3"></i> Sejarah Perusahaan
             </h2>
 
@@ -197,8 +285,8 @@
                         <div class="timeline-bullet hidden md:block absolute right-0 top-1/2 transform -translate-y-1/2 w-4 h-0.5 bg-accent -mr-4"></div>
                         <i class="fas fa-star text-accent text-xl absolute right-0 top-1/2 transform -translate-y-1/2 -mr-3 hidden md:block"></i>
                     </div>
-                    <div class="md:w-3/4 bg-white p-6 rounded-lg shadow-lg border-l-4 border-primary hover:-translate-y-1 hover:shadow-xl transition duration-300 relative">
-                        <h3 class="text-xl font-bold text-primary mb-2">Awal Mula Operasional</h3>
+                    <div class="md:w-3/4 bg-white p-6 rounded-lg shadow-lg border-l-4 border-accent hover:-translate-y-1 hover:shadow-xl transition duration-300 relative">
+                        <h3 class="text-xl font-bold text-darkblue mb-2">Awal Mula Operasional</h3>
                         <p class="text-gray-600">Dimulai sebagai bengkel tradisional untuk perbaikan kapal kecil dan komponen maritim.</p>
                     </div>
                 </div>
@@ -211,8 +299,8 @@
                         <div class="timeline-bullet hidden md:block absolute right-0 top-1/2 transform -translate-y-1/2 w-4 h-0.5 bg-accent -mr-4"></div>
                         <i class="fas fa-star text-accent text-xl absolute right-0 top-1/2 transform -translate-y-1/2 -mr-3 hidden md:block"></i>
                     </div>
-                    <div class="md:w-3/4 bg-white p-6 rounded-lg shadow-lg border-l-4 border-primary hover:-translate-y-1 hover:shadow-xl transition duration-300 relative">
-                        <h3 class="text-xl font-bold text-primary mb-2">Pendirian Resmi</h3>
+                    <div class="md:w-3/4 bg-white p-6 rounded-lg shadow-lg border-l-4 border-accent hover:-translate-y-1 hover:shadow-xl transition duration-300 relative">
+                        <h3 class="text-xl font-bold text-darkblue mb-2">Pendirian Resmi</h3>
                         <p class="text-gray-600">NJB berdiri secara resmi dengan visi menjadi pemain utama dalam solusi rekayasa maritim regional.</p>
                     </div>
                 </div>
@@ -225,8 +313,8 @@
                         <div class="timeline-bullet hidden md:block absolute right-0 top-1/2 transform -translate-y-1/2 w-4 h-0.5 bg-accent -mr-4"></div>
                         <i class="fas fa-star text-accent text-xl absolute right-0 top-1/2 transform -translate-y-1/2 -mr-3 hidden md:block"></i>
                     </div>
-                    <div class="md:w-3/4 bg-white p-6 rounded-lg shadow-lg border-l-4 border-primary hover:-translate-y-1 hover:shadow-xl transition duration-300 relative">
-                        <h3 class="text-xl font-bold text-primary mb-2">Ekspansi Fasilitas</h3>
+                    <div class="md:w-3/4 bg-white p-6 rounded-lg shadow-lg border-l-4 border-accent hover:-translate-y-1 hover:shadow-xl transition duration-300 relative">
+                        <h3 class="text-xl font-bold text-darkblue mb-2">Ekspansi Fasilitas</h3>
                         <p class="text-gray-600">Ekspansi besar fasilitas produksi dan modernisasi peralatan berteknologi tinggi.</p>
                     </div>
                 </div>
@@ -239,8 +327,8 @@
                         <div class="timeline-bullet hidden md:block absolute right-0 top-1/2 transform -translate-y-1/2 w-4 h-0.5 bg-accent -mr-4"></div>
                         <i class="fas fa-star text-accent text-xl absolute right-0 top-1/2 transform -translate-y-1/2 -mr-3 hidden md:block"></i>
                     </div>
-                    <div class="md:w-3/4 bg-white p-6 rounded-lg shadow-lg border-l-4 border-primary hover:-translate-y-1 hover:shadow-xl transition duration-300 relative">
-                        <h3 class="text-xl font-bold text-primary mb-2">Sertifikasi Internasional</h3>
+                    <div class="md:w-3/4 bg-white p-6 rounded-lg shadow-lg border-l-4 border-accent hover:-translate-y-1 hover:shadow-xl transition duration-300 relative">
+                        <h3 class="text-xl font-bold text-darkblue mb-2">Sertifikasi Internasional</h3>
                         <p class="text-gray-600">Mendapatkan ISO 9001:2015—komitmen pada standar mutu terbaik.</p>
                     </div>
                 </div>
@@ -252,8 +340,8 @@
                         </span>
                         <i class="fas fa-star text-accent text-xl absolute right-0 top-1/2 transform -translate-y-1/2 -mr-3 hidden md:block"></i>
                     </div>
-                    <div class="md:w-3/4 bg-white p-6 rounded-lg shadow-lg border-l-4 border-primary hover:-translate-y-1 hover:shadow-xl transition duration-300 relative">
-                        <h3 class="text-xl font-bold text-primary mb-2">Pemimpin Maritim Regional</h3>
+                    <div class="md:w-3/4 bg-white p-6 rounded-lg shadow-lg border-l-4 border-accent hover:-translate-y-1 hover:shadow-xl transition duration-300 relative">
+                        <h3 class="text-xl font-bold text-darkblue mb-2">Pemimpin Maritim Regional</h3>
                         <p class="text-gray-600">Terus membangun portofolio internasional lewat rekayasa kelautan berkualitas tinggi.</p>
                     </div>
                 </div>
@@ -263,6 +351,7 @@
         </div>
     </section>
 
+    <!-- CTA Section -->
     <section class="py-16 bg-darkblue text-white reveal">
         <div class="container mx-auto px-4 text-center">
             <h3 class="text-3xl font-bold mb-4">Mulai Proyek Anda Bersama Kami</h3>
@@ -273,7 +362,7 @@
         </div>
     </section>
 
-
+    <!-- Footer -->
     <footer class="bg-navy text-white py-12 reveal">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -339,7 +428,7 @@
     </footer>
 
     <script>
-        // Scroll Reveal Script (Membuat elemen muncul saat di-scroll)
+        // Scroll Reveal Script
         const reveals = document.querySelectorAll(".reveal");
         const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
@@ -356,8 +445,62 @@
             const menu = document.getElementById('mobile-menu');
             menu.classList.toggle('hidden');
         });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const target = document.querySelector(targetId);
+                
+                // Close mobile menu if open
+                const mobileMenu = document.getElementById('mobile-menu');
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+
+                if (target) {
+                    const topPosition = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: topPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Dynamic Navbar Color Change on Scroll (untuk halaman yang memiliki hero section)
+        const navbar = document.getElementById('main-navbar');
+        const heroSection = document.querySelector('section:first-of-type');
+
+        if (heroSection) {
+            function updateNavbarColor() {
+                const heroHeight = heroSection.offsetHeight;
+                const scrollPosition = window.scrollY;
+                
+                // Hapus semua kelas navbar sebelumnya
+                navbar.classList.remove('navbar-transparent', 'navbar-semi-transparent', 'navbar-scrolled', 'navbar-solid');
+                
+                // Jika scroll melewati hero section, ubah warna navbar secara bertahap
+                if (scrollPosition < heroHeight * 0.2) {
+                    // Di bagian atas hero section
+                    navbar.classList.add('navbar-transparent');
+                } else if (scrollPosition < heroHeight * 0.5) {
+                    // Di tengah hero section
+                    navbar.classList.add('navbar-semi-transparent');
+                } else if (scrollPosition < heroHeight * 0.8) {
+                    // Di bawah hero section
+                    navbar.classList.add('navbar-scrolled');
+                } else {
+                    // Setelah melewati hero section
+                    navbar.classList.add('navbar-solid');
+                }
+            }
+
+            window.addEventListener('scroll', updateNavbarColor);
+            window.addEventListener('load', updateNavbarColor);
+        }
     </script>
 
 </body>
-
 </html>
