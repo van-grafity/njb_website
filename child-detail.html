@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Sari - Yayasan New Life Indonesia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1e40af',
+                        secondary: '#3b82f6',
+                        accent: '#60a5fa',
+                        darkblue: '#1e3a8a',
+                        navy: '#1e293b',
+                        success: '#10b981',
+                        hope: '#f59e0b',
+                        need: '#ef4444',
+                        sponsored: '#10b981'
+                    },
+                    fontFamily: {
+                        'sans': ['Segoe UI', 'Tahoma', 'Geneva', 'Verdana', 'sans-serif']
+                    },
+                    keyframes: {
+                        fadeUp: {
+                            '0%': { opacity: 0, transform: 'translateY(20px)' },
+                            '100%': { opacity: 1, transform: 'translateY(0)' }
+                        },
+                        fadeIn: {
+                            '0%': { opacity: 0 },
+                            '100%': { opacity: 1 }
+                        }
+                    },
+                    animation: {
+                        fadeUp: 'fadeUp 1s ease-out',
+                        fadeIn: 'fadeIn 1.2s ease-out'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .nav-link.active {
+            position: relative;
+            color: #60a5fa; 
+        }
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -8px; 
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: #60a5fa;
+        }
+        .smooth-scroll {
+            scroll-behavior: smooth;
+        }
+        .nav-external.active {
+            color: #60a5fa; 
+            border-bottom: 3px solid #60a5fa; 
+            padding-bottom: 5px;
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .navbar-transition {
+            transition: all 0.3s ease-in-out;
+        }
+        .progress-bar {
+            height: 8px;
+            border-radius: 4px;
+            background-color: #e5e7eb;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+        .gallery-item {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+        .update-card {
+            transition: all 0.3s ease;
+        }
+        .update-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        .donation-amount-btn {
+            transition: all 0.3s ease;
+        }
+        .donation-amount-btn.active {
+            background-color: #1e40af;
+            color: white;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="font-sans smooth-scroll bg-white pt-16">
+    
+    <nav id="main-navbar" class="fixed top-0 w-full bg-primary/90 shadow-lg z-50 navbar-transition">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <a href="index.html" class="flex items-center space-x-3 text-white font-bold text-xl">
+                    <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center">
+                        <i class="fas fa-hands-helping text-primary text-xl"></i>
+                    </div>
+                    <span>Yayasan New Life Indonesia</span>
+                </a>
+
+                <button class="lg:hidden text-white focus:outline-none p-2" id="mobile-menu-button" aria-label="Toggle Navigation">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="index.html" class="nav-link text-white hover:text-accent transition duration-300">Beranda</a>
+                    <a href="about.html" class="nav-link text-white hover:text-accent transition duration-300">Tentang Kami</a>
+                    <a href="programs.html" class="nav-link text-white hover:text-accent transition duration-300">Program</a>
+                    <a href="children.html" class="nav-link text-white hover:text-accent transition duration-300">Anak Asuh</a>
+                    <a href="donation.html" class="nav-external text-white hover:text-accent transition duration-300">Donasi</a>
+                    <a href="contact.html" class="nav-external text-white hover:text-accent transition duration-300">Kontak</a>
+                    <a href="login.html" class="bg-white text-primary hover:bg-gray-100 font-semibold py-2 px-4 rounded-full transition duration-300">Login Donatur</a>
+                </div>
+            </div>
+
+            <div class="lg:hidden hidden bg-darkblue/95 absolute top-full left-0 w-full shadow-xl" id="mobile-menu">
+                <div class="flex flex-col space-y-2 p-4">
+                    <a href="index.html" class="text-white hover:text-accent transition duration-300 py-2 border-b border-primary">Beranda</a>
+                    <a href="about.html" class="text-white hover:text-accent transition duration-300 py-2 border-b border-primary">Tentang Kami</a>
+                    <a href="programs.html" class="text-white hover:text-accent transition duration-300 py-2 border-b border-primary">Program</a>
+                    <a href="children.html" class="text-white hover:text-accent transition duration-300 py-2 border-b border-primary">Anak Asuh</a>
+                    <a href="donation.html" class="text-white hover:text-accent transition duration-300 py-2 border-b border-primary">Donasi</a>
+                    <a href="contact.html" class="text-white hover:text-accent transition duration-300 py-2">Kontak</a>
+                    <a href="login.html" class="text-white bg-primary hover:bg-secondary transition duration-300 py-2 text-center rounded-full mt-2">Login Donatur</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <div class="bg-gray-50 py-4">
+        <div class="container mx-auto px-4">
+            <nav class="flex" aria-label="Breadcrumb">
+                <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                    <li class="inline-flex items-center">
+                        <a href="index.html" class="inline-flex items-center text-sm font-medium text-gray-500 hover:text-primary">
+                            <i class="fas fa-home mr-2"></i>
+                            Beranda
+                        </a>
+                    </li>
+                    <li>
+                        <div class="flex items-center">
+                            <i class="fas fa-chevron-right text-gray-400 mx-2"></i>
+                            <a href="children.html" class="ml-1 text-sm font-medium text-gray-500 hover:text-primary md:ml-2">Anak Asuh</a>
+                        </div>
+                    </li>
+                    <li aria-current="page">
+                        <div class="flex items-center">
+                            <i class="fas fa-chevron-right text-gray-400 mx-2"></i>
+                            <span class="ml-1 text-sm font-medium text-primary md:ml-2">Profil Sari</span>
+                        </div>
+                    </li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Child Profile Header -->
+    <section class="py-8 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row gap-8 items-start">
+                <!-- Child Photo -->
+                <div class="lg:w-1/3">
+                    <div class="rounded-2xl overflow-hidden shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1516627145497-ae69578cfc06?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                             alt="Sari - 8 tahun" 
+                             class="w-full h-96 object-cover">
+                    </div>
+                    
+                    <!-- Quick Stats -->
+                    <div class="grid grid-cols-3 gap-4 mt-6">
+                        <div class="bg-primary/10 p-4 rounded-lg text-center">
+                            <div class="text-2xl font-bold text-primary">8</div>
+                            <div class="text-sm text-gray-600">Usia</div>
+                        </div>
+                        <div class="bg-primary/10 p-4 rounded-lg text-center">
+                            <div class="text-2xl font-bold text-primary">2</div>
+                            <div class="text-sm text-gray-600">Kelas SD</div>
+                        </div>
+                        <div class="bg-primary/10 p-4 rounded-lg text-center">
+                            <div class="text-2xl font-bold text-primary">B</div>
+                            <div class="text-sm text-gray-600">Rata-rata Nilai</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Child Information -->
+                <div class="lg:w-2/3">
+                    <div class="flex justify-between items-start mb-6">
+                        <div>
+                            <span class="inline-block bg-need/20 text-need text-sm font-semibold px-4 py-1 rounded-full mb-2">Butuh Donasi</span>
+                            <h1 class="text-4xl font-bold text-primary">Sari</h1>
+                            <p class="text-xl text-gray-600">8 Tahun • Kelas 2 SD • Jakarta</p>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-3xl font-bold text-primary">Rp 1.200.000</div>
+                            <div class="text-lg text-gray-500">Kebutuhan per tahun</div>
+                        </div>
+                    </div>
+
+                    <!-- Progress Bar -->
+                    <div class="mb-6">
+                        <div class="flex justify-between text-lg text-gray-700 mb-2">
+                            <span>Progress Donasi</span>
+                            <span class="font-bold">45%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill bg-need" style="width: 45%"></div>
+                        </div>
+                        <div class="flex justify-between text-sm text-gray-500 mt-2">
+                            <span>Terkumpul: <span class="font-semibold">Rp 540.000</span></span>
+                            <span>Kurang: <span class="font-semibold">Rp 660.000</span></span>
+                        </div>
+                    </div>
+
+                    <!-- Child Story -->
+                    <div class="bg-gray-50 p-6 rounded-xl mb-6">
+                        <h2 class="text-2xl font-bold text-primary mb-4">Cerita Sari</h2>
+                        <p class="text-gray-700 mb-4">
+                            Sari adalah anak yang ceria dan penuh semangat. Ia tinggal bersama ibu tunggalnya yang bekerja sebagai pemulung dengan penghasilan tidak tetap. Meski hidup dalam keterbatasan, Sari tidak pernah putus asa dan selalu menunjukkan semangat belajar yang tinggi.
+                        </p>
+                        <p class="text-gray-700 mb-4">
+                            Setiap hari, Sari berjalan kaki sejauh 3 kilometer untuk sampai ke sekolah. Ia tidak pernah mengeluh dan selalu bersyukur masih bisa bersekolah. Di sekolah, Sari dikenal sebagai anak yang rajin dan sopan. Nilai-nilainya cukup baik, terutama dalam pelajaran Bahasa Indonesia dan Seni.
+                        </p>
+                        <p class="text-gray-700">
+                            Cita-cita Sari adalah menjadi guru. Ia berkata, "Aku ingin menjadi guru agar bisa mengajar anak-anak lain seperti aku yang ingin sekolah tapi tidak punya biaya." Impiannya yang mulia ini membutuhkan dukungan kita semua untuk terwujud.
+                        </p>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#donate-section" class="flex-1 bg-primary hover:bg-secondary text-white text-center font-bold py-4 px-6 rounded-xl transition duration-300 text-lg shadow-lg hover:shadow-xl">
+                            <i class="fas fa-heart mr-2"></i> Donasi untuk Sari
+                        </a>
+                        <a href="#updates" class="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-800 text-center font-semibold py-4 px-6 rounded-xl transition duration-300">
+                            <i class="fas fa-history mr-2"></i> Lihat Update
+                        </a>
+                        <button class="flex-1 bg-white border border-primary hover:bg-primary/5 text-primary text-center font-semibold py-4 px-6 rounded-xl transition duration-300">
+                            <i class="fas fa-share-alt mr-2"></i> Bagikan
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Information Tabs -->
+    <section class="py-12 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                <!-- Tab Headers -->
+                <div class="border-b border-gray-200">
+                    <nav class="flex flex-col sm:flex-row">
+                        <button class="tab-header py-4 px-6 text-lg font-semibold text-gray-600 hover:text-primary border-b-2 border-transparent hover:border-primary transition duration-300 active" data-tab="profile">
+                            <i class="fas fa-user mr-2"></i> Profil Lengkap
+                        </button>
+                        <button class="tab-header py-4 px-6 text-lg font-semibold text-gray-600 hover:text-primary border-b-2 border-transparent hover:border-primary transition duration-300" data-tab="education">
+                            <i class="fas fa-graduation-cap mr-2"></i> Pendidikan
+                        </button>
+                        <button class="tab-header py-4 px-6 text-lg font-semibold text-gray-600 hover:text-primary border-b-2 border-transparent hover:border-primary transition duration-300" data-tab="family">
+                            <i class="fas fa-home mr-2"></i> Kondisi Keluarga
+                        </button>
+                        <button class="tab-header py-4 px-6 text-lg font-semibold text-gray-600 hover:text-primary border-b-2 border-transparent hover:border-primary transition duration-300" data-tab="gallery">
+                            <i class="fas fa-images mr-2"></i> Galeri
+                        </button>
+                    </nav>
+                </div>
+
+                <!-- Tab Contents -->
+                <div class="p-6">
+                    <!-- Profile Tab -->
+                    <div id="profile-tab" class="tab-content active">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div>
+                                <h3 class="text-2xl font-bold text-primary mb-4">Informasi Pribadi</h3>
+                                <div class="space-y-4">
+                                    <div class="flex justify-between border-b border-gray-200 pb-2">
+                                        <span class="font-semibold text-gray-700">Nama Lengkap</span>
+                                        <span>Sari Indah Lestari</span>
+                                    </div>
+                                    <div class="flex justify-between border-b border-gray-200 pb-2">
+                                        <span class="font-semibold text-gray-700">Tanggal Lahir</span>
+                                        <span>15 Maret 2017</span>
+                                    </div>
+                                    <div class="flex justify-between border-b border-gray-200 pb-2">
+                                        <span class="font-semibold text-gray-700">Jenis Kelamin</span>
+                                        <span>Perempuan</span>
+                                    </div>
+                                    <div class="flex justify-between border-b border-gray-200 pb-2">
+                                        <span class="font-semibold text-gray-700">Tempat Lahir</span>
+                                        <span>Jakarta</span>
+                                    </div>
+                                    <div class="flex justify-between border-b border-gray-200 pb-2">
+                                        <span class="font-semibold text-gray-700">Alamat</span>
+                                        <span>Jl. Merdeka No. 123, Jakarta Utara</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-primary mb-4">Karakter & Minat</h3>
+                                <div class="space-y-4">
+                                    <div>
+                                        <h4 class="font-semibold text-gray-700 mb-2">Kepribadian</h4>
+                                        <div class="flex flex-wrap gap-2">
+                                            <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">Ceria</span>
+                                            <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">Rajin</span>
+                                            <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">Kreatif</span>
+                                            <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">Mandiri</span>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold text-gray-700 mb-2">Hobi & Minat</h4>
+                                        <div class="flex flex-wrap gap-2">
+                                            <span class="bg-accent/10 text-accent px-3 py-1 rounded-full text-sm">Menggambar</span>
+                                            <span class="bg-accent/10 text-accent px-3 py-1 rounded-full text-sm">Membaca</span>
+                                            <span class="bg-accent/10 text-accent px-3 py-1 rounded-full text-sm">Menyanyi</span>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold text-gray-700 mb-2">Cita-cita</h4>
+                                        <p class="text-gray-600">Ingin menjadi guru untuk membantu anak-anak lain yang kurang mampu</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Education Tab -->
+                    <div id="education-tab" class="tab-content hidden">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div>
+                                <h3 class="text-2xl font-bold text-primary mb-4">Informasi Sekolah</h3>
+                                <div class="space-y-4">
+                                    <div class="flex justify-between border-b border-gray-200 pb-2">
+                                        <span class="font-semibold text-gray-700">Nama Sekolah</span>
+                                        <span>SD Negeri 05 Jakarta Utara</span>
+                                    </div>
+                                    <div class="flex justify-between border-b border-gray-200 pb-2">
+                                        <span class="font-semibold text-gray-700">Kelas</span>
+                                        <span>2 (Dua)</span>
+                                    </div>
+                                    <div class="flex justify-between border-b border-gray-200 pb-2">
+                                        <span class="font-semibold text-gray-700">Rata-rata Nilai</span>
+                                        <span>B (80-85)</span>
+                                    </div>
+                                    <div class="flex justify-between border-b border-gray-200 pb-2">
+                                        <span class="font-semibold text-gray-700">Pelajaran Favorit</span>
+                                        <span>Bahasa Indonesia, Seni</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-primary mb-4">Kebutuhan Pendidikan</h3>
+                                <div class="space-y-4">
+                                    <div class="bg-gray-50 p-4 rounded-lg">
+                                        <h4 class="font-semibold text-gray-700 mb-2">Biaya Pendidikan Tahunan</h4>
+                                        <div class="flex justify-between items-center">
+                                            <span class="text-lg font-bold text-primary">Rp 1.200.000</span>
+                                            <span class="text-sm text-gray-500">per tahun</span>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold text-gray-700 mb-2">Rincian Kebutuhan</h4>
+                                        <ul class="space-y-2 text-gray-600">
+                                            <li class="flex justify-between">
+                                                <span>Seragam Sekolah</span>
+                                                <span>Rp 350.000</span>
+                                            </li>
+                                            <li class="flex justify-between">
+                                                <span>Buku & Alat Tulis</span>
+                                                <span>Rp 450.000</span>
+                                            </li>
+                                            <li class="flex justify-between">
+                                                <span>Biaya SPP & Kegiatan</span>
+                                                <span>Rp 400.000</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Family Tab -->
+                    <div id="family-tab" class="tab-content hidden">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div>
+                                <h3 class="text-2xl font-bold text-primary mb-4">Kondisi Keluarga</h3>
+                                <div class="space-y-4">
+                                    <div class="flex justify-between border-b border-gray-200 pb-2">
+                                        <span class="font-semibold text-gray-700">Status Keluarga</span>
+                                        <span>Keluarga Tidak Mampu</span>
+                                    </div>
+                                    <div class="flex justify-between border-b border-gray-200 pb-2">
+                                        <span class="font-semibold text-gray-700">Penghasilan Keluarga</span>
+                                        <span>Rp 800.000 - 1.200.000/bulan</span>
+                                    </div>
+                                    <div class="flex justify-between border-b border-gray-200 pb-2">
+                                        <span class="font-semibold text-gray-700">Kondisi Rumah</span>
+                                        <span>Sewa, 2 kamar</span>
+                                    </div>
+                                    <div class="flex justify-between border-b border-gray-200 pb-2">
+                                        <span class="font-semibold text-gray-700">Anak dalam Keluarga</span>
+                                        <span>2 orang</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-primary mb-4">Anggota Keluarga</h3>
+                                <div class="space-y-4">
+                                    <div class="bg-gray-50 p-4 rounded-lg">
+                                        <h4 class="font-semibold text-gray-700 mb-1">Ibu (Wati)</h4>
+                                        <p class="text-gray-600 text-sm">Pemulung, 35 tahun</p>
+                                        <p class="text-gray-500 text-xs mt-1">Penghasilan tidak tetap, bekerja sejak pagi hingga sore</p>
+                                    </div>
+                                    <div class="bg-gray-50 p-4 rounded-lg">
+                                        <h4 class="font-semibold text-gray-700 mb-1">Adik (Rudi)</h4>
+                                        <p class="text-gray-600 text-sm">5 tahun, belum sekolah</p>
+                                        <p class="text-gray-500 text-xs mt-1">Dirawat oleh tetangga saat ibu bekerja</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gallery Tab -->
+                    <div id="gallery-tab" class="tab-content hidden">
+                        <h3 class="text-2xl font-bold text-primary mb-6">Galeri Sari</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                            <div class="gallery-item rounded-lg overflow-hidden shadow-md">
+                                <img src="https://images.unsplash.com/photo-1516627145497-ae69578cfc06?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                                     alt="Sari di sekolah" 
+                                     class="w-full h-48 object-cover">
+                                <div class="p-3 bg-white">
+                                    <p class="text-sm text-gray-600">Sari di sekolah</p>
+                                </div>
+                            </div>
+                            <div class="gallery-item rounded-lg overflow-hidden shadow-md">
+                                <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=1422&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                                     alt="Sari sedang belajar" 
+                                     class="w-full h-48 object-cover">
+                                <div class="p-3 bg-white">
+                                    <p class="text-sm text-gray-600">Sari sedang belajar</p>
+                                </div>
+                            </div>
+                            <div class="gallery-item rounded-lg overflow-hidden shadow-md">
+                                <img src="https://images.unsplash.com/photo-1485546246426-74dc88dec4d9?q=80&w=1469&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                                     alt="Sari dengan hasil gambar" 
+                                     class="w-full h-48 object-cover">
+                                <div class="p-3 bg-white">
+                                    <p class="text-sm text-gray-600">Sari dengan hasil gambar</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Updates Section -->
+    <section id="updates" class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-primary mb-2 text-center">Update Perkembangan Sari</h2>
+            <p class="text-xl text-gray-600 mb-8 text-center">Pantau perkembangan pendidikan dan kehidupan Sari</p>
+
+            <div class="space-y-6 max-w-4xl mx-auto">
+                <!-- Update 1 -->
+                <div class="update-card bg-white rounded-xl shadow-lg border-l-4 border-primary p-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-primary">Raport Semester 1</h3>
+                            <p class="text-gray-500">15 Desember 2024</p>
+                        </div>
+                        <span class="bg-primary/10 text-primary text-sm font-semibold px-3 py-1 rounded-full">Pendidikan</span>
+                    </div>
+                    <p class="text-gray-700 mb-4">
+                        Sari berhasil menyelesaikan semester 1 dengan nilai yang memuaskan. Rata-rata nilainya adalah 82, dengan nilai tertinggi di pelajaran Bahasa Indonesia (88) dan Seni Budaya (87).
+                    </p>
+                    <div class="flex items-center text-gray-600">
+                        <i class="fas fa-file-pdf text-red-500 mr-2"></i>
+                        <a href="#" class="hover:text-primary">Download Raport Semester 1</a>
+                    </div>
+                </div>
+
+                <!-- Update 2 -->
+                <div class="update-card bg-white rounded-xl shadow-lg border-l-4 border-success p-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-primary">Kegiatan Menggambar</h3>
+                            <p class="text-gray-500">5 November 2024</p>
+                        </div>
+                        <span class="bg-success/10 text-success text-sm font-semibold px-3 py-1 rounded-full">Ekstrakurikuler</span>
+                    </div>
+                    <p class="text-gray-700 mb-4">
+                        Sari mengikuti lomba menggambar tingkat kecamatan dan berhasil meraih juara 3. Ini adalah prestasi pertama Sari di bidang seni. Ia sangat senang dan termotivasi untuk terus berkembang.
+                    </p>
+                    <div class="grid grid-cols-2 gap-2">
+                        <img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?q=80&w=1458&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                             alt="Hasil gambar Sari" 
+                             class="w-full h-32 object-cover rounded-lg">
+                        <img src="https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                             alt="Sari menerima penghargaan" 
+                             class="w-full h-32 object-cover rounded-lg">
+                    </div>
+                </div>
+
+                <!-- Update 3 -->
+                <div class="update-card bg-white rounded-xl shadow-lg border-l-4 border-accent p-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-primary">Kebutuhan Baru</h3>
+                            <p class="text-gray-500">20 Oktober 2024</p>
+                        </div>
+                        <span class="bg-accent/10 text-accent text-sm font-semibold px-3 py-1 rounded-full">Kebutuhan</span>
+                    </div>
+                    <p class="text-gray-700">
+                        Sari membutuhkan sepatu dan seragam baru untuk tahun ajaran depan. Sepatunya sudah sangat aus dan seragamnya sudah tidak muat. Total kebutuhan untuk sepatu dan seragam adalah Rp 350.000.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Donation Section -->
+    <section id="donate-section" class="py-16 bg-gradient-to-br from-primary to-secondary text-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-4xl font-bold mb-4">Bantu Wujudkan Mimpi Sari</h2>
+                <p class="text-xl mb-8 opacity-90">
+                    Donasi Anda akan langsung digunakan untuk kebutuhan pendidikan Sari dan mendukung masa depannya yang lebih cerah
+                </p>
+
+                <div class="bg-white rounded-2xl shadow-2xl p-8 text-gray-800">
+                    <h3 class="text-2xl font-bold text-primary mb-6">Pilih Nominal Donasi</h3>
+                    
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                        <button class="donation-amount-btn bg-gray-100 hover:bg-primary hover:text-white font-semibold py-4 rounded-xl transition duration-300" data-amount="100000">
+                            Rp 100.000
+                        </button>
+                        <button class="donation-amount-btn bg-gray-100 hover:bg-primary hover:text-white font-semibold py-4 rounded-xl transition duration-300" data-amount="250000">
+                            Rp 250.000
+                        </button>
+                        <button class="donation-amount-btn bg-gray-100 hover:bg-primary hover:text-white font-semibold py-4 rounded-xl transition duration-300 active" data-amount="500000">
+                            Rp 500.000
+                        </button>
+                        <button class="donation-amount-btn bg-gray-100 hover:bg-primary hover:text-white font-semibold py-4 rounded-xl transition duration-300" data-amount="1000000">
+                            Rp 1.000.000
+                        </button>
+                    </div>
+
+                    <div class="mb-6">
+                        <label for="custom-amount" class="block text-lg font-semibold text-gray-700 mb-2">Atau masukkan nominal lain:</label>
+                        <div class="relative">
+                            <span class="absolute left-4 top-3 text-gray-500">Rp</span>
+                            <input type="number" id="custom-amount" placeholder="Masukkan nominal" class="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                    </div>
+
+                    <button class="w-full bg-primary hover:bg-secondary text-white font-bold py-4 px-6 rounded-xl transition duration-300 text-lg shadow-lg hover:shadow-xl transform hover:scale-105 mb-4">
+                        <i class="fas fa-heart mr-2"></i> Donasi Sekarang
+                    </button>
+
+                    <p class="text-sm text-gray-600">
+                        Donasi akan diproses secara aman dan Anda akan mendapatkan update perkembangan Sari secara berkala
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Other Children Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-primary mb-2 text-center">Anak Lain yang Membutuhkan</h2>
+            <p class="text-xl text-gray-600 mb-8 text-center">Masih banyak anak lain yang membutuhkan dukungan Anda</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Other Child 1 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                    <div class="overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?q=80&w=1472&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                             alt="Budi - 10 tahun" 
+                             class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-bold text-primary">Budi</h3>
+                        <p class="text-gray-600 text-sm mb-2">10 Tahun • Kelas 4 SD</p>
+                        <div class="progress-bar mb-2">
+                            <div class="progress-fill bg-need" style="width: 30%"></div>
+                        </div>
+                        <div class="flex justify-between text-xs text-gray-500 mb-3">
+                            <span>30%</span>
+                            <span>Rp 450.000/Rp 1.500.000</span>
+                        </div>
+                        <a href="child-detail.html?id=budi" class="block w-full bg-primary hover:bg-secondary text-white text-center font-semibold py-2 rounded-lg transition duration-300">
+                            Lihat Profil
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Other Child 2 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                    <div class="overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1536623975707-c4a3b1c7c3b9?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                             alt="Dewi - 9 tahun" 
+                             class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-bold text-primary">Dewi</h3>
+                        <p class="text-gray-600 text-sm mb-2">9 Tahun • Kelas 3 SD</p>
+                        <div class="progress-bar mb-2">
+                            <div class="progress-fill bg-need" style="width: 25%"></div>
+                        </div>
+                        <div class="flex justify-between text-xs text-gray-500 mb-3">
+                            <span>25%</span>
+                            <span>Rp 325.000/Rp 1.300.000</span>
+                        </div>
+                        <a href="child-detail.html?id=dewi" class="block w-full bg-primary hover:bg-secondary text-white text-center font-semibold py-2 rounded-lg transition duration-300">
+                            Lihat Profil
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Other Child 3 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                    <div class="overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                             alt="Ahmad - 7 tahun" 
+                             class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-bold text-primary">Ahmad</h3>
+                        <p class="text-gray-600 text-sm mb-2">7 Tahun • Kelas 1 SD</p>
+                        <div class="progress-bar mb-2">
+                            <div class="progress-fill bg-need" style="width: 20%"></div>
+                        </div>
+                        <div class="flex justify-between text-xs text-gray-500 mb-3">
+                            <span>20%</span>
+                            <span>Rp 200.000/Rp 1.000.000</span>
+                        </div>
+                        <a href="child-detail.html?id=ahmad" class="block w-full bg-primary hover:bg-secondary text-white text-center font-semibold py-2 rounded-lg transition duration-300">
+                            Lihat Profil
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-8">
+                <a href="children.html" class="inline-block bg-primary hover:bg-secondary text-white font-bold py-3 px-6 rounded-full transition duration-300">
+                    Lihat Semua Anak
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-navy text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                <div>
+                    <h4 class="text-xl font-bold mb-6 border-b border-gray-600 pb-2">Yayasan New Life Indonesia</h4>
+                    <div class="space-y-3 text-gray-300">
+                        <p class="flex items-start">
+                            <i class="fas fa-map-marker-alt mr-3 mt-1 text-accent"></i>
+                            <span>
+                                Ruko Central Sukajadi, B1 No. 12B<br>
+                                Batam 29432<br>
+                                Indonesia
+                            </span>
+                        </p>
+                        <p class="flex items-center">
+                            <i class="fas fa-phone mr-3 text-accent"></i>
+                            <span>Telp. +62 811-7003-7771</span>
+                        </p>
+                        <p class="flex items-center">
+                            <i class="fas fa-envelope mr-3 text-accent"></i>
+                            <span>info@newlifeindonesia.org</span>
+                        </p>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-xl font-bold mb-6 border-b border-gray-600 pb-2">Tautan Cepat</h4>
+                    <ul class="space-y-3 text-gray-300">
+                        <li><a href="index.html" class="hover:text-accent transition">Beranda</a></li>
+                        <li><a href="about.html" class="hover:text-accent transition">Tentang Kami</a></li>
+                        <li><a href="programs.html" class="hover:text-accent transition">Program</a></li>
+                        <li><a href="children.html" class="hover:text-accent transition">Anak Asuh</a></li>
+                        <li><a href="donation.html" class="hover:text-accent transition">Donasi</a></li>
+                        <li><a href="contact.html" class="hover:text-accent transition">Kontak</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-xl font-bold mb-6 border-b border-gray-600 pb-2">Rekening Donasi</h4>
+
+                    <div class="space-y-4 mb-6">
+                        <div class="bg-darkblue p-3 rounded-lg">
+                            <p class="font-semibold">Bank BRI</p>
+                            <p class="text-accent">551701000042567</p>
+                            <p class="text-sm">a.n. NEW LIFE INDONESIA</p>
+                        </div>
+                        <div class="bg-darkblue p-3 rounded-lg">
+                            <p class="font-semibold">Bank Mandiri</p>
+                            <p class="text-accent">987-654-3210</p>
+                            <p class="text-sm">a.n. Yayasan New Life Indonesia</p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h5 class="font-bold mb-4">Sosial Media</h5>
+                        <div class="flex space-x-4 text-2xl">
+                            <a href="https://facebook.com/newlifeindonesia" class="text-gray-300 hover:text-accent transition" target="_blank" aria-label="Facebook">
+                                <i class="fab fa-facebook-square"></i>
+                            </a>
+                            <a href="https://instagram.com/newlifeindonesia" class="text-gray-300 hover:text-accent transition" target="_blank" aria-label="Instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://youtube.com/newlifeindonesia" class="text-gray-300 hover:text-accent transition" target="_blank" aria-label="YouTube">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-600 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 Yayasan New Life Indonesia. All rights reserved.</p>
+                <p class="mt-2 text-sm">"Yayasan New Life Indonesia hanyalah kepingan kecil dari pekerjaan besar-Nya. Dalam anugerah-Nya, Tuhan berkenan memakai kita semua sebagai alat untuk menyatakan kasih dan memuliakan Dia dan memberi dampak bagi sesama."</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Scroll Reveal Script
+        const reveals = document.querySelectorAll(".reveal");
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("active");
+                }
+            });
+        }, { threshold: 0.15 });
+
+        reveals.forEach(r => observer.observe(r));
+
+        // Tab Functionality
+        const tabHeaders = document.querySelectorAll('.tab-header');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        tabHeaders.forEach(header => {
+            header.addEventListener('click', function() {
+                // Remove active class from all headers and contents
+                tabHeaders.forEach(h => h.classList.remove('active', 'border-primary'));
+                tabContents.forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked header
+                this.classList.add('active', 'border-primary');
+                
+                // Show corresponding content
+                const tabId = this.getAttribute('data-tab');
+                document.getElementById(`${tabId}-tab`).classList.add('active');
+            });
+        });
+
+        // Donation Amount Selection
+        const donationButtons = document.querySelectorAll('.donation-amount-btn');
+        const customAmountInput = document.getElementById('custom-amount');
+        
+        donationButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                donationButtons.forEach(btn => btn.classList.remove('active', 'bg-primary', 'text-white'));
+                
+                // Add active class to clicked button
+                this.classList.add('active', 'bg-primary', 'text-white');
+                
+                // Set custom amount input to empty
+                customAmountInput.value = '';
+            });
+        });
+
+        // Custom amount input clears button selection
+        customAmountInput.addEventListener('input', function() {
+            donationButtons.forEach(btn => btn.classList.remove('active', 'bg-primary', 'text-white'));
+        });
+
+        // Dynamic Navbar Color Change on Scroll
+        const navbar = document.getElementById('main-navbar');
+        
+        function updateNavbarColor() {
+            if (window.scrollY > 100) {
+                navbar.classList.remove('bg-primary/90');
+                navbar.classList.add('bg-primary', 'shadow-xl');
+            } else {
+                navbar.classList.remove('bg-primary', 'shadow-xl');
+                navbar.classList.add('bg-primary/90');
+            }
+        }
+
+        window.addEventListener('scroll', updateNavbarColor);
+        window.addEventListener('load', updateNavbarColor);
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const target = document.querySelector(targetId);
+                
+                if (target) {
+                    const topPosition = target.offsetTop - 100;
+                    window.scrollTo({
+                        top: topPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

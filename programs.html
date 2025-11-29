@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Program Yayasan New Life Indonesia - Pendidikan, Sosial & Keagamaan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1e40af',
+                        secondary: '#3b82f6',
+                        accent: '#60a5fa',
+                        darkblue: '#1e3a8a',
+                        navy: '#1e293b',
+                        success: '#10b981',
+                        hope: '#f59e0b',
+                        education: '#8b5cf6',
+                        social: '#06b6d4',
+                        religion: '#f59e0b'
+                    },
+                    fontFamily: {
+                        'sans': ['Segoe UI', 'Tahoma', 'Geneva', 'Verdana', 'sans-serif']
+                    },
+                    keyframes: {
+                        fadeUp: {
+                            '0%': { opacity: 0, transform: 'translateY(20px)' },
+                            '100%': { opacity: 1, transform: 'translateY(0)' }
+                        },
+                        fadeIn: {
+                            '0%': { opacity: 0 },
+                            '100%': { opacity: 1 }
+                        }
+                    },
+                    animation: {
+                        fadeUp: 'fadeUp 1s ease-out',
+                        fadeIn: 'fadeIn 1.2s ease-out'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .nav-link.active {
+            position: relative;
+            color: #60a5fa; 
+        }
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -8px; 
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: #60a5fa;
+        }
+        .smooth-scroll {
+            scroll-behavior: smooth;
+        }
+        .nav-external.active {
+            color: #60a5fa; 
+            border-bottom: 3px solid #60a5fa; 
+            padding-bottom: 5px;
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .navbar-transition {
+            transition: all 0.3s ease-in-out;
+        }
+        .program-card {
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        .program-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        .progress-bar {
+            height: 8px;
+            border-radius: 4px;
+            background-color: #e5e7eb;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+        .program-tab {
+            transition: all 0.3s ease;
+        }
+        .program-tab.active {
+            background-color: #1e40af;
+            color: white;
+            transform: scale(1.05);
+        }
+        .impact-counter {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+    </style>
+</head>
+<body class="font-sans smooth-scroll bg-white pt-16">
+    
+    <nav id="main-navbar" class="fixed top-0 w-full bg-primary/90 shadow-lg z-50 navbar-transition">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <a href="index.html" class="flex items-center space-x-3 text-white font-bold text-xl">
+                    <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center">
+                        <i class="fas fa-hands-helping text-primary text-xl"></i>
+                    </div>
+                    <span>Yayasan New Life Indonesia</span>
+                </a>
+
+                <button class="lg:hidden text-white focus:outline-none p-2" id="mobile-menu-button" aria-label="Toggle Navigation">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="index.html" class="nav-link text-white hover:text-accent transition duration-300">Beranda</a>
+                    <a href="about.html" class="nav-link text-white hover:text-accent transition duration-300">Tentang Kami</a>
+                    <a href="programs.html" class="nav-link text-white hover:text-accent transition duration-300 active">Program</a>
+                    <a href="children.html" class="nav-link text-white hover:text-accent transition duration-300">Anak Asuh</a>
+                    <a href="donation.html" class="nav-external text-white hover:text-accent transition duration-300">Donasi</a>
+                    <a href="contact.html" class="nav-external text-white hover:text-accent transition duration-300">Kontak</a>
+                    <a href="login.html" class="bg-white text-primary hover:bg-gray-100 font-semibold py-2 px-4 rounded-full transition duration-300">Login Donatur</a>
+                </div>
+            </div>
+
+            <div class="lg:hidden hidden bg-darkblue/95 absolute top-full left-0 w-full shadow-xl" id="mobile-menu">
+                <div class="flex flex-col space-y-2 p-4">
+                    <a href="index.html" class="text-white hover:text-accent transition duration-300 py-2 border-b border-primary">Beranda</a>
+                    <a href="about.html" class="text-white hover:text-accent transition duration-300 py-2 border-b border-primary">Tentang Kami</a>
+                    <a href="programs.html" class="text-accent font-bold transition duration-300 py-2 border-b border-primary">Program</a>
+                    <a href="children.html" class="text-white hover:text-accent transition duration-300 py-2 border-b border-primary">Anak Asuh</a>
+                    <a href="donation.html" class="text-white hover:text-accent transition duration-300 py-2 border-b border-primary">Donasi</a>
+                    <a href="contact.html" class="text-white hover:text-accent transition duration-300 py-2">Kontak</a>
+                    <a href="login.html" class="text-white bg-primary hover:bg-secondary transition duration-300 py-2 text-center rounded-full mt-2">Login Donatur</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <section class="pt-24 pb-16 bg-gradient-to-r from-primary to-secondary text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6 animate-fadeUp">Program Yayasan New Life Indonesia</h1>
+            <p class="text-xl max-w-3xl mx-auto leading-relaxed animate-fadeUp" style="animation-delay: 0.2s;">
+                Melalui berbagai program yang berpusat pada Kristus, kami menjangkau mereka yang membutuhkan dengan kasih dan harapan.
+            </p>
+        </div>
+    </section>
+
+    <!-- Program Navigation Tabs -->
+    <section class="py-8 bg-gray-50 sticky top-16 z-40 shadow-sm">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#education" class="program-tab bg-white text-primary hover:bg-primary hover:text-white font-semibold py-3 px-6 rounded-full transition duration-300 flex items-center">
+                    <i class="fas fa-graduation-cap mr-2"></i> Program Pendidikan
+                </a>
+                <a href="#social" class="program-tab bg-white text-primary hover:bg-primary hover:text-white font-semibold py-3 px-6 rounded-full transition duration-300 flex items-center">
+                    <i class="fas fa-hands-helping mr-2"></i> Program Sosial
+                </a>
+                <a href="#religion" class="program-tab bg-white text-primary hover:bg-primary hover:text-white font-semibold py-3 px-6 rounded-full transition duration-300 flex items-center">
+                    <i class="fas fa-church mr-2"></i> Program Keagamaan
+                </a>
+                <a href="#orphanage" class="program-tab bg-white text-primary hover:bg-primary hover:text-white font-semibold py-3 px-6 rounded-full transition duration-300 flex items-center">
+                    <i class="fas fa-home mr-2"></i> Panti Asuhan
+                </a>
+                <a href="#health" class="program-tab bg-white text-primary hover:bg-primary hover:text-white font-semibold py-3 px-6 rounded-full transition duration-300 flex items-center">
+                    <i class="fas fa-heartbeat mr-2"></i> Program Kesehatan
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Program -->
+    <section id="education" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row gap-12 items-center mb-16">
+                <div class="lg:w-1/2 reveal">
+                    <span class="inline-block bg-education/20 text-education text-sm font-semibold px-4 py-1 rounded-full mb-4">Program Pendidikan</span>
+                    <h2 class="text-4xl font-bold text-primary mb-6">Membuka Jalan Menuju Masa Depan yang Lebih Cerah</h2>
+                    <p class="text-xl text-gray-600 mb-6 leading-relaxed">
+                        Melalui program pendidikan, Yayasan New Life Indonesia membuka jalan menuju masa depan yang lebih cerah. Setiap bantuan pendidikan adalah benih harapan untuk membangun generasi yang tidak hanya mampu bertahan dalam tantangan hidup, tetapi juga menjadi berkat, jawaban doa, serta agen perubahan bagi keluarga dan masyarakat.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <div class="bg-education/10 p-4 rounded-lg">
+                            <div class="text-3xl font-bold text-education mb-1">150+</div>
+                            <div class="text-gray-600">Anak Mendapat Pendidikan</div>
+                        </div>
+                        <div class="bg-education/10 p-4 rounded-lg">
+                            <div class="text-3xl font-bold text-education mb-1">45</div>
+                            <div class="text-gray-600">Beasiswa Aktif</div>
+                        </div>
+                        <div class="bg-education/10 p-4 rounded-lg">
+                            <div class="text-3xl font-bold text-education mb-1">12</div>
+                            <div class="text-gray-600">Sekolah Mitra</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 reveal" style="animation-delay: 0.2s;">
+                    <div class="rounded-2xl overflow-hidden shadow-2xl">
+                        <img src="https://images.unsplash.com/flagged/photo-1558979107-d922935f7668?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                             alt="Program Pendidikan Yayasan New Life Indonesia" 
+                             class="w-full h-96 object-cover transform hover:scale-105 transition duration-500">
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="program-card bg-gray-50 rounded-xl p-6 border-l-4 border-education reveal">
+                    <div class="text-education text-3xl mb-4">
+                        <i class="fas fa-school"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-3">Beasiswa Pendidikan</h3>
+                    <p class="text-gray-600 mb-4">Memberikan bantuan biaya sekolah, seragam, buku, dan perlengkapan belajar untuk anak-anak dari keluarga kurang mampu.</p>
+                    <div class="mb-4">
+                        <div class="flex justify-between text-sm text-gray-600 mb-1">
+                            <span>Kebutuhan Dana</span>
+                            <span>Rp 250 juta / tahun</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill bg-education" style="width: 65%"></div>
+                        </div>
+                        <div class="flex justify-between text-xs text-gray-500 mt-1">
+                            <span>Terkumpul: Rp 162.5 juta</span>
+                            <span>65%</span>
+                        </div>
+                    </div>
+                    <a href="donation.html?program=education" class="inline-block w-full bg-education hover:bg-purple-700 text-white text-center font-semibold py-2 px-4 rounded-lg transition duration-300">
+                        Donasi untuk Program Ini
+                    </a>
+                </div>
+
+                <div class="program-card bg-gray-50 rounded-xl p-6 border-l-4 border-education reveal" style="animation-delay: 0.2s;">
+                    <div class="text-education text-3xl mb-4">
+                        <i class="fas fa-book-reader"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-3">Bimbingan Belajar</h3>
+                    <p class="text-gray-600 mb-4">Menyelenggarakan kelas bimbingan belajar gratis untuk membantu anak-anak memahami pelajaran sekolah dengan lebih baik.</p>
+                    <div class="mb-4">
+                        <div class="flex justify-between text-sm text-gray-600 mb-1">
+                            <span>Kebutuhan Dana</span>
+                            <span>Rp 80 juta / tahun</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill bg-education" style="width: 40%"></div>
+                        </div>
+                        <div class="flex justify-between text-xs text-gray-500 mt-1">
+                            <span>Terkumpul: Rp 32 juta</span>
+                            <span>40%</span>
+                        </div>
+                    </div>
+                    <a href="donation.html?program=education" class="inline-block w-full bg-education hover:bg-purple-700 text-white text-center font-semibold py-2 px-4 rounded-lg transition duration-300">
+                        Donasi untuk Program Ini
+                    </a>
+                </div>
+
+                <div class="program-card bg-gray-50 rounded-xl p-6 border-l-4 border-education reveal" style="animation-delay: 0.4s;">
+                    <div class="text-education text-3xl mb-4">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-3">Kursus Komputer</h3>
+                    <p class="text-gray-600 mb-4">Mengajarkan keterampilan komputer dasar kepada remaja untuk meningkatkan peluang kerja di masa depan.</p>
+                    <div class="mb-4">
+                        <div class="flex justify-between text-sm text-gray-600 mb-1">
+                            <span>Kebutuhan Dana</span>
+                            <span>Rp 120 juta / tahun</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill bg-education" style="width: 30%"></div>
+                        </div>
+                        <div class="flex justify-between text-xs text-gray-500 mt-1">
+                            <span>Terkumpul: Rp 36 juta</span>
+                            <span>30%</span>
+                        </div>
+                    </div>
+                    <a href="donation.html?program=education" class="inline-block w-full bg-education hover:bg-purple-700 text-white text-center font-semibold py-2 px-4 rounded-lg transition duration-300">
+                        Donasi untuk Program Ini
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Program -->
+    <section id="social" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row gap-12 items-center mb-16">
+                <div class="lg:w-1/2 order-2 lg:order-1 reveal">
+                    <div class="rounded-2xl overflow-hidden shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                             alt="Program Sosial Yayasan New Life Indonesia" 
+                             class="w-full h-96 object-cover transform hover:scale-105 transition duration-500">
+                    </div>
+                </div>
+                <div class="lg:w-1/2 order-1 lg:order-2 reveal" style="animation-delay: 0.2s;">
+                    <span class="inline-block bg-social/20 text-social text-sm font-semibold px-4 py-1 rounded-full mb-4">Program Sosial</span>
+                    <h2 class="text-4xl font-bold text-primary mb-6">Menjadi Saluran Kasih Tuhan</h2>
+                    <p class="text-xl text-gray-600 mb-6 leading-relaxed">
+                        Melalui program sosial Yayasan New Life Indonesia, kami menyadari bahwa Tuhan telah memberikan kesempatan untuk menjadi saluran kasih Tuhan dan perpanjangan tangan-Nya bagi mereka yang membutuhkan. Dalam setiap bantuan yang disalurkan, kami merasakan penyertaan Roh Kudus dan kuasa Tuhan yang bekerja nyata—menyentuh hati, mengubah hidup, dan menyalakan harapan baru.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <div class="bg-social/10 p-4 rounded-lg">
+                            <div class="text-3xl font-bold text-social mb-1">1,000+</div>
+                            <div class="text-gray-600">Keluarga Terbantu</div>
+                        </div>
+                        <div class="bg-social/10 p-4 rounded-lg">
+                            <div class="text-3xl font-bold text-social mb-1">75</div>
+                            <div class="text-gray-600">Program Bantuan</div>
+                        </div>
+                        <div class="bg-social/10 p-4 rounded-lg">
+                            <div class="text-3xl font-bold text-social mb-1">12</div>
+                            <div class="text-gray-600">Daerah Terjangkau</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="program-card bg-white rounded-xl p-6 border-l-4 border-social reveal">
+                    <div class="text-social text-3xl mb-4">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-3">Bantuan Sembako</h3>
+                    <p class="text-gray-600 mb-4">Distribusi paket sembako untuk keluarga pra-sejahtera yang mengalami kesulitan memenuhi kebutuhan pokok.</p>
+                    <div class="mb-4">
+                        <div class="flex justify-between text-sm text-gray-600 mb-1">
+                            <span>Kebutuhan Dana</span>
+                            <span>Rp 180 juta / tahun</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill bg-social" style="width: 70%"></div>
+                        </div>
+                        <div class="flex justify-between text-xs text-gray-500 mt-1">
+                            <span>Terkumpul: Rp 126 juta</span>
+                            <span>70%</span>
+                        </div>
+                    </div>
+                    <a href="donation.html?program=social" class="inline-block w-full bg-social hover:bg-cyan-700 text-white text-center font-semibold py-2 px-4 rounded-lg transition duration-300">
+                        Donasi untuk Program Ini
+                    </a>
+                </div>
+
+                <div class="program-card bg-white rounded-xl p-6 border-l-4 border-social reveal" style="animation-delay: 0.2s;">
+                    <div class="text-social text-3xl mb-4">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-3">Bantuan Pakaian</h3>
+                    <p class="text-gray-600 mb-4">Mengumpulkan dan mendistribusikan pakaian layak pakai untuk masyarakat yang membutuhkan.</p>
+                    <div class="mb-4">
+                        <div class="flex justify-between text-sm text-gray-600 mb-1">
+                            <span>Kebutuhan Dana</span>
+                            <span>Rp 60 juta / tahun</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill bg-social" style="width: 85%"></div>
+                        </div>
+                        <div class="flex justify-between text-xs text-gray-500 mt-1">
+                            <span>Terkumpul: Rp 51 juta</span>
+                            <span>85%</span>
+                        </div>
+                    </div>
+                    <a href="donation.html?program=social" class="inline-block w-full bg-social hover:bg-cyan-700 text-white text-center font-semibold py-2 px-4 rounded-lg transition duration-300">
+                        Donasi untuk Program Ini
+                    </a>
+                </div>
+
+                <div class="program-card bg-white rounded-xl p-6 border-l-4 border-social reveal" style="animation-delay: 0.4s;">
+                    <div class="text-social text-3xl mb-4">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-3">Bantuan Usaha Kecil</h3>
+                    <p class="text-gray-600 mb-4">Memberikan modal dan pelatihan untuk memulai usaha kecil bagi keluarga pra-sejahtera.</p>
+                    <div class="mb-4">
+                        <div class="flex justify-between text-sm text-gray-600 mb-1">
+                            <span>Kebutuhan Dana</span>
+                            <span>Rp 200 juta / tahun</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill bg-social" style="width: 45%"></div>
+                        </div>
+                        <div class="flex justify-between text-xs text-gray-500 mt-1">
+                            <span>Terkumpul: Rp 90 juta</span>
+                            <span>45%</span>
+                        </div>
+                    </div>
+                    <a href="donation.html?program=social" class="inline-block w-full bg-social hover:bg-cyan-700 text-white text-center font-semibold py-2 px-4 rounded-lg transition duration-300">
+                        Donasi untuk Program Ini
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Religion Program -->
+    <section id="religion" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row gap-12 items-center mb-16">
+                <div class="lg:w-1/2 reveal">
+                    <span class="inline-block bg-religion/20 text-religion text-sm font-semibold px-4 py-1 rounded-full mb-4">Program Keagamaan</span>
+                    <h2 class="text-4xl font-bold text-primary mb-6">Mengalami Kasih Kristus yang Memerdekakan</h2>
+                    <p class="text-xl text-gray-600 mb-6 leading-relaxed">
+                        Melalui program keagamaan, Yayasan New Life Indonesia percaya bahwa setiap jiwa sangat berharga di mata Tuhan, dan melalui pelayanan ini, kami rindu melihat lebih banyak orang mengalami kasih Kristus dan hidup dalam kebenaran yang memerdekakan. Yayasan New Life Indonesia percaya bahwa setiap program yang dijalankan sepenuhnya berpusat pada Kristus—bukan tentang kami, melainkan tentang bagaimana Tuhan Yesus sendiri yang bekerja, memulihkan, mengubahkan, memberi kekuatan, serta memberikan yang terbaik bagi setiap kehidupan anak-anakNya.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <div class="bg-religion/10 p-4 rounded-lg">
+                            <div class="text-3xl font-bold text-religion mb-1">500+</div>
+                            <div class="text-gray-600">Jiwa Telah Dipulihkan</div>
+                        </div>
+                        <div class="bg-religion/10 p-4 rounded-lg">
+                            <div class="text-3xl font-bold text-religion mb-1">24</div>
+                            <div class="text-gray-600">Kegiatan Rutin / bulan</div>
+                        </div>
+                        <div class="bg-religion/10 p-4 rounded-lg">
+                            <div class="text-3xl font-bold text-religion mb-1">5</div>
+                            <div class="text-gray-600">Komunitas Terbentuk</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 reveal" style="animation-delay: 0.2s;">
+                    <div class="rounded-2xl overflow-hidden shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1534237710431-e2fc698436d0?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                             alt="Program Keagamaan Yayasan New Life Indonesia" 
+                             class="w-full h-96 object-cover transform hover:scale-105 transition duration-500">
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="program-card bg-gray-50 rounded-xl p-6 border-l-4 border-religion reveal">
+                    <div class="text-religion text-3xl mb-4">
+                        <i class="fas fa-pray"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-3">Ibadah & Pemulihan</h3>
+                    <p class="text-gray-600 mb-4">Menyelenggarakan ibadah dan pertemuan rohani untuk pemulihan jiwa dan penguatan iman.</p>
+                    <div class="mb-4">
+                        <div class="flex justify-between text-sm text-gray-600 mb-1">
+                            <span>Kebutuhan Dana</span>
+                            <span>Rp 120 juta / tahun</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill bg-religion" style="width: 60%"></div>
+                        </div>
+                        <div class="flex justify-between text-xs text-gray-500 mt-1">
+                            <span>Terkumpul: Rp 72 juta</span>
+                            <span>60%</span>
+                        </div>
+                    </div>
+                    <a href="donation.html?program=religion" class="inline-block w-full bg-religion hover:bg-amber-700 text-white text-center font-semibold py-2 px-4 rounded-lg transition duration-300">
+                        Donasi untuk Program Ini
+                    </a>
+                </div>
+
+                <div class="program-card bg-gray-50 rounded-xl p-6 border-l-4 border-religion reveal" style="animation-delay: 0.2s;">
+                    <div class="text-religion text-3xl mb-4">
+                        <i class="fas fa-bible"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-3">Pemahaman Alkitab</h3>
+                    <p class="text-gray-600 mb-4">Kelas pemahaman Alkitab untuk memperdalam iman dan pengenalan akan Tuhan Yesus Kristus.</p>
+                    <div class="mb-4">
+                        <div class="flex justify-between text-sm text-gray-600 mb-1">
+                            <span>Kebutuhan Dana</span>
+                            <span>Rp 80 juta / tahun</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill bg-religion" style="width: 75%"></div>
+                        </div>
+                        <div class="flex justify-between text-xs text-gray-500 mt-1">
+                            <span>Terkumpul: Rp 60 juta</span>
+                            <span>75%</span>
+                        </div>
+                    </div>
+                    <a href="donation.html?program=religion" class="inline-block w-full bg-religion hover:bg-amber-700 text-white text-center font-semibold py-2 px-4 rounded-lg transition duration-300">
+                        Donasi untuk Program Ini
+                    </a>
+                </div>
+
+                <div class="program-card bg-gray-50 rounded-xl p-6 border-l-4 border-religion reveal" style="animation-delay: 0.4s;">
+                    <div class="text-religion text-3xl mb-4">
+                        <i class="fas fa-hands"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-3">Retret & Pembinaan</h3>
+                    <p class="text-gray-600 mb-4">Menyelenggarakan retret dan pembinaan rohani untuk pertumbuhan iman dan pemulihan batin.</p>
+                    <div class="mb-4">
+                        <div class="flex justify-between text-sm text-gray-600 mb-1">
+                            <span>Kebutuhan Dana</span>
+                            <span>Rp 150 juta / tahun</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill bg-religion" style="width: 40%"></div>
+                        </div>
+                        <div class="flex justify-between text-xs text-gray-500 mt-1">
+                            <span>Terkumpul: Rp 60 juta</span>
+                            <span>40%</span>
+                        </div>
+                    </div>
+                    <a href="donation.html?program=religion" class="inline-block w-full bg-religion hover:bg-amber-700 text-white text-center font-semibold py-2 px-4 rounded-lg transition duration-300">
+                        Donasi untuk Program Ini
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Orphanage Program -->
+    <section id="orphanage" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row gap-12 items-center mb-16">
+                <div class="lg:w-1/2 order-2 lg:order-1 reveal">
+                    <div class="rounded-2xl overflow-hidden shadow-2xl">
+                        <img src="https://plus.unsplash.com/premium_photo-1677260349685-a2c9e19b71cd?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                             alt="Panti Asuhan Yayasan New Life Indonesia" 
+                             class="w-full h-96 object-cover transform hover:scale-105 transition duration-500">
+                    </div>
+                </div>
+                <div class="lg:w-1/2 order-1 lg:order-2 reveal" style="animation-delay: 0.2s;">
+                    <span class="inline-block bg-success/20 text-success text-sm font-semibold px-4 py-1 rounded-full mb-4">Panti Asuhan</span>
+                    <h2 class="text-4xl font-bold text-primary mb-6">Rumah Kasih untuk Anak Yatim dan Piatu</h2>
+                    <p class="text-xl text-gray-600 mb-6 leading-relaxed">
+                        Panti asuhan Yayasan New Life Indonesia menjadi rumah kasih bagi anak-anak yatim dan piatu, memberikan mereka lingkungan yang aman, penuh kasih, dan mendukung pertumbuhan fisik, mental, dan spiritual. Kami percaya setiap anak adalah berharga di mata Tuhan dan berhak mendapatkan kesempatan untuk berkembang secara maksimal.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <div class="bg-success/10 p-4 rounded-lg">
+                            <div class="text-3xl font-bold text-success mb-1">35</div>
+                            <div class="text-gray-600">Anak Diasuh</div>
+                        </div>
+                        <div class="bg-success/10 p-4 rounded-lg">
+                            <div class="text-3xl font-bold text-success mb-1">12</div>
+                            <div class="text-gray-600">Pengasuh Berdedikasi</div>
+                        </div>
+                        <div class="bg-success/10 p-4 rounded-lg">
+                            <div class="text-3xl font-bold text-success mb-1">8</div>
+                            <div class="text-gray-600">Tahun Berdiri</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="program-card bg-white rounded-xl p-6 border-l-4 border-success reveal">
+                    <div class="text-success text-3xl mb-4">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-3">Kebutuhan Harian</h3>
+                    <p class="text-gray-600 mb-4">Memenuhi kebutuhan harian anak-anak panti asuhan termasuk makanan bergizi, pakaian, dan perlengkapan sehari-hari.</p>
+                    <div class="mb-4">
+                        <div class="flex justify-between text-sm text-gray-600 mb-1">
+                            <span>Kebutuhan Dana</span>
+                            <span>Rp 350 juta / tahun</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill bg-success" style="width: 55%"></div>
+                        </div>
+                        <div class="flex justify-between text-xs text-gray-500 mt-1">
+                            <span>Terkumpul: Rp 192.5 juta</span>
+                            <span>55%</span>
+                        </div>
+                    </div>
+                    <a href="donation.html?program=orphanage" class="inline-block w-full bg-success hover:bg-green-700 text-white text-center font-semibold py-2 px-4 rounded-lg transition duration-300">
+                        Donasi untuk Program Ini
+                    </a>
+                </div>
+
+                <div class="program-card bg-white rounded-xl p-6 border-l-4 border-success reveal" style="animation-delay: 0.2s;">
+                    <div class="text-success text-3xl mb-4">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-3">Pendidikan & Pengembangan</h3>
+                    <p class="text-gray-600 mb-4">Mendukung pendidikan formal dan pengembangan bakat anak-anak panti asuhan untuk masa depan yang lebih baik.</p>
+                    <div class="mb-4">
+                        <div class="flex justify-between text-sm text-gray-600 mb-1">
+                            <span>Kebutuhan Dana</span>
+                            <span>Rp 280 juta / tahun</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill bg-success" style="width: 40%"></div>
+                        </div>
+                        <div class="flex justify-between text-xs text-gray-500 mt-1">
+                            <span>Terkumpul: Rp 112 juta</span>
+                            <span>40%</span>
+                        </div>
+                    </div>
+                    <a href="donation.html?program=orphanage" class="inline-block w-full bg-success hover:bg-green-700 text-white text-center font-semibold py-2 px-4 rounded-lg transition duration-300">
+                        Donasi untuk Program Ini
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Health Program -->
+    <section id="health" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row gap-12 items-center mb-16">
+                <div class="lg:w-1/2 reveal">
+                    <span class="inline-block bg-accent/20 text-accent text-sm font-semibold px-4 py-1 rounded-full mb-4">Program Kesehatan</span>
+                    <h2 class="text-4xl font-bold text-primary mb-6">Pelayanan Kesehatan untuk Masyarakat Kurang Mampu</h2>
+                    <p class="text-xl text-gray-600 mb-6 leading-relaxed">
+                        Program kesehatan Yayasan New Life Indonesia memberikan akses layanan kesehatan bagi masyarakat kurang mampu yang tidak mampu membiayai pengobatan. Kami percaya bahwa kesehatan yang baik adalah hak setiap orang dan merupakan bagian penting dari pemulihan hidup secara holistik.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <div class="bg-accent/10 p-4 rounded-lg">
+                            <div class="text-3xl font-bold text-accent mb-1">2,500+</div>
+                            <div class="text-gray-600">Pasien Terlayani</div>
+                        </div>
+                        <div class="bg-accent/10 p-4 rounded-lg">
+                            <div class="text-3xl font-bold text-accent mb-1">15</div>
+                            <div class="text-gray-600">Klinik Gratis</div>
+                        </div>
+                        <div class="bg-accent/10 p-4 rounded-lg">
+                            <div class="text-3xl font-bold text-accent mb-1">8</div>
+                            <div class="text-gray-600">Dokter Relawan</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 reveal" style="animation-delay: 0.2s;">
+                    <div class="rounded-2xl overflow-hidden shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1602657431651-668091c5f91a?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                             alt="Program Kesehatan Yayasan New Life Indonesia" 
+                             class="w-full h-96 object-cover transform hover:scale-105 transition duration-500">
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="program-card bg-gray-50 rounded-xl p-6 border-l-4 border-accent reveal">
+                    <div class="text-accent text-3xl mb-4">
+                        <i class="fas fa-stethoscope"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-3">Pelayanan Kesehatan Dasar</h3>
+                    <p class="text-gray-600 mb-4">Menyediakan layanan kesehatan dasar dan pengobatan gratis untuk masyarakat kurang mampu.</p>
+                    <div class="mb-4">
+                        <div class="flex justify-between text-sm text-gray-600 mb-1">
+                            <span>Kebutuhan Dana</span>
+                            <span>Rp 300 juta / tahun</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill bg-accent" style="width: 50%"></div>
+                        </div>
+                        <div class="flex justify-between text-xs text-gray-500 mt-1">
+                            <span>Terkumpul: Rp 150 juta</span>
+                            <span>50%</span>
+                        </div>
+                    </div>
+                    <a href="donation.html?program=health" class="inline-block w-full bg-accent hover:bg-blue-700 text-white text-center font-semibold py-2 px-4 rounded-lg transition duration-300">
+                        Donasi untuk Program Ini
+                    </a>
+                </div>
+
+                <div class="program-card bg-gray-50 rounded-xl p-6 border-l-4 border-accent reveal" style="animation-delay: 0.2s;">
+                    <div class="text-accent text-3xl mb-4">
+                        <i class="fas fa-procedures"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-3">Bantuan Pengobatan</h3>
+                    <p class="text-gray-600 mb-4">Memberikan bantuan biaya pengobatan dan operasi untuk pasien dengan kondisi medis serius.</p>
+                    <div class="mb-4">
+                        <div class="flex justify-between text-sm text-gray-600 mb-1">
+                            <span>Kebutuhan Dana</span>
+                            <span>Rp 500 juta / tahun</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill bg-accent" style="width: 35%"></div>
+                        </div>
+                        <div class="flex justify-between text-xs text-gray-500 mt-1">
+                            <span>Terkumpul: Rp 175 juta</span>
+                            <span>35%</span>
+                        </div>
+                    </div>
+                    <a href="donation.html?program=health" class="inline-block w-full bg-accent hover:bg-blue-700 text-white text-center font-semibold py-2 px-4 rounded-lg transition duration-300">
+                        Donasi untuk Program Ini
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-gradient-to-r from-primary to-secondary text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-6">Bersama Kita Bisa Membuat Perbedaan</h2>
+            <p class="text-xl max-w-3xl mx-auto mb-8">
+                Setiap donasi yang Anda berikan akan langsung membantu program-program Yayasan New Life Indonesia dalam membawa harapan dan pemulihan melalui kasih Kristus.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="donation.html" class="inline-block bg-white text-primary hover:bg-gray-100 font-bold py-4 px-8 rounded-full shadow-lg transition duration-300 text-lg">
+                    Donasi Sekarang
+                </a>
+                <a href="contact.html" class="inline-block border-2 border-white text-white hover:bg-white/10 font-bold py-4 px-8 rounded-full transition duration-300 text-lg">
+                    Jadi Relawan
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-navy text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                <div>
+                    <h4 class="text-xl font-bold mb-6 border-b border-gray-600 pb-2">Yayasan New Life Indonesia</h4>
+                    <div class="space-y-3 text-gray-300">
+                        <p class="flex items-start">
+                            <i class="fas fa-map-marker-alt mr-3 mt-1 text-accent"></i>
+                            <span>
+                                Jl. Contoh Alamat No. 123<br>
+                                Jakarta 12345<br>
+                                Indonesia
+                            </span>
+                        </p>
+                        <p class="flex items-center">
+                            <i class="fas fa-phone mr-3 text-accent"></i>
+                            <span>Telp. +62-21-1234567</span>
+                        </p>
+                        <p class="flex items-center">
+                            <i class="fas fa-envelope mr-3 text-accent"></i>
+                            <span>info@newlifeindonesia.org</span>
+                        </p>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-xl font-bold mb-6 border-b border-gray-600 pb-2">Program Kami</h4>
+                    <ul class="space-y-3 text-gray-300">
+                        <li><a href="#education" class="hover:text-accent transition">Program Pendidikan</a></li>
+                        <li><a href="#social" class="hover:text-accent transition">Program Sosial</a></li>
+                        <li><a href="#religion" class="hover:text-accent transition">Program Keagamaan</a></li>
+                        <li><a href="#orphanage" class="hover:text-accent transition">Panti Asuhan</a></li>
+                        <li><a href="#health" class="hover:text-accent transition">Program Kesehatan</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-xl font-bold mb-6 border-b border-gray-600 pb-2">Rekening Donasi</h4>
+
+                    <div class="space-y-4 mb-6">
+                        <div class="bg-darkblue p-3 rounded-lg">
+                            <p class="font-semibold">Bank BCA</p>
+                            <p class="text-accent">123-456-7890</p>
+                            <p class="text-sm">a.n. Yayasan New Life Indonesia</p>
+                        </div>
+                        <div class="bg-darkblue p-3 rounded-lg">
+                            <p class="font-semibold">Bank Mandiri</p>
+                            <p class="text-accent">987-654-3210</p>
+                            <p class="text-sm">a.n. Yayasan New Life Indonesia</p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h5 class="font-bold mb-4">Sosial Media</h5>
+                        <div class="flex space-x-4 text-2xl">
+                            <a href="https://facebook.com/newlifeindonesia" class="text-gray-300 hover:text-accent transition" target="_blank" aria-label="Facebook">
+                                <i class="fab fa-facebook-square"></i>
+                            </a>
+                            <a href="https://instagram.com/newlifeindonesia" class="text-gray-300 hover:text-accent transition" target="_blank" aria-label="Instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://youtube.com/newlifeindonesia" class="text-gray-300 hover:text-accent transition" target="_blank" aria-label="YouTube">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-600 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 Yayasan New Life Indonesia. All rights reserved.</p>
+                <p class="mt-2 text-sm">"Yayasan New Life Indonesia hanyalah kepingan kecil dari pekerjaan besar-Nya. Dalam anugerah-Nya, Tuhan berkenan memakai kita semua sebagai alat untuk menyatakan kasih dan memuliakan Dia dan memberi dampak bagi sesama."</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Scroll Reveal Script
+        const reveals = document.querySelectorAll(".reveal");
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("active");
+                }
+            });
+        }, { threshold: 0.15 });
+
+        reveals.forEach(r => observer.observe(r));
+
+        // Program Tab Activation
+        const programTabs = document.querySelectorAll('.program-tab');
+        const programSections = document.querySelectorAll('section[id]');
+        
+        function updateActiveTab() {
+            let current = '';
+            programSections.forEach(section => {
+                const sectionTop = section.offsetTop - 200;
+                const sectionHeight = section.clientHeight;
+                
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            programTabs.forEach(tab => {
+                tab.classList.remove('active');
+                const targetId = tab.getAttribute('href').substring(1);
+                
+                if (targetId === current) {
+                    tab.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateActiveTab);
+        window.addEventListener('load', updateActiveTab);
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const target = document.querySelector(targetId);
+                
+                // Close mobile menu if open
+                const mobileMenu = document.getElementById('mobile-menu');
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+
+                if (target) {
+                    const topPosition = target.offsetTop - 120;
+                    window.scrollTo({
+                        top: topPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Dynamic Navbar Color Change on Scroll
+        const navbar = document.getElementById('main-navbar');
+        
+        function updateNavbarColor() {
+            if (window.scrollY > 100) {
+                navbar.classList.remove('bg-primary/90');
+                navbar.classList.add('bg-primary', 'shadow-xl');
+            } else {
+                navbar.classList.remove('bg-primary', 'shadow-xl');
+                navbar.classList.add('bg-primary/90');
+            }
+        }
+
+        window.addEventListener('scroll', updateNavbarColor);
+        window.addEventListener('load', updateNavbarColor);
+    </script>
+
+</body>
+</html>

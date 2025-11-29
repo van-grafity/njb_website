@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donasi - Yayasan New Life Indonesia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1e40af',
+                        secondary: '#3b82f6',
+                        accent: '#60a5fa',
+                        darkblue: '#1e3a8a',
+                        navy: '#1e293b',
+                        success: '#10b981',
+                        hope: '#f59e0b',
+                        need: '#ef4444',
+                        sponsored: '#10b981',
+                        education: '#8b5cf6',
+                        social: '#06b6d4',
+                        religion: '#f59e0b',
+                        orphanage: '#10b981',
+                        health: '#60a5fa'
+                    },
+                    fontFamily: {
+                        'sans': ['Segoe UI', 'Tahoma', 'Geneva', 'Verdana', 'sans-serif']
+                    },
+                    keyframes: {
+                        fadeUp: {
+                            '0%': { opacity: 0, transform: 'translateY(20px)' },
+                            '100%': { opacity: 1, transform: 'translateY(0)' }
+                        },
+                        fadeIn: {
+                            '0%': { opacity: 0 },
+                            '100%': { opacity: 1 }
+                        },
+                        pulseHope: {
+                            '0%, 100%': { transform: 'scale(1)', opacity: 1 },
+                            '50%': { transform: 'scale(1.05)', opacity: 0.9 }
+                        }
+                    },
+                    animation: {
+                        fadeUp: 'fadeUp 1s ease-out',
+                        fadeIn: 'fadeIn 1.2s ease-out',
+                        pulseHope: 'pulseHope 3s ease-in-out infinite'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .nav-link.active {
+            position: relative;
+            color: #60a5fa; 
+        }
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -8px; 
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: #60a5fa;
+        }
+        .smooth-scroll {
+            scroll-behavior: smooth;
+        }
+        .nav-external.active {
+            color: #60a5fa; 
+            border-bottom: 3px solid #60a5fa; 
+            padding-bottom: 5px;
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .navbar-transition {
+            transition: all 0.3s ease-in-out;
+        }
+        .donation-amount-btn {
+            transition: all 0.3s ease;
+        }
+        .donation-amount-btn.active {
+            background-color: #1e40af;
+            color: white;
+            transform: scale(1.05);
+        }
+        .payment-method-btn {
+            transition: all 0.3s ease;
+        }
+        .payment-method-btn.active {
+            border-color: #1e40af;
+            background-color: #f0f7ff;
+        }
+        .progress-bar {
+            height: 8px;
+            border-radius: 4px;
+            background-color: #e5e7eb;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+        .step-indicator {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .step-indicator.active {
+            background-color: #1e40af;
+            color: white;
+        }
+        .step-indicator.completed {
+            background-color: #10b981;
+            color: white;
+        }
+        .donation-type-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .donation-type-card.active {
+            border-color: #1e40af;
+            background-color: #f0f7ff;
+            transform: scale(1.02);
+        }
+        .donation-type-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        .qr-code-container {
+            transition: all 0.3s ease;
+        }
+        .qr-code-container:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="font-sans smooth-scroll bg-white pt-16">
+    
+    <nav id="main-navbar" class="fixed top-0 w-full bg-primary/90 shadow-lg z-50 navbar-transition">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <a href="index.html" class="flex items-center space-x-3 text-white font-bold text-xl">
+                    <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center">
+                        <i class="fas fa-hands-helping text-primary text-xl"></i>
+                    </div>
+                    <span>Yayasan New Life Indonesia</span>
+                </a>
+
+                <button class="lg:hidden text-white focus:outline-none p-2" id="mobile-menu-button" aria-label="Toggle Navigation">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="index.html" class="nav-link text-white hover:text-accent transition duration-300">Beranda</a>
+                    <a href="about.html" class="nav-link text-white hover:text-accent transition duration-300">Tentang Kami</a>
+                    <a href="programs.html" class="nav-link text-white hover:text-accent transition duration-300">Program</a>
+                    <a href="children.html" class="nav-link text-white hover:text-accent transition duration-300">Anak Asuh</a>
+                    <a href="donation.html" class="nav-external text-white hover:text-accent transition duration-300 active">Donasi</a>
+                    <a href="contact.html" class="nav-external text-white hover:text-accent transition duration-300">Kontak</a>
+                    <a href="login.html" class="bg-white text-primary hover:bg-gray-100 font-semibold py-2 px-4 rounded-full transition duration-300">Login Donatur</a>
+                </div>
+            </div>
+
+            <div class="lg:hidden hidden bg-darkblue/95 absolute top-full left-0 w-full shadow-xl" id="mobile-menu">
+                <div class="flex flex-col space-y-2 p-4">
+                    <a href="index.html" class="text-white hover:text-accent transition duration-300 py-2 border-b border-primary">Beranda</a>
+                    <a href="about.html" class="text-white hover:text-accent transition duration-300 py-2 border-b border-primary">Tentang Kami</a>
+                    <a href="programs.html" class="text-white hover:text-accent transition duration-300 py-2 border-b border-primary">Program</a>
+                    <a href="children.html" class="text-white hover:text-accent transition duration-300 py-2 border-b border-primary">Anak Asuh</a>
+                    <a href="donation.html" class="text-accent font-bold transition duration-300 py-2 border-b border-primary">Donasi</a>
+                    <a href="contact.html" class="text-white hover:text-accent transition duration-300 py-2">Kontak</a>
+                    <a href="login.html" class="text-white bg-primary hover:bg-secondary transition duration-300 py-2 text-center rounded-full mt-2">Login Donatur</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <section class="pt-24 pb-16 bg-gradient-to-r from-primary to-secondary text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6 animate-fadeUp">Berikan Harapan, Ubah Masa Depan</h1>
+            <p class="text-xl max-w-3xl mx-auto leading-relaxed animate-fadeUp" style="animation-delay: 0.2s;">
+                Setiap donasi yang Anda berikan membawa perubahan nyata dalam kehidupan mereka yang membutuhkan melalui kasih Kristus.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12 max-w-4xl mx-auto">
+                <div class="text-center animate-fadeUp" style="animation-delay: 0.4s;">
+                    <div class="text-4xl font-bold text-accent mb-2">Rp 850Jt+</div>
+                    <p class="text-lg">Donasi Terkumpul</p>
+                </div>
+                <div class="text-center animate-fadeUp" style="animation-delay: 0.6s;">
+                    <div class="text-4xl font-bold text-accent mb-2">2,500+</div>
+                    <p class="text-lg">Donatur Bergabung</p>
+                </div>
+                <div class="text-center animate-fadeUp" style="animation-delay: 0.8s;">
+                    <div class="text-4xl font-bold text-accent mb-2">150+</div>
+                    <p class="text-lg">Anak Terbantu</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Donation Process Steps -->
+    <section class="py-8 bg-white border-b">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <div class="flex justify-between items-center">
+                    <div class="flex flex-col items-center">
+                        <div class="step-indicator active">1</div>
+                        <span class="text-sm font-semibold text-primary mt-2">Pilih Donasi</span>
+                    </div>
+                    <div class="h-1 bg-gray-200 flex-1 mx-4"></div>
+                    <div class="flex flex-col items-center">
+                        <div class="step-indicator">2</div>
+                        <span class="text-sm font-semibold text-gray-500 mt-2">Data Donatur</span>
+                    </div>
+                    <div class="h-1 bg-gray-200 flex-1 mx-4"></div>
+                    <div class="flex flex-col items-center">
+                        <div class="step-indicator">3</div>
+                        <span class="text-sm font-semibold text-gray-500 mt-2">Pembayaran</span>
+                    </div>
+                    <div class="h-1 bg-gray-200 flex-1 mx-4"></div>
+                    <div class="flex flex-col items-center">
+                        <div class="step-indicator">4</div>
+                        <span class="text-sm font-semibold text-gray-500 mt-2">Selesai</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Donation Form Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <!-- Donation Selection -->
+                    <div class="lg:col-span-2">
+                        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8 reveal">
+                            <h2 class="text-2xl font-bold text-primary mb-6">1. Pilih Jenis Donasi</h2>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                                <div class="donation-type-card border-2 border-gray-200 rounded-xl p-6 text-center active" data-type="program">
+                                    <div class="text-3xl text-primary mb-3">
+                                        <i class="fas fa-hand-holding-heart"></i>
+                                    </div>
+                                    <h3 class="text-lg font-bold text-primary mb-2">Donasi Program</h3>
+                                    <p class="text-gray-600 text-sm">Donasi untuk program yayasan (Pendidikan, Sosial, dll)</p>
+                                </div>
+                                <div class="donation-type-card border-2 border-gray-200 rounded-xl p-6 text-center" data-type="child">
+                                    <div class="text-3xl text-accent mb-3">
+                                        <i class="fas fa-child"></i>
+                                    </div>
+                                    <h3 class="text-lg font-bold text-primary mb-2">Donasi Anak</h3>
+                                    <p class="text-gray-600 text-sm">Donasi untuk anak asuh tertentu</p>
+                                </div>
+                            </div>
+
+                            <!-- Program Donation Selection -->
+                            <div id="program-donation" class="donation-option active">
+                                <h3 class="text-xl font-semibold text-primary mb-4">Pilih Program Donasi</h3>
+                                <div class="space-y-4">
+                                    <div class="program-option border border-gray-200 rounded-xl p-4 cursor-pointer hover:border-primary transition duration-300" data-program="education">
+                                        <div class="flex items-center">
+                                            <div class="w-12 h-12 bg-education/20 rounded-lg flex items-center justify-center mr-4">
+                                                <i class="fas fa-graduation-cap text-education text-xl"></i>
+                                            </div>
+                                            <div class="flex-1">
+                                                <h4 class="font-semibold text-primary">Program Pendidikan</h4>
+                                                <p class="text-gray-600 text-sm">Beasiswa dan bantuan pendidikan</p>
+                                            </div>
+                                            <div class="text-right">
+                                                <div class="text-lg font-bold text-primary">Rp 250Jt</div>
+                                                <div class="text-sm text-gray-500">Target</div>
+                                            </div>
+                                        </div>
+                                        <div class="mt-3">
+                                            <div class="flex justify-between text-sm text-gray-600 mb-1">
+                                                <span>Terkumpul: Rp 162.5Jt</span>
+                                                <span>65%</span>
+                                            </div>
+                                            <div class="progress-bar">
+                                                <div class="progress-fill bg-education" style="width: 65%"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="program-option border border-gray-200 rounded-xl p-4 cursor-pointer hover:border-primary transition duration-300" data-program="social">
+                                        <div class="flex items-center">
+                                            <div class="w-12 h-12 bg-social/20 rounded-lg flex items-center justify-center mr-4">
+                                                <i class="fas fa-hands-helping text-social text-xl"></i>
+                                            </div>
+                                            <div class="flex-1">
+                                                <h4 class="font-semibold text-primary">Program Sosial</h4>
+                                                <p class="text-gray-600 text-sm">Bantuan sembako dan kebutuhan dasar</p>
+                                            </div>
+                                            <div class="text-right">
+                                                <div class="text-lg font-bold text-primary">Rp 180Jt</div>
+                                                <div class="text-sm text-gray-500">Target</div>
+                                            </div>
+                                        </div>
+                                        <div class="mt-3">
+                                            <div class="flex justify-between text-sm text-gray-600 mb-1">
+                                                <span>Terkumpul: Rp 126Jt</span>
+                                                <span>70%</span>
+                                            </div>
+                                            <div class="progress-bar">
+                                                <div class="progress-fill bg-social" style="width: 70%"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="program-option border border-gray-200 rounded-xl p-4 cursor-pointer hover:border-primary transition duration-300" data-program="religion">
+                                        <div class="flex items-center">
+                                            <div class="w-12 h-12 bg-religion/20 rounded-lg flex items-center justify-center mr-4">
+                                                <i class="fas fa-church text-religion text-xl"></i>
+                                            </div>
+                                            <div class="flex-1">
+                                                <h4 class="font-semibold text-primary">Program Keagamaan</h4>
+                                                <p class="text-gray-600 text-sm">Ibadah dan pemulihan spiritual</p>
+                                            </div>
+                                            <div class="text-right">
+                                                <div class="text-lg font-bold text-primary">Rp 120Jt</div>
+                                                <div class="text-sm text-gray-500">Target</div>
+                                            </div>
+                                        </div>
+                                        <div class="mt-3">
+                                            <div class="flex justify-between text-sm text-gray-600 mb-1">
+                                                <span>Terkumpul: Rp 72Jt</span>
+                                                <span>60%</span>
+                                            </div>
+                                            <div class="progress-bar">
+                                                <div class="progress-fill bg-religion" style="width: 60%"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Child Donation Selection -->
+                            <div id="child-donation" class="donation-option hidden">
+                                <h3 class="text-xl font-semibold text-primary mb-4">Pilih Anak yang Ingin Didukung</h3>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <!-- Child Option 1 -->
+                                    <div class="child-option border border-gray-200 rounded-xl p-4 cursor-pointer hover:border-primary transition duration-300" data-child="sari">
+                                        <div class="flex items-center mb-3">
+                                            <img src="https://images.unsplash.com/photo-1516627145497-ae69578cfc06?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                                                 alt="Sari" class="w-12 h-12 rounded-full object-cover mr-3">
+                                            <div>
+                                                <h4 class="font-semibold text-primary">Sari</h4>
+                                                <p class="text-gray-600 text-sm">8 Tahun • Kelas 2 SD</p>
+                                            </div>
+                                        </div>
+                                        <div class="flex justify-between text-sm text-gray-600 mb-1">
+                                            <span>Kebutuhan: Rp 1.2Jt</span>
+                                            <span>45%</span>
+                                        </div>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill bg-need" style="width: 45%"></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Child Option 2 -->
+                                    <div class="child-option border border-gray-200 rounded-xl p-4 cursor-pointer hover:border-primary transition duration-300" data-child="budi">
+                                        <div class="flex items-center mb-3">
+                                            <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?q=80&w=1472&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                                                 alt="Budi" class="w-12 h-12 rounded-full object-cover mr-3">
+                                            <div>
+                                                <h4 class="font-semibold text-primary">Budi</h4>
+                                                <p class="text-gray-600 text-sm">10 Tahun • Kelas 4 SD</p>
+                                            </div>
+                                        </div>
+                                        <div class="flex justify-between text-sm text-gray-600 mb-1">
+                                            <span>Kebutuhan: Rp 1.5Jt</span>
+                                            <span>30%</span>
+                                        </div>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill bg-need" style="width: 30%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-center mt-4">
+                                    <a href="children.html" class="text-primary hover:text-secondary font-semibold">
+                                        <i class="fas fa-search mr-2"></i>Lihat Semua Anak
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Amount Selection -->
+                        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8 reveal" style="animation-delay: 0.2s;">
+                            <h2 class="text-2xl font-bold text-primary mb-6">2. Pilih Nominal Donasi</h2>
+                            
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                                <button class="donation-amount-btn bg-gray-100 hover:bg-primary hover:text-white font-semibold py-4 rounded-xl transition duration-300" data-amount="50000">
+                                    Rp 50.000
+                                </button>
+                                <button class="donation-amount-btn bg-gray-100 hover:bg-primary hover:text-white font-semibold py-4 rounded-xl transition duration-300" data-amount="100000">
+                                    Rp 100.000
+                                </button>
+                                <button class="donation-amount-btn bg-gray-100 hover:bg-primary hover:text-white font-semibold py-4 rounded-xl transition duration-300 active" data-amount="250000">
+                                    Rp 250.000
+                                </button>
+                                <button class="donation-amount-btn bg-gray-100 hover:bg-primary hover:text-white font-semibold py-4 rounded-xl transition duration-300" data-amount="500000">
+                                    Rp 500.000
+                                </button>
+                            </div>
+
+                            <div class="mb-6">
+                                <label for="custom-amount" class="block text-lg font-semibold text-gray-700 mb-2">Atau masukkan nominal lain:</label>
+                                <div class="relative">
+                                    <span class="absolute left-4 top-3 text-gray-500">Rp</span>
+                                    <input type="number" id="custom-amount" placeholder="Masukkan nominal" class="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-lg font-semibold text-gray-700 mb-2">Pesan untuk penerima donasi (opsional):</label>
+                                <textarea id="donation-message" placeholder="Tulis pesan dukungan atau doa..." class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent h-24"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Donor Information -->
+                        <div class="bg-white rounded-2xl shadow-lg p-8 reveal" style="animation-delay: 0.4s;">
+                            <h2 class="text-2xl font-bold text-primary mb-6">3. Data Donatur</h2>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                                <div>
+                                    <label for="donor-name" class="block text-sm font-semibold text-gray-700 mb-2">Nama Lengkap *</label>
+                                    <input type="text" id="donor-name" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required>
+                                </div>
+                                <div>
+                                    <label for="donor-email" class="block text-sm font-semibold text-gray-700 mb-2">Email *</label>
+                                    <input type="email" id="donor-email" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required>
+                                </div>
+                                <div>
+                                    <label for="donor-phone" class="block text-sm font-semibold text-gray-700 mb-2">Nomor Telepon</label>
+                                    <input type="tel" id="donor-phone" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                                </div>
+                                <div>
+                                    <label for="donor-address" class="block text-sm font-semibold text-gray-700 mb-2">Alamat</label>
+                                    <input type="text" id="donor-address" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                                </div>
+                            </div>
+
+                            <div class="flex items-center mb-6">
+                                <input type="checkbox" id="is-anonymous" class="w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary">
+                                <label for="is-anonymous" class="ml-2 text-sm text-gray-700">Sembunyikan nama saya (Donasi Anonim)</label>
+                            </div>
+
+                            <div class="flex items-center">
+                                <input type="checkbox" id="subscribe-news" class="w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary" checked>
+                                <label for="subscribe-news" class="ml-2 text-sm text-gray-700">Saya ingin menerima update perkembangan melalui email</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Order Summary -->
+                    <div class="lg:col-span-1">
+                        <div class="bg-white rounded-2xl shadow-lg p-6 sticky top-24 reveal" style="animation-delay: 0.6s;">
+                            <h3 class="text-xl font-bold text-primary mb-4">Ringkasan Donasi</h3>
+                            
+                            <div class="space-y-3 mb-6">
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Jenis Donasi:</span>
+                                    <span id="summary-type" class="font-semibold">Program Pendidikan</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Penerima:</span>
+                                    <span id="summary-recipient" class="font-semibold">Program Pendidikan</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Nominal:</span>
+                                    <span id="summary-amount" class="font-bold text-primary text-lg">Rp 250.000</span>
+                                </div>
+                            </div>
+
+                            <div class="border-t border-gray-200 pt-4 mb-6">
+                                <div class="flex justify-between text-lg font-bold">
+                                    <span>Total Donasi:</span>
+                                    <span id="summary-total" class="text-primary">Rp 250.000</span>
+                                </div>
+                            </div>
+
+                            <!-- Payment Methods -->
+                            <div class="mb-6">
+                                <h4 class="font-semibold text-gray-700 mb-3">Metode Pembayaran</h4>
+                                <div class="space-y-2">
+                                    <button class="payment-method-btn w-full text-left p-3 border-2 border-gray-200 rounded-lg hover:border-primary transition duration-300" data-method="transfer">
+                                        <div class="flex items-center">
+                                            <i class="fas fa-university text-primary text-xl mr-3"></i>
+                                            <div>
+                                                <div class="font-semibold">Transfer Bank</div>
+                                                <div class="text-sm text-gray-600">BCA, Mandiri, BNI, BRI</div>
+                                            </div>
+                                        </div>
+                                    </button>
+                                    <button class="payment-method-btn w-full text-left p-3 border-2 border-gray-200 rounded-lg hover:border-primary transition duration-300" data-method="qris">
+                                        <div class="flex items-center">
+                                            <i class="fas fa-qrcode text-primary text-xl mr-3"></i>
+                                            <div>
+                                                <div class="font-semibold">QRIS</div>
+                                                <div class="text-sm text-gray-600">Semua e-wallet & mobile banking</div>
+                                            </div>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Bank Transfer Details (Initially Hidden) -->
+                            <div id="bank-transfer-details" class="hidden mb-6">
+                                <h4 class="font-semibold text-gray-700 mb-3">Rekening Yayasan</h4>
+                                <div class="space-y-3">
+                                    <div class="bg-gray-50 p-3 rounded-lg">
+                                        <div class="flex justify-between items-center mb-1">
+                                            <span class="font-semibold">Bank BCA</span>
+                                            <span class="text-primary font-bold">123-456-7890</span>
+                                        </div>
+                                        <p class="text-sm text-gray-600">a.n. Yayasan New Life Indonesia</p>
+                                    </div>
+                                    <div class="bg-gray-50 p-3 rounded-lg">
+                                        <div class="flex justify-between items-center mb-1">
+                                            <span class="font-semibold">Bank Mandiri</span>
+                                            <span class="text-primary font-bold">987-654-3210</span>
+                                        </div>
+                                        <p class="text-sm text-gray-600">a.n. Yayasan New Life Indonesia</p>
+                                    </div>
+                                </div>
+                                <p class="text-sm text-gray-600 mt-3">
+                                    <i class="fas fa-info-circle text-primary mr-1"></i>
+                                    Upload bukti transfer setelah pembayaran
+                                </p>
+                            </div>
+
+                            <!-- QRIS Details (Initially Hidden) -->
+                            <div id="qris-details" class="hidden mb-6">
+                                <h4 class="font-semibold text-gray-700 mb-3">Scan QR Code</h4>
+                                <div class="qr-code-container bg-white p-4 rounded-lg border-2 border-dashed border-gray-300 text-center">
+                                    <div class="mb-3">
+                                        <div class="w-48 h-48 bg-gray-200 mx-auto rounded-lg flex items-center justify-center text-gray-500">
+                                            <i class="fas fa-qrcode text-6xl"></i>
+                                        </div>
+                                    </div>
+                                    <p class="text-sm text-gray-600 mb-2">Scan QR code dengan aplikasi e-wallet atau mobile banking Anda</p>
+                                    <p class="text-xs text-gray-500">Pembayaran otomatis terverifikasi</p>
+                                </div>
+                            </div>
+
+                            <button id="confirm-donation" class="w-full bg-primary hover:bg-secondary text-white font-bold py-4 px-6 rounded-xl transition duration-300 text-lg shadow-lg hover:shadow-xl transform hover:scale-105">
+                                <i class="fas fa-heart mr-2"></i> Konfirmasi Donasi
+                            </button>
+
+                            <p class="text-xs text-gray-500 text-center mt-3">
+                                Donasi Anda aman dan terjamin. Data pribadi dilindungi.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Stories Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-primary mb-4">Dampak Donasi Anda</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Lihat bagaimana donasi telah mengubah kehidupan anak-anak dan keluarga</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 rounded-2xl p-6 text-center reveal">
+                    <div class="w-20 h-20 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-graduation-cap text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-3">Pendidikan</h3>
+                    <p class="text-gray-600 mb-4">150+ anak mendapatkan akses pendidikan yang layak dan kesempatan untuk meraih cita-cita mereka</p>
+                    <div class="text-2xl font-bold text-primary">Rp 450Jt+</div>
+                    <div class="text-sm text-gray-500">Terkumpul untuk pendidikan</div>
+                </div>
+
+                <div class="bg-gray-50 rounded-2xl p-6 text-center reveal" style="animation-delay: 0.2s;">
+                    <div class="w-20 h-20 bg-success/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-utensils text-success text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-3">Kebutuhan Pokok</h3>
+                    <p class="text-gray-600 mb-4">1,000+ keluarga menerima bantuan sembako dan kebutuhan dasar setiap bulannya</p>
+                    <div class="text-2xl font-bold text-primary">Rp 280Jt+</div>
+                    <div class="text-sm text-gray-500">Terkumpul untuk sosial</div>
+                </div>
+
+                <div class="bg-gray-50 rounded-2xl p-6 text-center reveal" style="animation-delay: 0.4s;">
+                    <div class="w-20 h-20 bg-hope/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-heart text-hope text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-3">Pemulihan Spiritual</h3>
+                    <p class="text-gray-600 mb-4">500+ jiwa mengalami pemulihan dan menemukan harapan baru melalui kasih Kristus</p>
+                    <div class="text-2xl font-bold text-primary">Rp 120Jt+</div>
+                    <div class="text-sm text-gray-500">Terkumpul untuk keagamaan</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-primary mb-4">Pertanyaan Umum</h2>
+                    <p class="text-xl text-gray-600">Informasi lengkap tentang proses donasi</p>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="bg-white rounded-xl shadow-md p-6 reveal">
+                        <h3 class="text-lg font-semibold text-primary mb-2">Bagaimana cara melakukan donasi?</h3>
+                        <p class="text-gray-600">Pilih jenis donasi (program atau anak), tentukan nominal, isi data diri, dan pilih metode pembayaran. Prosesnya mudah dan aman.</p>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-md p-6 reveal" style="animation-delay: 0.2s;">
+                        <h3 class="text-lg font-semibold text-primary mb-2">Apakah donasi saya aman?</h3>
+                        <p class="text-gray-600">Ya, semua transaksi diproses dengan aman. Data pribadi Anda dilindungi dan tidak akan dibagikan kepada pihak ketiga.</p>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-md p-6 reveal" style="animation-delay: 0.4s;">
+                        <h3 class="text-lg font-semibold text-primary mb-2">Bisakah saya mendapatkan laporan penggunaan dana?</h3>
+                        <p class="text-gray-600">Tentu. Donatur akan menerima update berkala tentang penggunaan dana dan perkembangan penerima manfaat melalui email.</p>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-md p-6 reveal" style="animation-delay: 0.6s;">
+                        <h3 class="text-lg font-semibold text-primary mb-2">Apakah donasi bisa dikurangkan dari pajak?</h3>
+                        <p class="text-gray-600">Ya, Yayasan New Life Indonesia telah terdaftar resmi. Donatur akan menerima bukti potong pajak yang dapat digunakan untuk pengurangan pajak.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-gradient-to-r from-primary to-secondary text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-6">Masih Ada Pertanyaan?</h2>
+            <p class="text-xl max-w-3xl mx-auto mb-8 opacity-90">
+                Tim kami siap membantu Anda dalam proses donasi dan menjawab semua pertanyaan Anda.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="contact.html" class="inline-block bg-white text-primary hover:bg-gray-100 font-bold py-4 px-8 rounded-full shadow-lg transition duration-300 text-lg">
+                    <i class="fas fa-envelope mr-2"></i> Hubungi Kami
+                </a>
+                <a href="https://wa.me/6281234567890" class="inline-block border-2 border-white text-white hover:bg-white/10 font-bold py-4 px-8 rounded-full transition duration-300 text-lg">
+                    <i class="fab fa-whatsapp mr-2"></i> WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-navy text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                <div>
+                    <h4 class="text-xl font-bold mb-6 border-b border-gray-600 pb-2">Yayasan New Life Indonesia</h4>
+                    <div class="space-y-3 text-gray-300">
+                        <p class="flex items-start">
+                            <i class="fas fa-map-marker-alt mr-3 mt-1 text-accent"></i>
+                            <span>
+                                Jl. Contoh Alamat No. 123<br>
+                                Jakarta 12345<br>
+                                Indonesia
+                            </span>
+                        </p>
+                        <p class="flex items-center">
+                            <i class="fas fa-phone mr-3 text-accent"></i>
+                            <span>Telp. +62-21-1234567</span>
+                        </p>
+                        <p class="flex items-center">
+                            <i class="fas fa-envelope mr-3 text-accent"></i>
+                            <span>info@newlifeindonesia.org</span>
+                        </p>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-xl font-bold mb-6 border-b border-gray-600 pb-2">Tautan Cepat</h4>
+                    <ul class="space-y-3 text-gray-300">
+                        <li><a href="index.html" class="hover:text-accent transition">Beranda</a></li>
+                        <li><a href="about.html" class="hover:text-accent transition">Tentang Kami</a></li>
+                        <li><a href="programs.html" class="hover:text-accent transition">Program</a></li>
+                        <li><a href="children.html" class="hover:text-accent transition">Anak Asuh</a></li>
+                        <li><a href="donation.html" class="hover:text-accent transition">Donasi</a></li>
+                        <li><a href="contact.html" class="hover:text-accent transition">Kontak</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-xl font-bold mb-6 border-b border-gray-600 pb-2">Rekening Donasi</h4>
+
+                    <div class="space-y-4 mb-6">
+                        <div class="bg-darkblue p-3 rounded-lg">
+                            <p class="font-semibold">Bank BCA</p>
+                            <p class="text-accent">123-456-7890</p>
+                            <p class="text-sm">a.n. Yayasan New Life Indonesia</p>
+                        </div>
+                        <div class="bg-darkblue p-3 rounded-lg">
+                            <p class="font-semibold">Bank Mandiri</p>
+                            <p class="text-accent">987-654-3210</p>
+                            <p class="text-sm">a.n. Yayasan New Life Indonesia</p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h5 class="font-bold mb-4">Sosial Media</h5>
+                        <div class="flex space-x-4 text-2xl">
+                            <a href="https://facebook.com/newlifeindonesia" class="text-gray-300 hover:text-accent transition" target="_blank" aria-label="Facebook">
+                                <i class="fab fa-facebook-square"></i>
+                            </a>
+                            <a href="https://instagram.com/newlifeindonesia" class="text-gray-300 hover:text-accent transition" target="_blank" aria-label="Instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://youtube.com/newlifeindonesia" class="text-gray-300 hover:text-accent transition" target="_blank" aria-label="YouTube">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-600 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 Yayasan New Life Indonesia. All rights reserved.</p>
+                <p class="mt-2 text-sm">"Yayasan New Life Indonesia hanyalah kepingan kecil dari pekerjaan besar-Nya. Dalam anugerah-Nya, Tuhan berkenan memakai kita semua sebagai alat untuk menyatakan kasih dan memuliakan Dia dan memberi dampak bagi sesama."</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-2xl p-8 max-w-md mx-4 text-center">
+            <div class="w-20 h-20 bg-success/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fas fa-check text-success text-3xl"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-primary mb-2">Donasi Berhasil!</h3>
+            <p class="text-gray-600 mb-6">Terima kasih telah berdonasi. Anda akan menerima email konfirmasi dalam beberapa menit.</p>
+            <div class="flex space-x-3">
+                <button id="modal-close" class="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold py-3 rounded-xl transition duration-300">
+                    Tutup
+                </button>
+                <a href="index.html" class="flex-1 bg-primary hover:bg-secondary text-white font-semibold py-3 rounded-xl transition duration-300 text-center">
+                    Ke Beranda
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Scroll Reveal Script
+        const reveals = document.querySelectorAll(".reveal");
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("active");
+                }
+            });
+        }, { threshold: 0.15 });
+
+        reveals.forEach(r => observer.observe(r));
+
+        // Donation Type Selection
+        const donationTypeCards = document.querySelectorAll('.donation-type-card');
+        const donationOptions = document.querySelectorAll('.donation-option');
+        
+        donationTypeCards.forEach(card => {
+            card.addEventListener('click', function() {
+                // Remove active class from all cards
+                donationTypeCards.forEach(c => c.classList.remove('active'));
+                // Add active class to clicked card
+                this.classList.add('active');
+                
+                // Show corresponding option
+                const type = this.getAttribute('data-type');
+                donationOptions.forEach(option => {
+                    option.classList.add('hidden');
+                    option.classList.remove('active');
+                });
+                document.getElementById(`${type}-donation`).classList.remove('hidden');
+                document.getElementById(`${type}-donation`).classList.add('active');
+                
+                // Update summary
+                updateSummary();
+            });
+        });
+
+        // Program/Child Selection
+        const programOptions = document.querySelectorAll('.program-option');
+        const childOptions = document.querySelectorAll('.child-option');
+        
+        programOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                programOptions.forEach(o => o.classList.remove('border-primary', 'bg-primary/5'));
+                this.classList.add('border-primary', 'bg-primary/5');
+                updateSummary();
+            });
+        });
+        
+        childOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                childOptions.forEach(o => o.classList.remove('border-primary', 'bg-primary/5'));
+                this.classList.add('border-primary', 'bg-primary/5');
+                updateSummary();
+            });
+        });
+
+        // Donation Amount Selection
+        const donationAmountButtons = document.querySelectorAll('.donation-amount-btn');
+        const customAmountInput = document.getElementById('custom-amount');
+        
+        donationAmountButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                donationAmountButtons.forEach(btn => btn.classList.remove('active', 'bg-primary', 'text-white'));
+                // Add active class to clicked button
+                this.classList.add('active', 'bg-primary', 'text-white');
+                
+                // Set custom amount input to empty
+                customAmountInput.value = '';
+                
+                updateSummary();
+            });
+        });
+
+        // Custom amount input clears button selection
+        customAmountInput.addEventListener('input', function() {
+            donationAmountButtons.forEach(btn => btn.classList.remove('active', 'bg-primary', 'text-white'));
+            updateSummary();
+        });
+
+        // Payment Method Selection
+        const paymentMethodButtons = document.querySelectorAll('.payment-method-btn');
+        const bankTransferDetails = document.getElementById('bank-transfer-details');
+        const qrisDetails = document.getElementById('qris-details');
+        
+        paymentMethodButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                paymentMethodButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // Show corresponding details
+                const method = this.getAttribute('data-method');
+                bankTransferDetails.classList.add('hidden');
+                qrisDetails.classList.add('hidden');
+                
+                if (method === 'transfer') {
+                    bankTransferDetails.classList.remove('hidden');
+                } else if (method === 'qris') {
+                    qrisDetails.classList.remove('hidden');
+                }
+            });
+        });
+
+        // Update Summary Function
+        function updateSummary() {
+            // Get donation type
+            const activeTypeCard = document.querySelector('.donation-type-card.active');
+            const donationType = activeTypeCard ? activeTypeCard.getAttribute('data-type') : 'program';
+            
+            // Get recipient
+            let recipient = 'Program Pendidikan'; // default
+            if (donationType === 'program') {
+                const activeProgram = document.querySelector('.program-option.border-primary');
+                if (activeProgram) {
+                    recipient = activeProgram.querySelector('h4').textContent;
+                }
+            } else {
+                const activeChild = document.querySelector('.child-option.border-primary');
+                if (activeChild) {
+                    recipient = activeChild.querySelector('h4').textContent;
+                }
+            }
+            
+            // Get amount
+            let amount = 250000; // default
+            const activeAmountButton = document.querySelector('.donation-amount-btn.active');
+            if (activeAmountButton) {
+                amount = parseInt(activeAmountButton.getAttribute('data-amount'));
+            } else if (customAmountInput.value) {
+                amount = parseInt(customAmountInput.value);
+            }
+            
+            // Update summary
+            document.getElementById('summary-type').textContent = donationType === 'program' ? 'Program' : 'Anak Asuh';
+            document.getElementById('summary-recipient').textContent = recipient;
+            document.getElementById('summary-amount').textContent = formatCurrency(amount);
+            document.getElementById('summary-total').textContent = formatCurrency(amount);
+        }
+
+        // Format currency
+        function formatCurrency(amount) {
+            return 'Rp ' + amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        }
+
+        // Confirm Donation
+        document.getElementById('confirm-donation').addEventListener('click', function() {
+            // Validate form
+            const donorName = document.getElementById('donor-name').value;
+            const donorEmail = document.getElementById('donor-email').value;
+            
+            if (!donorName || !donorEmail) {
+                alert('Harap isi nama lengkap dan email Anda');
+                return;
+            }
+            
+            // Show success modal
+            document.getElementById('success-modal').classList.remove('hidden');
+        });
+
+        // Close modal
+        document.getElementById('modal-close').addEventListener('click', function() {
+            document.getElementById('success-modal').classList.add('hidden');
+        });
+
+        // Initialize summary
+        updateSummary();
+
+        // Dynamic Navbar Color Change on Scroll
+        const navbar = document.getElementById('main-navbar');
+        
+        function updateNavbarColor() {
+            if (window.scrollY > 100) {
+                navbar.classList.remove('bg-primary/90');
+                navbar.classList.add('bg-primary', 'shadow-xl');
+            } else {
+                navbar.classList.remove('bg-primary', 'shadow-xl');
+                navbar.classList.add('bg-primary/90');
+            }
+        }
+
+        window.addEventListener('scroll', updateNavbarColor);
+        window.addEventListener('load', updateNavbarColor);
+    </script>
+
+</body>
+</html>
